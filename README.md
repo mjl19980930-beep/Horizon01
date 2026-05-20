@@ -40,9 +40,11 @@
 
 必须添加：
 
-- `OPENAI_API_KEY`
+- `MINIMAX_API_KEY`
 - `FEISHU_APP_ID`
 - `FEISHU_APP_SECRET`
+
+如果你已经把模型 Key 命名成 `MINIMANX_API_KEY`，也可以先不改，workflow 已经兼容这个拼法。但推荐标准写法是 `MINIMAX_API_KEY`。
 
 飞书目标有两种填法，二选一即可。
 
