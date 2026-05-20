@@ -84,8 +84,8 @@
     }
   },
   "filtering": {
-    "ai_score_threshold": 6.0,
-    "time_window_hours": 24
+    "ai_score_threshold": 4.0,
+    "time_window_hours": 72
   },
   "webhook": {
     "enabled": false,
