@@ -6,7 +6,7 @@ on:
       hours:
         description: "抓取最近多少小时"
         required: false
-        default: "24"
+        default: "72"
       limit:
         description: "最多写入多少条"
         required: false
@@ -48,9 +48,11 @@ jobs:
           FEISHU_TABLE_ID: ${{ secrets.FEISHU_TABLE_ID }}
           FEISHU_AUTO_CREATE_FIELDS: "true"
         run: |
+          mkdir -p outputs
+          set -o pipefail
           python scripts/run_topic_collector.py \
-            --hours "${{ github.event.inputs.hours || '24' }}" \
-            --limit "${{ github.event.inputs.limit || '20' }}"
+            --hours "${{ github.event.inputs.hours || '72' }}" \
+            --limit "${{ github.event.inputs.limit || '20' }}" 2>&1 | tee outputs/workflow.log
 
       - name: Save run state and preview
         if: always()
@@ -58,5 +60,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .state outputs || true
-          git diff --cached --quiet || git commit -m "chore: update AI topic collector run state"
-          git push || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update AI topic collector run state"
+            git pull --rebase || true
+            git push
+          else
+            echo "No run state changes to commit"
+          fi
