@@ -259,13 +259,35 @@ def normalize_feishu_value(value: Any) -> str:
     return str(value)
 
 
+def extract_wiki_token(value: str) -> str:
+    value = value.strip()
+    if not value:
+        return value
+    match = re.search(r"/wiki/([^/?#]+)", value)
+    if match:
+        return match.group(1)
+    match = re.search(r"wiki_token=([^&#]+)", value)
+    if match:
+        return urllib.parse.unquote(match.group(1))
+    return value
+
+
 class FeishuBitableClient:
     def __init__(self) -> None:
         self.app_id = required_env("FEISHU_APP_ID")
         self.app_secret = required_env("FEISHU_APP_SECRET")
-        self.app_token = required_env("FEISHU_BITABLE_APP_TOKEN")
-        self.table_id = required_env("FEISHU_TABLE_ID")
         self.tenant_token = self._tenant_access_token()
+        self.app_token = os.getenv("FEISHU_BITABLE_APP_TOKEN", "").strip()
+        self.table_id = os.getenv("FEISHU_TABLE_ID", "").strip()
+
+        if not self.app_token:
+            wiki_token = extract_wiki_token(required_env("FEISHU_WIKI_TOKEN"))
+            self.app_token = self._resolve_wiki_to_bitable_app_token(wiki_token)
+            print("已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。")
+
+        if not self.table_id:
+            self.table_id = self._first_table_id()
+            print(f"未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：{self.table_id}")
 
     def _tenant_access_token(self) -> str:
         url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
@@ -281,9 +303,6 @@ class FeishuBitableClient:
         if result.get("code") != 0:
             raise RuntimeError(f"飞书鉴权失败：{json.dumps(result, ensure_ascii=False)}")
         return result["tenant_access_token"]
-
-    def _base_url(self) -> str:
-        return f"https://open.feishu.cn/open-apis/bitable/v1/apps/{self.app_token}/tables/{self.table_id}"
 
     def _request(self, method: str, url: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
         data = None
@@ -304,6 +323,33 @@ class FeishuBitableClient:
         if result.get("code") not in (0, None):
             raise RuntimeError(f"飞书接口报错：{json.dumps(result, ensure_ascii=False)}")
         return result
+
+    def _resolve_wiki_to_bitable_app_token(self, wiki_token: str) -> str:
+        query = urllib.parse.urlencode({"token": wiki_token})
+        url = f"https://open.feishu.cn/open-apis/wiki/v2/spaces/get_node?{query}"
+        result = self._request("GET", url)
+        node = result.get("data", {}).get("node", {})
+        obj_token = node.get("obj_token")
+        obj_type = str(node.get("obj_type") or "").lower()
+        if not obj_token:
+            raise RuntimeError("wiki 链接解析失败：没有拿到 obj_token。请确认 FEISHU_WIKI_TOKEN 是多维表格页面的 wiki token。")
+        if obj_type and obj_type not in {"bitable", "base"}:
+            raise RuntimeError(f"这个 wiki 节点不是多维表格，飞书返回 obj_type={obj_type}。请打开真正的多维表格页面再复制 wiki 链接。")
+        return obj_token
+
+    def _base_url(self) -> str:
+        return f"https://open.feishu.cn/open-apis/bitable/v1/apps/{self.app_token}/tables/{self.table_id}"
+
+    def _first_table_id(self) -> str:
+        url = f"https://open.feishu.cn/open-apis/bitable/v1/apps/{self.app_token}/tables?page_size=100"
+        result = self._request("GET", url)
+        items = result.get("data", {}).get("items", [])
+        if not items:
+            raise RuntimeError("这个多维表格里没有数据表，无法写入。请先在飞书里新建一张表。")
+        table_id = items[0].get("table_id")
+        if not table_id:
+            raise RuntimeError("飞书返回的数据表没有 table_id，无法写入。")
+        return table_id
 
     def list_fields(self) -> set[str]:
         fields: set[str] = set()
@@ -418,8 +464,8 @@ async def main() -> int:
     required_env("OPENAI_API_KEY")
     required_env("FEISHU_APP_ID")
     required_env("FEISHU_APP_SECRET")
-    required_env("FEISHU_BITABLE_APP_TOKEN")
-    required_env("FEISHU_TABLE_ID")
+    if not os.getenv("FEISHU_BITABLE_APP_TOKEN") and not os.getenv("FEISHU_WIKI_TOKEN"):
+        raise RuntimeError("缺少飞书目标：请设置 FEISHU_WIKI_TOKEN，或者同时设置 FEISHU_BITABLE_APP_TOKEN 和 FEISHU_TABLE_ID。")
 
     state_path = Path(".state/seen_topics.json")
     preview_path = Path("outputs/last_run_preview.json")
