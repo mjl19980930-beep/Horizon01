@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "hours": 72,
+  "limit": 10,
+  "started_at": "2026-05-20T15:06:10.924000+08:00",
+  "source_items": 92,
+  "merged_items": 89,
+  "analyzed_items": 89,
+  "threshold_items": 0,
+  "keyword_fallback_items": 64,
+  "raw_fallback_items": 0,
+  "selection_strategy": "keyword_fallback",
+  "selected_items": 30,
+  "candidate_items": 10,
+  "new_records": 10,
+  "written_to_feishu": 10,
+  "skipped_duplicates": 0,
+  "finished_at": "2026-05-20T15:14:37.232821+08:00"
+}
