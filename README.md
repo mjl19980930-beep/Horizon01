@@ -36,13 +36,32 @@
 
 ## GitHub Secrets
 
-打开仓库的 `Settings -> Secrets and variables -> Actions -> New repository secret`，依次添加：
+打开仓库的 `Settings -> Secrets and variables -> Actions -> New repository secret`。
+
+必须添加：
 
 - `OPENAI_API_KEY`
 - `FEISHU_APP_ID`
 - `FEISHU_APP_SECRET`
+
+飞书目标有两种填法，二选一即可。
+
+### 方式一：你只有 wiki 链接
+
+添加：
+
+- `FEISHU_WIKI_TOKEN`
+
+它可以填整条 wiki 链接，也可以只填 `/wiki/` 后面的那串 token。脚本会自动把 wiki 节点换成真实的多维表格 token，并默认写入第一张数据表。
+
+### 方式二：你能拿到 base 链接
+
+添加：
+
 - `FEISHU_BITABLE_APP_TOKEN`
 - `FEISHU_TABLE_ID`
+
+`FEISHU_BITABLE_APP_TOKEN` 是 `/base/` 后面的那串，`FEISHU_TABLE_ID` 通常是 `tbl` 开头。
 
 可选：
 
