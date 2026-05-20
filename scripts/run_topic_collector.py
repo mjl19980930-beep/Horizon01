@@ -57,6 +57,50 @@ UNCERTAIN_HINTS = [
     "可能",
 ]
 
+AI_KEYWORDS = [
+    "ai",
+    "a.i.",
+    "llm",
+    "gpt",
+    "chatgpt",
+    "openai",
+    "claude",
+    "anthropic",
+    "gemini",
+    "minimax",
+    "kimi",
+    "doubao",
+    "豆包",
+    "通义",
+    "deepseek",
+    "agent",
+    "agents",
+    "mcp",
+    "rag",
+    "prompt",
+    "workflow",
+    "automation",
+    "automate",
+    "copilot",
+    "cursor",
+    "vibe coding",
+    "model",
+    "大模型",
+    "人工智能",
+    "智能体",
+    "提示词",
+    "工作流",
+    "自动化",
+    "模型",
+    "教程",
+    "玩法",
+    "AI工具",
+]
+
+
+def now_shanghai() -> str:
+    return datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()
+
 
 def required_env(name: str) -> str:
     value = os.getenv(name)
@@ -100,6 +144,25 @@ def text_of(item: Any, *names: str, default: str = "") -> str:
     return default
 
 
+def combined_text(item: Any) -> str:
+    metadata = metadata_of(item)
+    parts = [
+        text_of(item, "title"),
+        text_of(item, "ai_summary", "summary", "description", "content"),
+        " ".join(tags_of(item)),
+        str(metadata.get("category", "")),
+        str(metadata.get("feed_name", "")),
+        str(metadata.get("repo", "")),
+        text_of(item, "url", "link"),
+    ]
+    return " ".join(parts).lower()
+
+
+def topic_relevance_score(item: Any) -> int:
+    text = combined_text(item)
+    return sum(1 for keyword in AI_KEYWORDS if keyword.lower() in text)
+
+
 def score_of(item: Any) -> float:
     for name in ("ai_score", "importance_score", "score"):
         value = get_attr(item, name)
@@ -111,6 +174,18 @@ def score_of(item: Any) -> float:
     return 0.0
 
 
+def effective_score(item: Any) -> float:
+    real_score = score_of(item)
+    if real_score > 0:
+        return real_score
+    relevance = topic_relevance_score(item)
+    if relevance >= 3:
+        return 6.0
+    if relevance >= 1:
+        return 5.0
+    return 4.0
+
+
 def tags_of(item: Any) -> list[str]:
     for name in ("ai_tags", "tags", "topics", "keywords"):
         value = get_attr(item, name)
@@ -118,7 +193,20 @@ def tags_of(item: Any) -> list[str]:
             return [str(v).strip() for v in value if str(v).strip()]
         if isinstance(value, str) and value.strip():
             return [v.strip() for v in re.split(r"[,，#\s]+", value) if v.strip()]
-    return []
+    relevance_tags = [keyword for keyword in AI_KEYWORDS if keyword.lower() in combined_text_without_tags(item)]
+    return relevance_tags[:6]
+
+
+def combined_text_without_tags(item: Any) -> str:
+    metadata = metadata_of(item)
+    parts = [
+        text_of(item, "title"),
+        text_of(item, "ai_summary", "summary", "description", "content"),
+        str(metadata.get("category", "")),
+        str(metadata.get("feed_name", "")),
+        str(metadata.get("repo", "")),
+    ]
+    return " ".join(parts).lower()
 
 
 def source_label(item: Any) -> str:
@@ -160,12 +248,12 @@ def reliability(item: Any, source: str, url: str, summary: str) -> str:
     merged_sources = metadata.get("merged_sources") or []
     text = f"{source} {url} {summary} {' '.join(map(str, merged_sources))}".lower()
     if any(hint in text for hint in UNCERTAIN_HINTS):
-        return "传闻待核验"
+        return "传闻待验证"
     if any(hint in text for hint in OFFICIAL_HINTS):
         return "可靠来源"
     if isinstance(merged_sources, list) and len(set(map(str, merged_sources))) >= 2:
         return "可靠来源"
-    return "单一来源待核验"
+    return "单一来源待验证"
 
 
 def first_sentence(summary: str, title: str) -> str:
@@ -217,6 +305,8 @@ def item_to_record(item: Any) -> dict[str, str]:
     title = text_of(item, "title", default="未命名")
     url = text_of(item, "url", "link")
     summary = text_of(item, "ai_summary", "summary", "description", "content")
+    if not summary:
+        summary = title
     source = source_label(item)
     tags = tags_of(item)
     category = classify_topic(title, summary, tags)
@@ -233,11 +323,11 @@ def item_to_record(item: Any) -> dict[str, str]:
         "工具/产品名": tool_name(title, tags),
         "来源平台": source,
         "原始链接": url,
-        "AI评分": f"{score_of(item):.1f}",
+        "AI评分": f"{effective_score(item):.1f}",
         "可靠性": reliability(item, source, url, summary),
         "适合内容形态": content_shape(category, title, summary),
         "状态": "待筛选",
-        "去重Key": stable_key(title, url),
+        "去重Key": stable_key(title, url or source),
         "标签": "、".join(tags[:8]),
         "AI摘要": summary[:800],
     }
@@ -420,7 +510,7 @@ def load_seen(path: Path) -> set[str]:
 def save_seen(path: Path, keys: set[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
-        "updated_at": datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
+        "updated_at": now_shanghai(),
         "seen_keys": sorted(keys),
     }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -431,7 +521,30 @@ def write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-async def collect_with_horizon(hours: int) -> list[Any]:
+def sort_items(items: list[Any]) -> list[Any]:
+    return sorted(items, key=lambda item: (effective_score(item), topic_relevance_score(item)), reverse=True)
+
+
+async def maybe_merge_topic_duplicates(orchestrator: Any, items: list[Any]) -> list[Any]:
+    if not items:
+        return []
+    try:
+        return await orchestrator.merge_topic_duplicates(items)
+    except Exception as exc:
+        print(f"主题去重失败，已跳过：{exc}", file=sys.stderr)
+        return items
+
+
+async def maybe_enrich(orchestrator: Any, items: list[Any]) -> None:
+    if not items:
+        return
+    try:
+        await orchestrator._enrich_important_items(items)
+    except Exception as exc:
+        print(f"内容补充失败，继续写入已有摘要：{exc}", file=sys.stderr)
+
+
+async def collect_with_horizon(hours: int, limit: int) -> tuple[list[Any], dict[str, Any]]:
     from src.orchestrator import HorizonOrchestrator
     from src.storage.manager import StorageManager
 
@@ -441,73 +554,149 @@ async def collect_with_horizon(hours: int) -> list[Any]:
 
     since = orchestrator._determine_time_window(hours)
     all_items = await orchestrator.fetch_all_sources(since)
+    metrics: dict[str, Any] = {
+        "source_items": len(all_items),
+        "merged_items": 0,
+        "analyzed_items": 0,
+        "threshold_items": 0,
+        "keyword_fallback_items": 0,
+        "raw_fallback_items": 0,
+        "selection_strategy": "none",
+    }
     if not all_items:
-        return []
+        return [], metrics
 
     merged_items = orchestrator.merge_cross_source_duplicates(all_items)
+    metrics["merged_items"] = len(merged_items)
+
     analyzed_items = await orchestrator._analyze_content(merged_items)
-    threshold = config.filtering.ai_score_threshold
-    important_items = [item for item in analyzed_items if item.ai_score and item.ai_score >= threshold]
-    important_items.sort(key=lambda item: item.ai_score or 0, reverse=True)
-    important_items = await orchestrator.merge_topic_duplicates(important_items)
-    await orchestrator._enrich_important_items(important_items)
-    return important_items
+    if not analyzed_items:
+        analyzed_items = merged_items
+    metrics["analyzed_items"] = len(analyzed_items)
+
+    threshold = float(getattr(config.filtering, "ai_score_threshold", 0) or 0)
+    threshold_items = [item for item in analyzed_items if score_of(item) >= threshold]
+    metrics["threshold_items"] = len(threshold_items)
+
+    target_pool_size = max(limit * 3, 30)
+    if threshold_items:
+        selected_items = sort_items(threshold_items)[:target_pool_size]
+        metrics["selection_strategy"] = "ai_score_threshold"
+    else:
+        keyword_items = [item for item in analyzed_items if topic_relevance_score(item) > 0]
+        metrics["keyword_fallback_items"] = len(keyword_items)
+        if keyword_items:
+            selected_items = sort_items(keyword_items)[:target_pool_size]
+            metrics["selection_strategy"] = "keyword_fallback"
+        else:
+            selected_items = sort_items(list(analyzed_items))[:target_pool_size]
+            metrics["raw_fallback_items"] = len(selected_items)
+            metrics["selection_strategy"] = "raw_fallback"
+
+    selected_items = await maybe_merge_topic_duplicates(orchestrator, selected_items)
+    selected_items = sort_items(selected_items)[:target_pool_size]
+    await maybe_enrich(orchestrator, selected_items)
+    metrics["selected_items"] = len(selected_items)
+    return selected_items, metrics
 
 
 async def main() -> int:
     parser = argparse.ArgumentParser(description="Collect AI topics with Horizon and write them to Feishu Bitable.")
-    parser.add_argument("--hours", type=int, default=24)
+    parser.add_argument("--hours", type=int, default=72)
     parser.add_argument("--limit", type=int, default=20)
     args = parser.parse_args()
-
-    load_env_file(Path(".env"))
-    required_env("OPENAI_API_KEY")
-    required_env("FEISHU_APP_ID")
-    required_env("FEISHU_APP_SECRET")
-    if not os.getenv("FEISHU_BITABLE_APP_TOKEN") and not os.getenv("FEISHU_WIKI_TOKEN"):
-        raise RuntimeError("缺少飞书目标：请设置 FEISHU_WIKI_TOKEN，或者同时设置 FEISHU_BITABLE_APP_TOKEN 和 FEISHU_TABLE_ID。")
 
     state_path = Path(".state/seen_topics.json")
     preview_path = Path("outputs/last_run_preview.json")
     summary_path = Path("outputs/last_run_summary.json")
-
-    items = await collect_with_horizon(args.hours)
-    records = [item_to_record(item) for item in items]
-    records = sorted(records, key=lambda row: float(row.get("AI评分") or 0), reverse=True)[: args.limit]
-
-    client = FeishuBitableClient()
-    client.ensure_fields()
-
-    local_seen = load_seen(state_path)
-    remote_seen = client.existing_dedup_keys()
-    known_keys = local_seen | remote_seen
-    new_records = [record for record in records if record["去重Key"] not in known_keys]
-
-    written = client.batch_create(new_records)
-    if written:
-        local_seen.update(record["去重Key"] for record in new_records)
-        save_seen(state_path, local_seen)
-
-    summary = {
+    preview_records: list[dict[str, str]] = []
+    summary: dict[str, Any] = {
+        "status": "started",
         "hours": args.hours,
-        "candidate_items": len(records),
-        "new_records": len(new_records),
-        "written_to_feishu": written,
-        "skipped_duplicates": len(records) - len(new_records),
-        "finished_at": datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
+        "limit": args.limit,
+        "started_at": now_shanghai(),
     }
-    write_json(preview_path, new_records)
-    write_json(summary_path, summary)
 
-    print(f"候选选题：{len(records)}")
-    print(f"新增选题：{len(new_records)}")
-    print(f"写入飞书：{written}")
-    return 0
+    try:
+        load_env_file(Path(".env"))
+        required_env("OPENAI_API_KEY")
+        required_env("FEISHU_APP_ID")
+        required_env("FEISHU_APP_SECRET")
+        if not os.getenv("FEISHU_BITABLE_APP_TOKEN") and not os.getenv("FEISHU_WIKI_TOKEN"):
+            raise RuntimeError("缺少飞书目标：请设置 FEISHU_WIKI_TOKEN，或者同时设置 FEISHU_BITABLE_APP_TOKEN 和 FEISHU_TABLE_ID。")
+
+        items, metrics = await collect_with_horizon(args.hours, args.limit)
+        records = [item_to_record(item) for item in items]
+        records = sorted(records, key=lambda row: float(row.get("AI评分") or 0), reverse=True)[: args.limit]
+        preview_records = records
+
+        summary.update(metrics)
+        summary["candidate_items"] = len(records)
+
+        if not records:
+            summary.update(
+                {
+                    "status": "success_no_candidates",
+                    "new_records": 0,
+                    "written_to_feishu": 0,
+                    "skipped_duplicates": 0,
+                    "finished_at": now_shanghai(),
+                }
+            )
+            write_json(preview_path, [])
+            write_json(summary_path, summary)
+            print("候选选题：0")
+            print("新增选题：0")
+            print("写入飞书：0")
+            print("没有抓到可写入的候选。请打开 outputs/last_run_summary.json 看 source_items 和 selection_strategy。")
+            return 0
+
+        client = FeishuBitableClient()
+        client.ensure_fields()
+
+        local_seen = load_seen(state_path)
+        remote_seen = client.existing_dedup_keys()
+        known_keys = local_seen | remote_seen
+        new_records = [record for record in records if record["去重Key"] not in known_keys]
+        preview_records = new_records
+
+        written = client.batch_create(new_records)
+        if written:
+            local_seen.update(record["去重Key"] for record in new_records)
+            save_seen(state_path, local_seen)
+
+        summary.update(
+            {
+                "status": "success",
+                "new_records": len(new_records),
+                "written_to_feishu": written,
+                "skipped_duplicates": len(records) - len(new_records),
+                "finished_at": now_shanghai(),
+            }
+        )
+        write_json(preview_path, new_records)
+        write_json(summary_path, summary)
+
+        print(f"数据来源原始条数：{summary.get('source_items', 0)}")
+        print(f"筛选策略：{summary.get('selection_strategy', 'none')}")
+        print(f"候选选题：{len(records)}")
+        print(f"新增选题：{len(new_records)}")
+        print(f"写入飞书：{written}")
+        return 0
+    except Exception as exc:
+        summary.update(
+            {
+                "status": "failed",
+                "error": str(exc),
+                "finished_at": now_shanghai(),
+                "candidate_items": len(preview_records),
+            }
+        )
+        write_json(preview_path, preview_records)
+        write_json(summary_path, summary)
+        print(f"运行失败：{exc}", file=sys.stderr)
+        raise
 
 
 if __name__ == "__main__":
-    try:
-        raise SystemExit(asyncio.run(main()))
-    except Exception as exc:
-        print(f"运行失败：{exc}", file=sys.stderr)
-        raise
+    raise SystemExit(asyncio.run(main()))
