@@ -39,7 +39,7 @@ jobs:
 
       - name: Collect AI topics and write to Feishu
         env:
-          OPENAI_API_KEY: ${{ secrets.MINIMAX_API_KEY || secrets.MINIMANX_API_KEY || secrets.OPENAI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_FOR_HORIZON || github.token }}
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
@@ -50,6 +50,10 @@ jobs:
         run: |
           mkdir -p outputs
           set -o pipefail
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "MINIMAX_API_KEY is missing. Please add it in GitHub Actions secrets."
+            exit 1
+          fi
           python scripts/run_topic_collector.py \
             --hours "${{ github.event.inputs.hours || '72' }}" \
             --limit "${{ github.event.inputs.limit || '20' }}" 2>&1 | tee outputs/workflow.log
