@@ -47,6 +47,13 @@ jobs:
           FEISHU_BITABLE_APP_TOKEN: ${{ secrets.FEISHU_BITABLE_APP_TOKEN }}
           FEISHU_TABLE_ID: ${{ secrets.FEISHU_TABLE_ID }}
           FEISHU_AUTO_CREATE_FIELDS: "true"
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+          X_SEARCH_QUERY: ${{ secrets.X_SEARCH_QUERY }}
+          X_SEARCH_MAX_RESULTS: ${{ secrets.X_SEARCH_MAX_RESULTS }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_SEARCH_QUERIES: ${{ secrets.YOUTUBE_SEARCH_QUERIES }}
+          YOUTUBE_RESULTS_PER_QUERY: ${{ secrets.YOUTUBE_RESULTS_PER_QUERY }}
         run: |
           mkdir -p outputs
           set -o pipefail
