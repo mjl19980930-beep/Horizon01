@@ -3,34 +3,24 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/ChatGPTCoding/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ChatGPTCoding/hot.json?limit=10&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
    Found 0 items from Reddit
-   Found 30 items from OSS Insight
-      • ossinsight:C: 1
-      • ossinsight:Go: 1
-      • ossinsight:HTML: 1
-      • ossinsight:JavaScript: 2
-      • ossinsight:Python: 10
-      • ossinsight:Rust: 3
-      • ossinsight🐚 1
-      • ossinsight:TypeScript: 11
-   Found 27 items from Hacker News
+   Found 26 items from Hacker News
       • 0xedb: 1
-      • AndrewDucker: 1
-      • CHB0403085482: 1
-      • Timofeibu: 2
+      • OuterVale: 1
+      • Timofeibu: 1
       • aurareturn: 1
+      • azhenley: 1
       • bambax: 1
       • cachecow: 1
       • cdrnsf: 1
-      • doppp: 1
       • dxs: 1
       • eqrion: 1
       • giuliomagnifico: 1
@@ -39,6 +29,7 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • kageroumado: 1
       • kevinsimper: 1
       • ki4jgt: 1
+      • louiereederson: 1
       • pramodbiligiri: 1
       • pyrex41: 1
       • rglover: 1
@@ -48,13 +39,19 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • tigerlily: 1
       • wapasta: 1
       • yacin: 1
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 6 items from GitHub
+   Found 30 items from OSS Insight
+      • ossinsight:JavaScript: 2
+      • ossinsight:Python: 13
+      • ossinsight:Rust: 5
+      • ossinsight🐚 1
+      • ossinsight:TypeScript: 9
+   Found 7 items from GitHub
       • anthropics/anthropic-sdk-python: 2
       • browser-use/browser-use: 1
       • huggingface/transformers: 1
-      • langchain-ai/langchain: 2
+      • langchain-ai/langchain: 3
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 44 items from RSS Feeds
       • Google AI Blog: 10
       • Hugging Face Blog: 5
@@ -64,41 +61,15 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • The Decoder: 10
       • VentureBeat AI: 1
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for rss:the-decoder.com_feed_:6753ad8e2b705df5, using defaults
-Warning: could not parse analysis response for ossinsight:trending:1185590488, using defaults
+Warning: could not parse analysis response for ossinsight:trending:1176011916, using defaults
 
-   dedup: keep [1] Prominent AI researcher Andrej Karpathy picks Anthropic over 
-former home OpenAI to get back into frontier LLM research
-          drop [8] Gemini 3.5 Flash ⚡️, Karpathy joins Anthropic 🧑‍💻, OpenAI 
-Guaranteed Capacity ⚡
-   dedup: keep [2] Quoting SpaceX S-1
-          drop [14] SpaceX S-1
-   dedup: keep [5] Qwen3.7-Max: The Agent Frontier
-          drop [28] Qwen 3.7 🤖, Cursor Composer 2.5 👨‍💻, Anthropic acquires 
-Stainless 🛠️
-   dedup: keep [8] Gemini 3.5 Flash ⚡️, Karpathy joins Anthropic 🧑‍💻, OpenAI 
-Guaranteed Capacity ⚡
-          drop [11] Gemini 3.5 Flash: more expensive, but Google plan to use it 
+   dedup: keep [5] SpaceX S-1
+          drop [6] Quoting SpaceX S-1
+   dedup: keep [18] Gemini 3.5 Flash: more expensive, but Google plan to use it 
 for everything
-   dedup: keep [8] Gemini 3.5 Flash ⚡️, Karpathy joins Anthropic 🧑‍💻, OpenAI 
-Guaranteed Capacity ⚡
-          drop [26] Google's Gemini 3.5 Flash follows Anthropic and OpenAI in 
+          drop [27] Google's Gemini 3.5 Flash follows Anthropic and OpenAI in 
 making newer AI models significantly pricier
-   dedup: keep [8] Gemini 3.5 Flash ⚡️, Karpathy joins Anthropic 🧑‍💻, OpenAI 
-Guaranteed Capacity ⚡
-          drop [27] Gemini 3.5: frontier intelligence with action
-   dedup: keep [10] Google's I/O announcements: new models, a cloud agent that 
-never sleeps, and a redesigned Gemini app
-          drop [50] Google I/O, Gemini Spark, Antigravity
 📚 Enriching with background knowledge...
-Warning: could not parse enrichment response for rss:the-decoder.com_feed_:770e78752e172fc3, skipping enrichment
 
-   Enriched 53 items
+   Enriched 58 items
 
-已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
-未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblPsCdJjIYMw6ej
-数据来源原始条数：107
-筛选策略：ai_score_threshold
-候选选题：20
-新增选题：8
-写入飞书：8
