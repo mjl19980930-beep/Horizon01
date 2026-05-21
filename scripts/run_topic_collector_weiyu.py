@@ -25,7 +25,10 @@ FIELD_NAMES = [
     "一级分类", "来源平台", "原始链接", "AI评分", "可靠性", "适合内容形态", "状态", "去重Key", "标签", "AI摘要",
 ]
 
+CARD_FIELDS = ["热点", "切入点", "选题", "标题", "选题受众", "选题目的", "开头", "中间", "结尾"]
 TRANSLATION_CACHE: dict[str, str] = {}
+CARD_CACHE: dict[str, dict[str, str]] = {}
+
 DEFAULT_X_QUERY = '((AI OR "artificial intelligence" OR ChatGPT OR Claude OR Gemini OR "AI agent" OR "AI tools" OR "AI workflow" OR "vibe coding") lang:en -is:retweet -is:reply)'
 DEFAULT_YOUTUBE_QUERIES = ["AI tools tutorial", "ChatGPT tutorial AI workflow", "Claude AI agent tutorial"]
 
@@ -59,27 +62,49 @@ def request_json(url: str, headers: dict[str, str] | None = None, payload: dict[
         return json.loads(response.read().decode("utf-8"))
 
 
+def deepseek_chat(messages: list[dict[str, str]], max_tokens: int = 900, temperature: float = 0.35) -> str:
+    api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY missing")
+    payload = {
+        "model": os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash"),
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "messages": messages,
+    }
+    result = request_json("https://api.deepseek.com/chat/completions", {"Authorization": f"Bearer {api_key}"}, payload, 35)
+    return result["choices"][0]["message"]["content"]
+
+
+def extract_json_object(text: str) -> dict[str, Any]:
+    cleaned = text.strip()
+    cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned)
+    cleaned = re.sub(r"\s*```$", "", cleaned)
+    start = cleaned.find("{")
+    end = cleaned.rfind("}")
+    if start >= 0 and end > start:
+        cleaned = cleaned[start : end + 1]
+    return json.loads(cleaned)
+
+
 def translate_title(title: str) -> str:
     title = clean_text(title, 180)
     if not is_mostly_english(title):
         return ""
     if title in TRANSLATION_CACHE:
         return TRANSLATION_CACHE[title]
-    api_key = os.getenv("OPENAI_API_KEY", "").strip()
-    if not api_key:
-        return ""
-    payload = {
-        "model": os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash"),
-        "temperature": 0.1,
-        "max_tokens": 120,
-        "messages": [
-            {"role": "system", "content": "你只做标题翻译。把英文标题翻译成自然、短、适合中文内容选题库的中文，不要解释，不要加引号。"},
-            {"role": "user", "content": title},
-        ],
-    }
     try:
-        result = request_json("https://api.deepseek.com/chat/completions", {"Authorization": f"Bearer {api_key}"}, payload, 20)
-        translated = clean_text(result["choices"][0]["message"]["content"], 120)
+        translated = clean_text(
+            deepseek_chat(
+                [
+                    {"role": "system", "content": "你只做标题翻译。把英文标题翻译成自然、短、适合中文内容选题库的中文，不要解释，不要加引号。"},
+                    {"role": "user", "content": title},
+                ],
+                max_tokens=120,
+                temperature=0.1,
+            ),
+            120,
+        )
     except Exception as exc:
         print(f"标题翻译失败，保留英文标题：{exc}")
         translated = ""
@@ -110,84 +135,107 @@ def topic_label(title: str, tags: list[str]) -> str:
     return clean_text(re.sub(r"[\[\]【】()（）]", " ", title), 28) or "这个AI热点"
 
 
-def hot_field(title: str, summary: str) -> str:
+def source_prefix(source: str, url: str) -> str:
+    text = f"{source} {url}".lower()
+    if "youtube" in text:
+        return "YouTube热门视频"
+    if "twitter" in text or "x" == source.lower():
+        return "X热帖"
+    if "github" in text:
+        return "GitHub热门项目"
+    if "hackernews" in text:
+        return "Hacker News热议"
+    if any(k in text for k in ["openai", "anthropic", "google", "hugging face"]):
+        return "官方/技术圈动态"
+    return "海外AI动态"
+
+
+def fallback_card(title: str, summary: str, source: str, url: str, category: str, label: str) -> dict[str, str]:
     display_title = title_with_translation(title)
-    explanation = first_sentence(summary, title, 120)
-    if explanation and explanation.lower() not in title.lower():
-        return f"外网热议“{display_title}”\n（{explanation}）"
-    return f"外网热议“{display_title}”"
-
-
-def topic_plan(category: str, label: str) -> str:
+    fact = first_sentence(summary, title, 120)
+    prefix = source_prefix(source, url)
     if category == "AI工具":
-        return f"{label}工具判断 + 小白上手方法"
+        return {
+            "热点": f"{prefix}：{display_title}\n（{fact}）",
+            "切入点": f"从“这个工具到底省掉哪一步”切入，而不是只讲{label}有多强。",
+            "选题": f"{label}值不值得学？用一个真实任务判断它的价值",
+            "标题": f"{label}又火了？别急着追新，先看它能不能帮你省掉这一步",
+            "选题受众": "AI小白、内容创作者、想用AI提升效率的人",
+            "选题目的": "帮小白判断一个工具值不值得学，以及第一步应该怎么试。",
+            "开头": f"很多人看到{label}就开始焦虑：是不是又有新工具要学？先别急，工具本身不重要，重要的是它能不能解决你的一个具体问题。",
+            "中间": f"可以拆三点：1. {fact}；2. 它适合解决什么具体任务；3. 小白第一次试用时要用自己的真实场景，而不是只看官方演示。",
+            "结尾": "别先收藏一堆工具，先拿一个小任务跑通，再决定它值不值得继续学。",
+        }
     if category == "AI教程":
-        return f"{label}入门教程 + 第一步实操"
-    if category == "AI玩法":
-        return f"{label}玩法拆解 + 普通人可复制动作"
-    return "AI认知纠偏 + 热点背后的使用判断"
+        return {
+            "热点": f"{prefix}：{display_title}\n（{fact}）",
+            "切入点": f"从小白第一次上手{label}最容易卡住的地方切入。",
+            "选题": f"{label}入门第一步：别看完教程，先跑通一个动作",
+            "标题": f"别再收藏一堆AI教程了！{label}这件事，今天先跑通第一步",
+            "选题受众": "AI小白、刚开始学工具的人、需要照着做的人",
+            "选题目的": "降低上手门槛，把复杂信息拆成可以跟做的第一步。",
+            "开头": f"很多人学AI卡住，不是因为笨，而是一上来就被教程吓住了。今天不讲全套，只讲{label}第一步怎么跑通。",
+            "中间": f"可以拆三步：1. 先讲{fact}；2. 只保留小白必须知道的概念；3. 给一个可以跟做的小任务。",
+            "结尾": "教程不是用来收藏的，是用来跑通第一步的。今天先完成一个最小动作。",
+        }
+    return {
+        "热点": f"{prefix}：{display_title}\n（{fact}）",
+        "切入点": "从普通人能拿走什么认知或动作切入，不把它当资讯复述。",
+        "选题": f"{label}背后，普通人真正该看懂的一件事",
+        "标题": "这个AI热点别只刷过去！真正值得讲的是普通人接下来怎么用",
+        "选题受众": "AI小白、内容创作者、关注AI趋势但不知道怎么用的人",
+        "选题目的": "把热点翻译成小白能听懂的判断，最后落到一个可尝试的动作。",
+        "开头": f"这个热点不要只当新闻看。你真正要关心的是：{label}这件事，会不会影响你接下来做内容、学工具、用AI工作的方式。",
+        "中间": f"可以拆三层：1. 发生了什么：{fact}；2. 它改变了哪个工作动作；3. 普通人现在可以先试一个什么小动作。",
+        "结尾": "不要每天追一堆AI新闻，最后什么都没用上。先挑一个和你工作最接近的点，今天就做一次小测试。",
+    }
 
 
-def creator_title(category: str, label: str, summary: str) -> str:
-    text = f"{label} {summary}".lower()
-    if any(k in text for k in ["replace", "replacement", "替代", "取代", "thinking", "思考"]):
-        return "AI不是来替你思考的！小白真正该学的是怎么把它当脚手架"
-    if category == "AI工具":
-        return f"{label}又火了？别急着追新，先看它到底能帮你省掉哪一步"
-    if category == "AI教程":
-        return f"别再收藏一堆AI教程了！{label}这件事，今天先跑通第一步"
-    if category == "AI玩法":
-        return f"这个AI玩法别光看热闹！普通人照着做，先从{label}开始"
-    return "这个AI热点别只刷过去！真正值得讲的是普通人接下来怎么用"
-
-
-def audience(category: str) -> str:
-    if category == "AI教程":
-        return "AI小白、刚开始学工具的人、需要照着做的人"
-    if category == "AI玩法":
-        return "内容创作者、IP从业者、AI初学者"
-    return "AI小白、内容创作者、关注AI趋势但不知道怎么用的人"
-
-
-def purpose(category: str) -> str:
-    if category == "AI工具":
-        return "帮小白判断这个工具值不值得学、适合解决什么问题、第一步应该怎么试。"
-    if category == "AI教程":
-        return "降低上手门槛，把复杂信息拆成可以跟做的第一步。"
-    if category == "AI玩法":
-        return "把新玩法拆成普通人能复用的流程，重点讲清楚场景、动作和边界。"
-    return "把热点翻译成小白能听懂的判断，避免只追新闻，最后落到一个可尝试的动作。"
-
-
-def entry_angle(category: str, label: str) -> str:
-    if category == "AI工具":
-        return f"不要从“{label}有多强”讲起，先问：它到底替普通人省掉了哪一个具体步骤？"
-    if category == "AI教程":
-        return f"不要做功能介绍，直接从小白第一次打开{label}最容易卡住的地方切入。"
-    if category == "AI玩法":
-        return "不要讲概念，拆成一个今天就能试的动作：输入什么、让AI做什么、最后检查什么。"
-    return "不要把它当普通新闻念，切到普通人最关心的：这件事会改变哪个具体工作动作。"
-
-
-def opening(category: str, label: str) -> str:
-    if category == "AI工具":
-        return f"很多人看到{label}又开始焦虑：是不是又有新工具要学？先别急。工具多不重要，重要的是它能不能帮你少走一步。"
-    if category == "AI教程":
-        return f"很多人学AI卡住，不是因为笨，而是一上来就被一堆教程吓住了。今天这个选题就讲{label}，只讲第一步怎么跑通。"
-    if category == "AI玩法":
-        return "AI玩法每天都在变，但小白真正需要的不是收藏，而是照着做一遍。今天这个玩法，可以拆成一个很简单的动作。"
-    return "这个AI热点不要只当新闻看。你真正要关心的是：它会不会影响你接下来做内容、学工具、用AI工作的方式。"
-
-
-def middle(category: str, label: str, summary: str) -> str:
-    fact = first_sentence(summary, label, 120)
-    return f"可以拆三个部分：\n1. 先讲发生了什么：{fact}\n2. 再讲小白最容易误解的地方：不要把它当成万能答案，要看它能解决哪一个具体问题。\n3. 最后给一个动作：选一个自己的真实场景，用{label}跑一遍，再看结果能不能被自己修改和使用。"
-
-
-def ending(category: str) -> str:
-    if category == "AI热点":
-        return "不要每天追一堆AI新闻，最后什么都没用上。先挑一个和你工作最接近的点，今天就拿它做一次小测试。"
-    return "不要只收藏，也不要一上来就追求全自动。先把一个小流程跑通，再决定这个工具或者玩法值不值得继续学。"
+def make_topic_card(title: str, summary: str, source: str, url: str, category: str, tags: list[str]) -> dict[str, str]:
+    cache_key = base.stable_key(title, url or source)
+    if cache_key in CARD_CACHE:
+        return CARD_CACHE[cache_key]
+    label = topic_label(title, tags)
+    fallback = fallback_card(title, summary, source, url, category, label)
+    prompt_payload = {
+        "原始标题": title,
+        "标题含中文翻译": title_with_translation(title),
+        "摘要": clean_text(summary, 700),
+        "来源": source,
+        "链接": url,
+        "分类": category,
+        "标签": tags[:8],
+    }
+    try:
+        raw = deepseek_chat(
+            [
+                {
+                    "role": "system",
+                    "content": (
+                        "你是AI内容选题编辑，负责把不同AI热点转成飞书选题卡。必须逐条根据事实生成，禁止套同一模板。"
+                        "输出严格JSON，字段为：热点、切入点、选题、标题、选题受众、选题目的、开头、中间、结尾。"
+                        "要求：1 热点保留原事件，不要每条都写外网热议；英文标题若有中文翻译，要放同一单元格括号里。"
+                        "2 切入点必须和该话题强相关。3 选题和标题要具体，不能泛写AI热点。"
+                        "4 开头必须围绕该话题，不同话题不能相同。5 中间给2到3个具体拆解点。"
+                        "6 借用喂鱼式的结构化、带教感和动作落点，但不要编造喂鱼自己的经历、学员案例或个人故事。"
+                        "7 面向AI小白，但可以保留高阶认知，用小白能理解的话解释。"
+                    ),
+                },
+                {"role": "user", "content": json.dumps(prompt_payload, ensure_ascii=False)},
+            ],
+            max_tokens=1100,
+            temperature=0.55,
+        )
+        parsed = extract_json_object(raw)
+        card = {field: clean_text(str(parsed.get(field) or fallback[field]), 900) for field in CARD_FIELDS}
+    except Exception as exc:
+        print(f"选题卡生成失败，使用兜底模板：{exc}")
+        card = fallback
+    for field in CARD_FIELDS:
+        if not card.get(field):
+            card[field] = fallback[field]
+    CARD_CACHE[cache_key] = card
+    return card
 
 
 def social_score(metrics: dict[str, Any]) -> float:
@@ -200,14 +248,21 @@ def social_score(metrics: dict[str, Any]) -> float:
     return 6.0 if raw <= 0 else min(9.5, 6.0 + math.log10(raw + 1))
 
 
+def env_int(name: str, default: int, low: int, high: int) -> int:
+    try:
+        return max(low, min(int(os.getenv(name) or default), high))
+    except ValueError:
+        return default
+
+
 def fetch_x_recent(hours: int) -> list[dict[str, Any]]:
     token = os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_BEARER_TOKEN")
     if not token:
         return []
-    max_results = max(10, min(int(os.getenv("X_SEARCH_MAX_RESULTS", "50")), 100))
+    max_results = env_int("X_SEARCH_MAX_RESULTS", 50, 10, 100)
     start_time = (datetime.now(timezone.utc) - timedelta(hours=hours)).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     params = {
-        "query": os.getenv("X_SEARCH_QUERY", DEFAULT_X_QUERY),
+        "query": os.getenv("X_SEARCH_QUERY") or DEFAULT_X_QUERY,
         "max_results": str(max_results),
         "start_time": start_time,
         "tweet.fields": "created_at,public_metrics,author_id,lang",
@@ -266,9 +321,9 @@ def fetch_youtube(hours: int) -> list[dict[str, Any]]:
     published_after = (datetime.now(timezone.utc) - timedelta(hours=hours)).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     video_ids: list[str] = []
     snippets: dict[str, dict[str, Any]] = {}
-    per_query = max(1, min(int(os.getenv("YOUTUBE_RESULTS_PER_QUERY", "8")), 20))
+    per_query = env_int("YOUTUBE_RESULTS_PER_QUERY", 8, 1, 20)
     for query in youtube_queries()[:5]:
-        params = {"key": api_key, "part": "snippet", "q": query, "type": "video", "order": os.getenv("YOUTUBE_ORDER", "viewCount"), "publishedAfter": published_after, "maxResults": str(per_query), "relevanceLanguage": "en", "safeSearch": "moderate"}
+        params = {"key": api_key, "part": "snippet", "q": query, "type": "video", "order": os.getenv("YOUTUBE_ORDER") or "viewCount", "publishedAfter": published_after, "maxResults": str(per_query), "relevanceLanguage": "en", "safeSearch": "moderate"}
         try:
             result = request_json("https://www.googleapis.com/youtube/v3/search?" + urllib.parse.urlencode(params))
         except urllib.error.HTTPError as exc:
@@ -352,18 +407,10 @@ def item_to_record(item: Any) -> dict[str, str]:
         source = str(metadata["platform"])
     tags = base.tags_of(item)
     category = base.classify_topic(title, summary, tags)
-    label = topic_label(title, tags)
+    card = make_topic_card(title, summary, source, url, category, tags)
     return {
-        "热点": hot_field(title, summary),
+        **card,
         "时间": display_time(item),
-        "切入点": entry_angle(category, label),
-        "选题": topic_plan(category, label),
-        "标题": creator_title(category, label, summary),
-        "选题受众": audience(category),
-        "选题目的": purpose(category),
-        "开头": opening(category, label),
-        "中间": middle(category, label, summary),
-        "结尾": ending(category),
         "逐字稿": "",
         "一级分类": category,
         "来源平台": source,
