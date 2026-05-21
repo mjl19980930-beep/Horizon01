@@ -3,13 +3,13 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
+Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
+Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/ChatGPTCoding/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ChatGPTCoding/hot.json?limit=10&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
+Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
    Found 0 items from Reddit
    Found 26 items from Hacker News
@@ -21,6 +21,7 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • bambax: 1
       • cachecow: 1
       • cdrnsf: 1
+      • doppp: 1
       • dxs: 1
       • eqrion: 1
       • giuliomagnifico: 1
@@ -28,7 +29,6 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • kageroumado: 1
       • kevinsimper: 1
       • ki4jgt: 1
-      • pantalaimon: 1
       • pramodbiligiri: 1
       • pyrex41: 1
       • rglover: 1
@@ -63,34 +63,33 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • The Decoder: 10
       • VentureBeat AI: 1
 🤖 Analyzing content with AI...
+Warning: could not parse analysis response for ossinsight:trending:1201476594, using defaults
 
-   dedup: keep [1] SpaceX S-1
-          drop [2] Quoting SpaceX S-1
-   dedup: keep [4] Google's Gemini 3.5 Flash follows Anthropic and OpenAI in 
-making newer AI models significantly pricier
-          drop [34] Gemini 3.5 Flash: more expensive, but Google plan to use it 
+   dedup: keep [1] Google's I/O announcements: new models, a cloud agent that 
+never sleeps, and a redesigned Gemini app
+          drop [2] Gemini 3.5: frontier intelligence with action
+   dedup: keep [1] Google's I/O announcements: new models, a cloud agent that 
+never sleeps, and a redesigned Gemini app
+          drop [3] Gemini 3.5 Flash: more expensive, but Google plan to use it 
 for everything
-   dedup: keep [9] Google's I/O announcements: new models, a cloud agent that 
+   dedup: keep [1] Google's I/O announcements: new models, a cloud agent that 
 never sleeps, and a redesigned Gemini app
-          drop [10] Gemini 3.5: frontier intelligence with action
-   dedup: keep [9] Google's I/O announcements: new models, a cloud agent that 
+          drop [8] Google just redesigned the search box for the first time in 
+25 years — here’s why it matters more than you think.
+   dedup: keep [1] Google's I/O announcements: new models, a cloud agent that 
 never sleeps, and a redesigned Gemini app
-          drop [32] I/O 2026: Welcome to the agentic Gemini era
-   dedup: keep [9] Google's I/O announcements: new models, a cloud agent that 
+          drop [9] Google's Gemini 3.5 Flash follows Anthropic and OpenAI in 
+making newer AI models significantly pricier
+   dedup: keep [1] Google's I/O announcements: new models, a cloud agent that 
 never sleeps, and a redesigned Gemini app
-          drop [33] Google I/O, Gemini Spark, Antigravity
-   dedup: keep [9] Google's I/O announcements: new models, a cloud agent that 
-never sleeps, and a redesigned Gemini app
-          drop [37] Google overhauls its AI subscriptions at I/O 2026 with three
+          drop [15] Google overhauls its AI subscriptions at I/O 2026 with three
 tiers starting at $10 a month
+   dedup: keep [1] Google's I/O announcements: new models, a cloud agent that 
+never sleeps, and a redesigned Gemini app
+          drop [28] Google I/O, Gemini Spark, Antigravity
+   dedup: keep [1] Google's I/O announcements: new models, a cloud agent that 
+never sleeps, and a redesigned Gemini app
+          drop [46] I/O 2026
+   dedup: keep [4] SpaceX S-1
+          drop [5] Quoting SpaceX S-1
 📚 Enriching with background knowledge...
-
-   Enriched 54 items
-
-已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
-未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblPsCdJjIYMw6ej
-数据来源原始条数：106
-筛选策略：ai_score_threshold
-候选选题：20
-新增选题：12
-写入飞书：12
