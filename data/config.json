@@ -1,8 +1,9 @@
 {
   "version": "1.0",
   "ai": {
-    "provider": "minimax",
-    "model": "MiniMax-M2.7",
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
     "api_key_env": "OPENAI_API_KEY",
     "temperature": 0.2,
     "max_tokens": 4096,
