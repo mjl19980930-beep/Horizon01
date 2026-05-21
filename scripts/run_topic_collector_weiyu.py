@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Feishu field adapter for Weiyu-style AI topic cards.
 
-This script reuses the existing Horizon collection pipeline and only replaces
-how each selected item is converted into Feishu Bitable fields. It also adds
-optional X and YouTube discovery sources when the required API keys are present.
+This wrapper keeps the original Horizon collection pipeline, changes the Feishu
+fields into topic-card fields, and optionally adds X/YouTube discovery when the
+corresponding API keys are configured.
 """
 
 import asyncio
@@ -20,61 +20,30 @@ from zoneinfo import ZoneInfo
 
 import run_topic_collector as base
 
-
 FIELD_NAMES = [
-    "热点",
-    "时间",
-    "切入点",
-    "选题",
-    "标题",
-    "选题受众",
-    "选题目的",
-    "开头",
-    "中间",
-    "结尾",
-    "逐字稿",
-    "一级分类",
-    "来源平台",
-    "原始链接",
-    "AI评分",
-    "可靠性",
-    "适合内容形态",
-    "状态",
-    "去重Key",
-    "标签",
-    "AI摘要",
+    "热点", "时间", "切入点", "选题", "标题", "选题受众", "选题目的", "开头", "中间", "结尾", "逐字稿",
+    "一级分类", "来源平台", "原始链接", "AI评分", "可靠性", "适合内容形态", "状态", "去重Key", "标签", "AI摘要",
 ]
 
 TRANSLATION_CACHE: dict[str, str] = {}
-
 DEFAULT_X_QUERY = '((AI OR "artificial intelligence" OR ChatGPT OR Claude OR Gemini OR "AI agent" OR "AI tools" OR "AI workflow" OR "vibe coding") lang:en -is:retweet -is:reply)'
-DEFAULT_YOUTUBE_QUERIES = [
-    "AI tools tutorial",
-    "ChatGPT tutorial AI workflow",
-    "Claude AI agent tutorial",
-]
+DEFAULT_YOUTUBE_QUERIES = ["AI tools tutorial", "ChatGPT tutorial AI workflow", "Claude AI agent tutorial"]
 
 
 def clean_text(value: str, limit: int = 240) -> str:
     text = re.sub(r"\s+", " ", value or "").strip()
     text = re.sub(r"<[^>]+>", "", text)
-    if len(text) <= limit:
-        return text
-    return text[: limit - 1].rstrip() + "…"
+    return text if len(text) <= limit else text[: limit - 1].rstrip() + "…"
 
 
 def first_sentence(summary: str, fallback: str, limit: int = 120) -> str:
     text = clean_text(summary or fallback, 500)
-    if not text:
-        return clean_text(fallback, limit)
-    parts = re.split(r"[。.!?！？]\s*", text)
-    return clean_text(parts[0] or text, limit)
+    parts = re.split(r"[。.!?！？]\s*", text) if text else [fallback]
+    return clean_text(parts[0] or text or fallback, limit)
 
 
 def is_mostly_english(text: str) -> bool:
-    cjk = len(re.findall(r"[\u4e00-\u9fff]", text or ""))
-    letters = len(re.findall(r"[A-Za-z]", text or ""))
-    return letters >= 8 and cjk == 0
+    return len(re.findall(r"[A-Za-z]", text or "")) >= 8 and not re.search(r"[\u4e00-\u9fff]", text or "")
 
 
 def request_json(url: str, headers: dict[str, str] | None = None, payload: dict[str, Any] | None = None, timeout: int = 30) -> dict[str, Any]:
@@ -109,12 +78,7 @@ def translate_title(title: str) -> str:
         ],
     }
     try:
-        result = request_json(
-            "https://api.deepseek.com/chat/completions",
-            headers={"Authorization": f"Bearer {api_key}"},
-            payload=payload,
-            timeout=20,
-        )
+        result = request_json("https://api.deepseek.com/chat/completions", {"Authorization": f"Bearer {api_key}"}, payload, 20)
         translated = clean_text(result["choices"][0]["message"]["content"], 120)
     except Exception as exc:
         print(f"标题翻译失败，保留英文标题：{exc}")
@@ -126,9 +90,7 @@ def translate_title(title: str) -> str:
 def title_with_translation(title: str) -> str:
     title = clean_text(title, 160)
     translated = translate_title(title)
-    if translated and translated.lower() != title.lower():
-        return f"{title}（{translated}）"
-    return title
+    return f"{title}（{translated}）" if translated and translated.lower() != title.lower() else title
 
 
 def display_time(item: Any) -> str:
@@ -145,8 +107,7 @@ def topic_label(title: str, tags: list[str]) -> str:
     tool = base.tool_name(title, tags)
     if tool:
         return clean_text(tool, 28)
-    title = re.sub(r"[\[\]【】()（）]", " ", title)
-    return clean_text(title, 28) or "这个AI热点"
+    return clean_text(re.sub(r"[\[\]【】()（）]", " ", title), 28) or "这个AI热点"
 
 
 def hot_field(title: str, summary: str) -> str:
@@ -181,8 +142,6 @@ def creator_title(category: str, label: str, summary: str) -> str:
 
 
 def audience(category: str) -> str:
-    if category == "AI工具":
-        return "AI初学者、内容创作者、想用AI提升效率的人"
     if category == "AI教程":
         return "AI小白、刚开始学工具的人、需要照着做的人"
     if category == "AI玩法":
@@ -191,13 +150,13 @@ def audience(category: str) -> str:
 
 
 def purpose(category: str) -> str:
-    if category == "AI热点":
-        return "把热点翻译成小白能听懂的判断，避免只追新闻，最后落到一个可尝试的动作。"
     if category == "AI工具":
         return "帮小白判断这个工具值不值得学、适合解决什么问题、第一步应该怎么试。"
     if category == "AI教程":
         return "降低上手门槛，把复杂信息拆成可以跟做的第一步。"
-    return "把新玩法拆成普通人能复用的流程，重点讲清楚场景、动作和边界。"
+    if category == "AI玩法":
+        return "把新玩法拆成普通人能复用的流程，重点讲清楚场景、动作和边界。"
+    return "把热点翻译成小白能听懂的判断，避免只追新闻，最后落到一个可尝试的动作。"
 
 
 def entry_angle(category: str, label: str) -> str:
@@ -206,7 +165,7 @@ def entry_angle(category: str, label: str) -> str:
     if category == "AI教程":
         return f"不要做功能介绍，直接从小白第一次打开{label}最容易卡住的地方切入。"
     if category == "AI玩法":
-        return f"不要讲概念，拆成一个今天就能试的动作：输入什么、让AI做什么、最后检查什么。"
+        return "不要讲概念，拆成一个今天就能试的动作：输入什么、让AI做什么、最后检查什么。"
     return "不要把它当普通新闻念，切到普通人最关心的：这件事会改变哪个具体工作动作。"
 
 
@@ -216,18 +175,13 @@ def opening(category: str, label: str) -> str:
     if category == "AI教程":
         return f"很多人学AI卡住，不是因为笨，而是一上来就被一堆教程吓住了。今天这个选题就讲{label}，只讲第一步怎么跑通。"
     if category == "AI玩法":
-        return f"AI玩法每天都在变，但小白真正需要的不是收藏，而是照着做一遍。今天这个玩法，可以拆成一个很简单的动作。"
+        return "AI玩法每天都在变，但小白真正需要的不是收藏，而是照着做一遍。今天这个玩法，可以拆成一个很简单的动作。"
     return "这个AI热点不要只当新闻看。你真正要关心的是：它会不会影响你接下来做内容、学工具、用AI工作的方式。"
 
 
 def middle(category: str, label: str, summary: str) -> str:
     fact = first_sentence(summary, label, 120)
-    return (
-        f"可以拆三个部分：\n"
-        f"1. 先讲发生了什么：{fact}\n"
-        f"2. 再讲小白最容易误解的地方：不要把它当成万能答案，要看它能解决哪一个具体问题。\n"
-        f"3. 最后给一个动作：选一个自己的真实场景，用{label}跑一遍，再看结果能不能被自己修改和使用。"
-    )
+    return f"可以拆三个部分：\n1. 先讲发生了什么：{fact}\n2. 再讲小白最容易误解的地方：不要把它当成万能答案，要看它能解决哪一个具体问题。\n3. 最后给一个动作：选一个自己的真实场景，用{label}跑一遍，再看结果能不能被自己修改和使用。"
 
 
 def ending(category: str) -> str:
@@ -243,9 +197,7 @@ def social_score(metrics: dict[str, Any]) -> float:
     quotes = int(metrics.get("quote_count") or 0)
     views = int(metrics.get("view_count") or metrics.get("views") or 0)
     raw = likes + reposts * 2 + replies * 2 + quotes * 2 + views // 3000
-    if raw <= 0:
-        return 6.0
-    return min(9.5, 6.0 + math.log10(raw + 1))
+    return 6.0 if raw <= 0 else min(9.5, 6.0 + math.log10(raw + 1))
 
 
 def fetch_x_recent(hours: int) -> list[dict[str, Any]]:
@@ -254,9 +206,8 @@ def fetch_x_recent(hours: int) -> list[dict[str, Any]]:
         return []
     max_results = max(10, min(int(os.getenv("X_SEARCH_MAX_RESULTS", "50")), 100))
     start_time = (datetime.now(timezone.utc) - timedelta(hours=hours)).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    query = os.getenv("X_SEARCH_QUERY", DEFAULT_X_QUERY)
     params = {
-        "query": query,
+        "query": os.getenv("X_SEARCH_QUERY", DEFAULT_X_QUERY),
         "max_results": str(max_results),
         "start_time": start_time,
         "tweet.fields": "created_at,public_metrics,author_id,lang",
@@ -264,16 +215,14 @@ def fetch_x_recent(hours: int) -> list[dict[str, Any]]:
         "user.fields": "username,name,verified,public_metrics",
         "sort_order": "recency",
     }
-    url = "https://api.twitter.com/2/tweets/search/recent?" + urllib.parse.urlencode(params)
     try:
-        result = request_json(url, headers={"Authorization": f"Bearer {token}"})
+        result = request_json("https://api.twitter.com/2/tweets/search/recent?" + urllib.parse.urlencode(params), {"Authorization": f"Bearer {token}"})
     except urllib.error.HTTPError as exc:
         print(f"X抓取失败 HTTP {exc.code}，已跳过。")
         return []
     except Exception as exc:
         print(f"X抓取失败，已跳过：{exc}")
         return []
-
     users = {u.get("id"): u for u in result.get("includes", {}).get("users", [])}
     items: list[dict[str, Any]] = []
     for tweet in result.get("data", []) or []:
@@ -289,30 +238,25 @@ def fetch_x_recent(hours: int) -> list[dict[str, Any]]:
             published_at = datetime.fromisoformat(published.replace("Z", "+00:00"))
         except ValueError:
             published_at = datetime.now(timezone.utc)
-        items.append(
-            {
-                "id": f"twitter:search:{tweet_id}",
-                "source_type": "twitter",
-                "title": f"@{username}: {clean_text(text, 80)}",
-                "url": f"https://twitter.com/{username}/status/{tweet_id}",
-                "content": text,
-                "ai_summary": text,
-                "author": user.get("name") or username,
-                "published_at": published_at,
-                "ai_score": social_score(metrics),
-                "ai_tags": ["X", "Twitter", "AI热点"],
-                "metadata": {"platform": "X", "username": username, **metrics},
-            }
-        )
+        items.append({
+            "id": f"twitter:search:{tweet_id}",
+            "source_type": "twitter",
+            "title": f"@{username}: {clean_text(text, 80)}",
+            "url": f"https://twitter.com/{username}/status/{tweet_id}",
+            "content": text,
+            "ai_summary": text,
+            "published_at": published_at,
+            "ai_score": social_score(metrics),
+            "ai_tags": ["X", "Twitter", "AI热点"],
+            "metadata": {"platform": "X", "username": username, **metrics},
+        })
     print(f"   Found {len(items)} items from X recent search")
     return items
 
 
 def youtube_queries() -> list[str]:
     raw = os.getenv("YOUTUBE_SEARCH_QUERIES", "").strip()
-    if not raw:
-        return DEFAULT_YOUTUBE_QUERIES
-    return [q.strip() for q in re.split(r"[|\n]", raw) if q.strip()]
+    return [q.strip() for q in re.split(r"[|\n]", raw) if q.strip()] if raw else DEFAULT_YOUTUBE_QUERIES
 
 
 def fetch_youtube(hours: int) -> list[dict[str, Any]]:
@@ -323,22 +267,10 @@ def fetch_youtube(hours: int) -> list[dict[str, Any]]:
     video_ids: list[str] = []
     snippets: dict[str, dict[str, Any]] = {}
     per_query = max(1, min(int(os.getenv("YOUTUBE_RESULTS_PER_QUERY", "8")), 20))
-
     for query in youtube_queries()[:5]:
-        params = {
-            "key": api_key,
-            "part": "snippet",
-            "q": query,
-            "type": "video",
-            "order": os.getenv("YOUTUBE_ORDER", "viewCount"),
-            "publishedAfter": published_after,
-            "maxResults": str(per_query),
-            "relevanceLanguage": "en",
-            "safeSearch": "moderate",
-        }
-        url = "https://www.googleapis.com/youtube/v3/search?" + urllib.parse.urlencode(params)
+        params = {"key": api_key, "part": "snippet", "q": query, "type": "video", "order": os.getenv("YOUTUBE_ORDER", "viewCount"), "publishedAfter": published_after, "maxResults": str(per_query), "relevanceLanguage": "en", "safeSearch": "moderate"}
         try:
-            result = request_json(url)
+            result = request_json("https://www.googleapis.com/youtube/v3/search?" + urllib.parse.urlencode(params))
         except urllib.error.HTTPError as exc:
             print(f"YouTube抓取失败 HTTP {exc.code}，已跳过这个关键词：{query}")
             continue
@@ -350,20 +282,16 @@ def fetch_youtube(hours: int) -> list[dict[str, Any]]:
             if video_id and video_id not in snippets:
                 video_ids.append(video_id)
                 snippets[video_id] = row.get("snippet", {})
-
     stats: dict[str, dict[str, Any]] = {}
     for start in range(0, len(video_ids), 50):
         chunk = video_ids[start : start + 50]
         params = {"key": api_key, "part": "statistics,snippet", "id": ",".join(chunk)}
-        url = "https://www.googleapis.com/youtube/v3/videos?" + urllib.parse.urlencode(params)
         try:
-            result = request_json(url)
+            result = request_json("https://www.googleapis.com/youtube/v3/videos?" + urllib.parse.urlencode(params))
+            for row in result.get("items", []) or []:
+                stats[row.get("id")] = row
         except Exception as exc:
             print(f"YouTube统计补充失败，继续使用搜索结果：{exc}")
-            continue
-        for row in result.get("items", []) or []):
-            stats[row.get("id")] = row
-
     items: list[dict[str, Any]] = []
     for video_id in video_ids:
         snippet = (stats.get(video_id, {}).get("snippet") or snippets.get(video_id) or {})
@@ -377,26 +305,19 @@ def fetch_youtube(hours: int) -> list[dict[str, Any]]:
             published_at = datetime.fromisoformat(published.replace("Z", "+00:00"))
         except ValueError:
             published_at = datetime.now(timezone.utc)
-        metrics = {
-            "view_count": statistic.get("viewCount", 0),
-            "like_count": statistic.get("likeCount", 0),
-            "comment_count": statistic.get("commentCount", 0),
-        }
-        items.append(
-            {
-                "id": f"youtube:video:{video_id}",
-                "source_type": "youtube",
-                "title": title,
-                "url": f"https://www.youtube.com/watch?v={video_id}",
-                "content": description or title,
-                "ai_summary": description or title,
-                "author": snippet.get("channelTitle", "YouTube"),
-                "published_at": published_at,
-                "ai_score": social_score(metrics),
-                "ai_tags": ["YouTube", "AI教程", "AI玩法"],
-                "metadata": {"platform": "YouTube", "channel": snippet.get("channelTitle", ""), **metrics},
-            }
-        )
+        metrics = {"view_count": statistic.get("viewCount", 0), "like_count": statistic.get("likeCount", 0), "comment_count": statistic.get("commentCount", 0)}
+        items.append({
+            "id": f"youtube:video:{video_id}",
+            "source_type": "youtube",
+            "title": title,
+            "url": f"https://www.youtube.com/watch?v={video_id}",
+            "content": description or title,
+            "ai_summary": description or title,
+            "published_at": published_at,
+            "ai_score": social_score(metrics),
+            "ai_tags": ["YouTube", "AI教程", "AI玩法"],
+            "metadata": {"platform": "YouTube", "channel": snippet.get("channelTitle", ""), **metrics},
+        })
     print(f"   Found {len(items)} items from YouTube search")
     return items
 
@@ -432,7 +353,6 @@ def item_to_record(item: Any) -> dict[str, str]:
     tags = base.tags_of(item)
     category = base.classify_topic(title, summary, tags)
     label = topic_label(title, tags)
-
     return {
         "热点": hot_field(title, summary),
         "时间": display_time(item),
