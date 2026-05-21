@@ -54,7 +54,7 @@ jobs:
             echo "DEEPSEEK_API_KEY is missing. Please add it in GitHub Actions secrets."
             exit 1
           fi
-          python scripts/run_topic_collector.py \
+          python scripts/run_topic_collector_weiyu.py \
             --hours "${{ github.event.inputs.hours || '72' }}" \
             --limit "${{ github.event.inputs.limit || '20' }}" 2>&1 | tee outputs/workflow.log
 
