@@ -8,9 +8,10 @@
 
 1. 每天定时抓取 AI 相关信息源。
 2. 用 DeepSeek 筛选值得关注的内容。
-3. 把新闻和工具动态转成内容选题字段，而不是普通日报。
-4. 写入飞书多维表格。
-5. 用 `去重Key` 避免重复写入旧选题。
+3. 可选抓取 X/Twitter 关键词帖和 YouTube 高播放视频。
+4. 把新闻、工具动态、热门帖子转成内容选题字段，而不是普通日报。
+5. 写入飞书多维表格。
+6. 用 `去重Key` 避免重复写入旧选题。
 
 ## 飞书表格字段
 
@@ -40,7 +41,7 @@
 
 字段的使用方式：
 
-- `热点`：保留原始事件，方便回看事实来源。
+- `热点`：保留原始事件，英文标题会在同一个单元格里追加中文括号翻译。
 - `切入点`：把新闻转成内容角度，不直接照搬资讯。
 - `选题`：给后续写稿用的选题方向。
 - `标题`：更偏短视频标题，参考「先指出误区，再给正确用法」的表达。
@@ -78,9 +79,15 @@
 
 `FEISHU_BITABLE_APP_TOKEN` 是 `/base/` 后面的那串，`FEISHU_TABLE_ID` 通常是 `tbl` 开头。
 
-可选：
+### 可选：增强抓取范围
 
 - `GITHUB_TOKEN_FOR_HORIZON`：提高 GitHub API 抓取额度。如果不填，会使用 GitHub Actions 自带 token。
+- `X_BEARER_TOKEN`：开启 X/Twitter 关键词抓取。也兼容 `TWITTER_BEARER_TOKEN`。
+- `X_SEARCH_QUERY`：自定义 X 搜索关键词。不填会默认抓 AI、ChatGPT、Claude、Gemini、AI agent、AI tools、AI workflow、vibe coding。
+- `X_SEARCH_MAX_RESULTS`：每次最多抓多少条 X 帖子，默认 50，最高 100。
+- `YOUTUBE_API_KEY`：开启 YouTube 视频搜索。
+- `YOUTUBE_SEARCH_QUERIES`：自定义 YouTube 搜索词，用 `|` 分隔，例如 `AI tools tutorial|Claude Code tutorial|AI agent workflow`。
+- `YOUTUBE_RESULTS_PER_QUERY`：每个 YouTube 搜索词抓多少条，默认 8。
 
 ## 怎么运行
 
