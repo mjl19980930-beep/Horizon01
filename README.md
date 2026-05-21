@@ -7,7 +7,7 @@
 ## 它会做什么
 
 1. 每天定时抓取 AI 相关信息源。
-2. 用 AI 筛选值得关注的内容。
+2. 用 DeepSeek 筛选值得关注的内容。
 3. 转成内容选题字段，而不是普通新闻日报。
 4. 写入飞书多维表格。
 5. 用 `去重Key` 避免重复写入旧选题。
@@ -40,11 +40,11 @@
 
 必须添加：
 
-- `MINIMAX_API_KEY`
+- `DEEPSEEK_API_KEY`
 - `FEISHU_APP_ID`
 - `FEISHU_APP_SECRET`
 
-如果你已经把模型 Key 命名成 `MINIMANX_API_KEY`，也可以先不改，workflow 已经兼容这个拼法。但推荐标准写法是 `MINIMAX_API_KEY`。
+如果你已经把 DeepSeek key 命名成 `Deepseek_API_KEY`，也可以先不改，workflow 已兼容这个写法。更推荐的标准写法是 `DEEPSEEK_API_KEY`。
 
 飞书目标有两种填法，二选一即可。
 
