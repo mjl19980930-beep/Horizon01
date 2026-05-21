@@ -11,6 +11,10 @@ on:
         description: "最多写入多少条"
         required: false
         default: "20"
+      reset_seen:
+        description: "是否重置去重记录，清空飞书表后需要选 true"
+        required: false
+        default: "false"
   schedule:
     - cron: "30 1 * * *"
     - cron: "30 7 * * *"
@@ -60,6 +64,10 @@ jobs:
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "DEEPSEEK_API_KEY is missing. Please add it in GitHub Actions secrets."
             exit 1
+          fi
+          if [ "${{ github.event.inputs.reset_seen || 'false' }}" = "true" ]; then
+            echo "Resetting local dedup state because reset_seen=true"
+            rm -f .state/seen_topics.json
           fi
           python scripts/run_topic_collector_weiyu.py \
             --hours "${{ github.event.inputs.hours || '72' }}" \
