@@ -3,54 +3,52 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
+Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/ChatGPTCoding/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ChatGPTCoding/hot.json?limit=10&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
    Found 0 items from Reddit
-   Found 25 items from Hacker News
+   Found 28 items from Hacker News
       • WhyNotHugo: 1
       • asenna: 1
       • atomicthumbs: 1
+      • bambax: 1
       • d0ks: 1
       • elffjs: 1
       • gustrigos: 1
       • jaredwiener: 1
+      • jicea: 1
       • mattas: 1
       • mooreds: 1
+      • mychele: 1
       • napolux: 1
       • nchagnet: 1
       • pseudolus: 1
-      • pvtmert: 1
       • qaz_plm: 1
       • rbanffy: 1
       • root-parent: 1
-      • sabatonfan: 1
       • sandebert: 1
       • sanity: 1
       • sofumel: 1
-      • speckx: 2
+      • speckx: 3
       • speleo: 1
       • ssiddharth: 1
+      • tedsanders: 1
       • vcf: 1
    Found 30 items from OSS Insight
+      • ossinsight:C#: 1
+      • ossinsight:Go: 1
+      • ossinsight:HTML: 2
       • ossinsight:JavaScript: 2
-      • ossinsight:Python: 13
-      • ossinsight:Rust: 5
-      • ossinsight🐚 1
-      • ossinsight:TypeScript: 9
+      • ossinsight:Python: 10
+      • ossinsight:Rust: 3
+      • ossinsight:TypeScript: 11
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 9 items from GitHub
-      • anthropics/anthropic-sdk-python: 2
-      • huggingface/transformers: 1
-      • langchain-ai/langchain: 4
-      • langchain-ai/langgraph: 1
-      • openai/openai-python: 1
    Found 44 items from RSS Feeds
       • Google AI Blog: 10
       • Hugging Face Blog: 1
@@ -59,21 +57,31 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • TLDR AI: 2
       • The Decoder: 10
       • VentureBeat AI: 1
+   Found 9 items from GitHub
+      • anthropics/anthropic-sdk-python: 2
+      • huggingface/transformers: 1
+      • langchain-ai/langchain: 4
+      • langchain-ai/langgraph: 1
+      • openai/openai-python: 1
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for ossinsight:trending:1200798950, using defaults
+Warning: could not parse analysis response for rss:simonwillison.net_atom_everything_:8f4070de49075516, using defaults
 
-   dedup: keep [3] Quoting SpaceX S-1
-          drop [4] SpaceX IPO filing shows billions in AI losses, a $2 trillion 
+   dedup: keep [0] An OpenAI model has disproved a central conjecture in 
+discrete geometry
+          drop [2] The first AI proof worthy of math's top journal landed and it
+won't be the last
+   dedup: keep [11] Quoting SpaceX S-1
+          drop [13] SpaceX IPO filing shows billions in AI losses, a $2 trillion
 valuation target, and turbine spending that signals more data center conflicts 
 ahead
 📚 Enriching with background knowledge...
 
-   Enriched 29 items
+   Enriched 28 items
 
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：108
+数据来源原始条数：111
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：2
-写入飞书：2
+新增选题：4
+写入飞书：4
