@@ -3,14 +3,14 @@
 
 This wrapper keeps the existing collector intact, but makes production
 adjustments for GitHub Actions:
-1. Ask DeepSeek for strict JSON when generating topic cards and translations.
+1. Ask DeepSeek for strict JSON when generating topic cards.
 2. Keep the enriched candidate pool smaller so the job does not hit timeout.
 3. Filter weakly related non-AI items before they reach Feishu.
+4. Put a Chinese title hint beside English source titles using the generated card.
 """
 
 import asyncio
 import json
-import math
 import os
 import re
 from typing import Any
@@ -21,24 +21,31 @@ import run_topic_collector_weiyu as weiyu
 AI_RELEVANCE_PATTERN = re.compile(
     r"\b("
     r"ai|artificial intelligence|openai|chatgpt|gpt-?\d*|claude|anthropic|gemini|deepseek|llm|"
-    r"large language model|agentic|ai agent|agents?|codex|cursor|windsurf|vibe coding|"
+    r"large language model|agentic|ai agent|ai agents|codex|cursor|windsurf|vibe coding|"
     r"prompt|rag|mcp|model context protocol|transformer|hugging\s*face|langchain|langgraph|"
     r"machine learning|neural|diffusion|midjourney|sora|runway|perplexity|notebooklm|"
-    r"automation|workflow|copilot"
+    r"copilot|foundation model|generative ai|semantic search|inference|fine[- ]?tuning|"
+    r"gpu|hbm|nvidia|cuda|embedding|vector database|claude code|openai api"
     r")\b",
     re.IGNORECASE,
 )
 
 ZH_AI_RELEVANCE_PATTERN = re.compile(
-    r"AI|人工智能|大模型|语言模型|智能体|代理|提示词|工作流|自动化|开源模型|多模态|生成式|"
-    r"深度学习|机器学习|神经网络|图像生成|视频生成|编程助手|代码助手|知识库|检索增强"
+    r"AI|人工智能|大模型|语言模型|智能体|提示词|工作流|自动化|开源模型|多模态|生成式|"
+    r"深度学习|机器学习|神经网络|图像生成|视频生成|编程助手|代码助手|知识库|检索增强|"
+    r"推理模型|微调|向量库|嵌入|算力|英伟达|高带宽内存|Claude|Gemini|OpenAI|DeepSeek"
 )
 
+KNOWN_AI_SOURCE_PATTERN = re.compile(
+    r"openai|anthropic|claude|google ai|gemini|hugging face|tldr ai|the decoder|venturebeat ai|"
+    r"simon willison|langchain|langgraph|transformers|deepseek|perplexity|nvidia",
+    re.IGNORECASE,
+)
 
-CARD_PROMPT_MARKERS = ("输出严格JSON", "字段只能是", '"zh"')
+CARD_PROMPT_MARKERS = ("输出严格JSON", "字段只能是")
 
 
-def _looks_like_json_prompt(messages: list[dict[str, str]]) -> bool:
+def _looks_like_card_prompt(messages: list[dict[str, str]]) -> bool:
     system_text = "\n".join(message.get("content", "") for message in messages if message.get("role") == "system")
     return any(marker in system_text for marker in CARD_PROMPT_MARKERS)
 
@@ -53,7 +60,7 @@ def deepseek_chat_stable(messages: list[dict[str, str]], max_tokens: int = 1000,
         "max_tokens": max_tokens,
         "messages": messages,
     }
-    if _looks_like_json_prompt(messages):
+    if _looks_like_card_prompt(messages):
         payload["response_format"] = {"type": "json_object"}
     result = weiyu.request_json(
         "https://api.deepseek.com/chat/completions",
@@ -108,56 +115,27 @@ def extract_json_object_stable(text: str) -> dict[str, Any]:
         raise
 
 
-def _has_chinese(text: str) -> bool:
-    return bool(re.search(r"[\u4e00-\u9fff]", text or ""))
-
-
 def translate_title_stable(title: str) -> str:
-    title = weiyu.clean_text(title, 180)
-    if not weiyu.is_mostly_english(title):
-        return ""
-    if title in weiyu.TRANSLATION_CACHE:
-        return weiyu.TRANSLATION_CACHE[title]
-    translated = ""
-    try:
-        raw = deepseek_chat_stable(
-            [
-                {
-                    "role": "system",
-                    "content": (
-                        "你只做英文标题到中文标题的翻译。输出严格JSON，格式只能是 {\"zh\": \"中文标题\"}。"
-                        "中文要自然、短、适合内容选题库，不要解释，不要加引号，不要保留英文。"
-                    ),
-                },
-                {"role": "user", "content": title},
-            ],
-            max_tokens=120,
-            temperature=0.1,
-        )
-        parsed = extract_json_object_stable(raw)
-        translated = weiyu.clean_text(str(parsed.get("zh") or ""), 120)
-    except Exception as exc:
-        print(f"标题翻译失败，保留英文标题：{exc}")
-    if translated and not _has_chinese(translated):
-        translated = ""
-    weiyu.TRANSLATION_CACHE[title] = translated
-    return translated
+    # Avoid a separate title-translation API call. The topic-card call already
+    # generates a Chinese, source-specific angle; item_to_record_stable uses it
+    # as the bracketed Chinese hint for English source titles.
+    return ""
 
 
 def title_with_translation_stable(title: str) -> str:
-    title = weiyu.clean_text(title, 180)
-    translated = translate_title_stable(title)
-    return f"{title}（{translated}）" if translated and translated.lower() != title.lower() else title
+    return weiyu.clean_text(title, 180)
 
 
 def _candidate_text(item: Any) -> str:
     base = weiyu.base
     pieces = [
         base.text_of(item, "title", default=""),
+        base.text_of(item, "url", "link"),
         base.text_of(item, "ai_summary", "summary", "description", "content"),
         " ".join(base.tags_of(item)),
         str(base.metadata_of(item).get("platform") or ""),
         str(base.get_attr(item, "source_type") or ""),
+        base.source_label(item),
     ]
     return "\n".join(piece for piece in pieces if piece)
 
@@ -166,12 +144,9 @@ def is_ai_relevant_item(item: Any) -> bool:
     text = _candidate_text(item)
     if not text.strip():
         return False
-    if AI_RELEVANCE_PATTERN.search(text) or ZH_AI_RELEVANCE_PATTERN.search(text):
+    if KNOWN_AI_SOURCE_PATTERN.search(text):
         return True
-    try:
-        return weiyu.base.topic_relevance_score(item) >= 1
-    except Exception:
-        return False
+    return bool(AI_RELEVANCE_PATTERN.search(text) or ZH_AI_RELEVANCE_PATTERN.search(text))
 
 
 def _internal_limit(user_limit: int) -> int:
@@ -206,11 +181,39 @@ async def collect_with_social_stable(hours: int, limit: int) -> tuple[list[Any],
     return items, metrics
 
 
+def _has_chinese(text: str) -> bool:
+    return bool(re.search(r"[\u4e00-\u9fff]", text or ""))
+
+
+def _title_hint_from_record(record: dict[str, str]) -> str:
+    for field in ("选题标题", "原文核心观点", "切入点"):
+        value = weiyu.clean_text(record.get(field, ""), 80)
+        if _has_chinese(value):
+            value = re.split(r"[。！？!?\n]", value)[0].strip()
+            value = re.sub(r"^[一二三四五六七八九十]+[、.．]\s*", "", value)
+            return weiyu.clean_text(value, 60)
+    return ""
+
+
+def item_to_record_stable(item: Any) -> dict[str, str]:
+    record = weiyu.item_to_record(item)
+    raw_title = weiyu.clean_text(weiyu.base.text_of(item, "title", default="未命名"), 180)
+    current_title = record.get("原文标题") or record.get("Title") or raw_title
+    if weiyu.is_mostly_english(raw_title) and "（" not in current_title:
+        hint = _title_hint_from_record(record)
+        if hint:
+            translated_title = f"{raw_title}（{hint}）"
+            record["Title"] = translated_title
+            record["原文标题"] = translated_title
+    return record
+
+
 weiyu.deepseek_chat = deepseek_chat_stable
 weiyu.extract_json_object = extract_json_object_stable
 weiyu.translate_title = translate_title_stable
 weiyu.title_with_translation = title_with_translation_stable
 weiyu.base.collect_with_horizon = collect_with_social_stable
+weiyu.base.item_to_record = item_to_record_stable
 
 
 if __name__ == "__main__":
