@@ -44,6 +44,8 @@ jobs:
       - name: Collect AI topics and write to Feishu
         env:
           OPENAI_API_KEY: ${{ secrets.DEEPSEEK_API_KEY || secrets.Deepseek_API_KEY }}
+          DEEPSEEK_MODEL: deepseek-v4-flash
+          HORIZON_INTERNAL_LIMIT: "10"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_FOR_HORIZON || github.token }}
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
@@ -69,7 +71,7 @@ jobs:
             echo "Resetting local dedup state because reset_seen=true"
             rm -f .state/seen_topics.json
           fi
-          python scripts/run_topic_collector_weiyu.py \
+          python scripts/run_topic_collector_weiyu_stable.py \
             --hours "${{ github.event.inputs.hours || '72' }}" \
             --limit "${{ github.event.inputs.limit || '20' }}" 2>&1 | tee outputs/workflow.log
 
