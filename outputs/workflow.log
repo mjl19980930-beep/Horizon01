@@ -3,13 +3,13 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/ChatGPTCoding/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ChatGPTCoding/hot.json?limit=10&raw_json=1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
    Found 0 items from Reddit
    Found 30 items from OSS Insight
@@ -18,7 +18,7 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • ossinsight:Rust: 5
       • ossinsight🐚 1
       • ossinsight:TypeScript: 9
-   Found 25 items from Hacker News
+   Found 24 items from Hacker News
       • WhyNotHugo: 1
       • asenna: 1
       • atomicthumbs: 1
@@ -38,7 +38,7 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • sandebert: 1
       • sanity: 1
       • sofumel: 1
-      • speckx: 3
+      • speckx: 2
       • speleo: 1
       • ssiddharth: 1
       • vcf: 1
@@ -60,34 +60,27 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • VentureBeat AI: 1
 🤖 Analyzing content with AI...
 
-   dedup: keep [0] The first AI proof worthy of math's top journal landed and it
-won't be the last
-          drop [1] An OpenAI model has disproved a central conjecture in 
+   dedup: keep [0] An OpenAI model has disproved a central conjecture in 
 discrete geometry
-   dedup: keep [2] I/O 2026: Welcome to the agentic Gemini era
-          drop [38] I/O 2026
-   dedup: keep [2] I/O 2026: Welcome to the agentic Gemini era
-          drop [44] Google I/O, Gemini Spark, Antigravity
-   dedup: keep [4] Quoting SpaceX S-1
-          drop [40] SpaceX IPO filing shows billions in AI losses, a $2 trillion
+          drop [2] The first AI proof worthy of math's top journal landed and it
+won't be the last
+   dedup: keep [1] Gemini 3.5 Flash: more expensive, but Google plan to use it 
+for everything
+          drop [7] Gemini 3.5: frontier intelligence with action
+   dedup: keep [6] I/O 2026: Welcome to the agentic Gemini era
+          drop [18] 100 things we announced at I/O 2026
+   dedup: keep [11] Quoting SpaceX S-1
+          drop [19] SpaceX IPO filing shows billions in AI losses, a $2 trillion
 valuation target, and turbine spending that signals more data center conflicts 
 ahead
 📚 Enriching with background knowledge...
 
-   Enriched 56 items
+   Enriched 26 items
 
-选题卡生成失败，使用兜底模板：Unterminated string starting at: line 7 column 11 (char 844)
-选题卡生成失败，使用兜底模板：Unterminated string starting at: line 5 column 11 (char 505)
-选题卡生成失败，使用兜底模板：Unterminated string starting at: line 10 column 11 (char 1374)
-选题卡生成失败，使用兜底模板：Unterminated string starting at: line 8 column 11 (char 891)
-选题卡生成失败，使用兜底模板：Unterminated string starting at: line 7 column 11 (char 827)
-选题卡生成失败，使用兜底模板：Expecting ',' delimiter: line 3 column 177 (char 336)
-选题卡生成失败，使用兜底模板：Unterminated string starting at: line 2 column 13 (char 14)
-选题卡生成失败，使用兜底模板：Unterminated string starting at: line 7 column 11 (char 690)
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：109
+数据来源原始条数：108
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：19
-写入飞书：19
+新增选题：6
+写入飞书：6
