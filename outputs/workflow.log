@@ -5,26 +5,20 @@
 🔍 Fetching from OSS Insight...
 Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/ChatGPTCoding/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ChatGPTCoding/hot.json?limit=10&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
    Found 0 items from Reddit
-   Found 30 items from OSS Insight
-      • ossinsight:JavaScript: 2
-      • ossinsight:Python: 13
-      • ossinsight:Rust: 5
-      • ossinsight🐚 1
-      • ossinsight:TypeScript: 9
    Found 24 items from Hacker News
       • WhyNotHugo: 1
       • asenna: 1
       • atomicthumbs: 1
-      • bojta-lepenye: 1
-      • carabiner: 1
+      • d0ks: 1
       • elffjs: 1
+      • gustrigos: 1
       • jaredwiener: 1
       • mattas: 1
       • napolux: 1
@@ -42,14 +36,20 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • speleo: 1
       • ssiddharth: 1
       • vcf: 1
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+   Found 30 items from OSS Insight
+      • ossinsight:JavaScript: 2
+      • ossinsight:Python: 13
+      • ossinsight:Rust: 5
+      • ossinsight🐚 1
+      • ossinsight:TypeScript: 9
    Found 10 items from GitHub
       • anthropics/anthropic-sdk-python: 3
       • huggingface/transformers: 1
       • langchain-ai/langchain: 4
       • langchain-ai/langgraph: 1
       • openai/openai-python: 1
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 44 items from RSS Feeds
       • Google AI Blog: 10
       • Hugging Face Blog: 1
@@ -64,23 +64,31 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 discrete geometry
           drop [2] The first AI proof worthy of math's top journal landed and it
 won't be the last
-   dedup: keep [1] Gemini 3.5 Flash: more expensive, but Google plan to use it 
-for everything
-          drop [7] Gemini 3.5: frontier intelligence with action
-   dedup: keep [6] I/O 2026: Welcome to the agentic Gemini era
-          drop [18] 100 things we announced at I/O 2026
-   dedup: keep [11] Quoting SpaceX S-1
-          drop [19] SpaceX IPO filing shows billions in AI losses, a $2 trillion
-valuation target, and turbine spending that signals more data center conflicts 
-ahead
 📚 Enriching with background knowledge...
 
-   Enriched 26 items
+   Enriched 29 items
 
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
+标题翻译失败，保留英文标题：Expecting value: line 1 column 1 (char 0)
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
 数据来源原始条数：108
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：6
-写入飞书：6
+新增选题：5
+写入飞书：5
