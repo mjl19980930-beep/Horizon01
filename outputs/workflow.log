@@ -3,57 +3,57 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
+Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/ChatGPTCoding/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ChatGPTCoding/hot.json?limit=10&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
    Found 0 items from Reddit
-   Found 26 items from Hacker News
+   Found 25 items from Hacker News
       • Brajeshwar: 1
       • Jotalea: 1
       • Tiberium: 1
       • avipeltz: 1
       • bilalq: 1
-      • busymom0: 1
       • ceejayoz: 1
       • colinprince: 1
       • d0ks: 1
       • dan_hawkins: 1
+      • dboon: 1
+      • hasheddan: 1
       • janandonly: 1
       • jetter: 1
-      • jicea: 1
       • lexandstuff: 1
       • louiereederson: 1
       • maxloh: 1
       • mychele: 1
-      • nreece: 1
+      • robertkarl: 1
       • roflcopter69: 1
       • speckx: 2
       • tamnd: 1
       • tosh: 1
-      • unprovable: 1
       • vitriapp: 1
       • weaponeer: 1
    Found 30 items from OSS Insight
+      • ossinsight:All: 1
       • ossinsight:C#: 1
-      • ossinsight:Go: 1
-      • ossinsight:HTML: 1
-      • ossinsight:JavaScript: 2
-      • ossinsight:Python: 10
-      • ossinsight:Rust: 3
-      • ossinsight:TypeScript: 12
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+      • ossinsight:JavaScript: 1
+      • ossinsight:PHP: 1
+      • ossinsight:Python: 11
+      • ossinsight:Rust: 4
+      • ossinsight🐚 1
+      • ossinsight:TypeScript: 10
    Found 11 items from GitHub
       • anthropics/anthropic-sdk-python: 2
       • huggingface/transformers: 1
       • langchain-ai/langchain: 4
       • langchain-ai/langgraph: 3
       • openai/openai-python: 1
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 31 items from RSS Feeds
       • Google AI Blog: 4
       • Hugging Face Blog: 2
@@ -62,16 +62,20 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • TLDR AI: 2
       • The Decoder: 10
 🤖 Analyzing content with AI...
+Warning: could not parse analysis response for hackernews:story:48240419, using defaults
+Warning: could not parse analysis response for hackernews:story:48236887, using defaults
 
+   dedup: keep [1] Quoting SpaceX S-1
+          drop [4] Anthropic SpaceX $45B deal 💰, Google Agent Executor ⚙️, 
+OpenAI races to IPO 🏦
 📚 Enriching with background knowledge...
-Warning: could not parse enrichment response for rss:tldr.tech_api_rss_ai:6bc211a91f4bbae8, skipping enrichment
 
-   Enriched 30 items
+   Enriched 29 items
 
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：98
+数据来源原始条数：97
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：14
-写入飞书：14
+新增选题：11
+写入飞书：11
