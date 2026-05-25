@@ -5,36 +5,13 @@
 🔍 Fetching from OSS Insight...
 Reddit request failed for https://www.reddit.com/r/ChatGPTCoding/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ChatGPTCoding/hot.json?limit=10&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/OpenAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/OpenAI/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit request failed for https://www.reddit.com/r/LocalLLaMA/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/LocalLLaMA/hot.json?limit=15&raw_json=1'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-Reddit request failed for https://www.reddit.com/r/ClaudeAI/hot.json: Client error '403 Blocked' for url 'https://www.reddit.com/r/ClaudeAI/hot.json?limit=15&raw_json=1'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
    Found 0 items from Reddit
-   Found 22 items from Hacker News
-      • DamnInteresting: 1
-      • MaximilianEmel: 1
-      • NaOH: 1
-      • RyeCombinator: 1
-      • baal80spam: 1
-      • busymom0: 1
-      • cdrnsf: 1
-      • dxs: 1
-      • elpocko: 1
-      • evakhoury: 1
-      • fagnerbrack: 1
-      • gslin: 1
-      • hggh: 1
-      • hyperific: 1
-      • ingve: 1
-      • nand2mario: 1
-      • ravenical: 1
-      • soheilpro: 1
-      • spike021: 1
-      • tlhunter: 1
-      • tosh: 1
-      • zdw: 1
    Found 30 items from OSS Insight
       • ossinsight:JavaScript: 1
       • ossinsight:PHP: 1
@@ -43,32 +20,52 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • ossinsight🐚 1
       • ossinsight:Swift: 1
       • ossinsight:TypeScript: 11
-   Found 9 items from GitHub
-      • anthropics/anthropic-sdk-python: 2
+   Found 21 items from Hacker News
+      • Alifatisk: 1
+      • DamnInteresting: 1
+      • Ember_Wipe: 1
+      • Tiberium: 1
+      • blenderob: 1
+      • hggh: 1
+      • ikesau: 1
+      • ingve: 1
+      • intelkishan: 1
+      • jabits: 1
+      • ksec: 1
+      • littlexsparkee: 1
+      • masswerk: 1
+      • mooreds: 1
+      • pantelisk: 1
+      • prakashqwerty: 1
+      • razin: 1
+      • spike021: 1
+      • tosh: 1
+      • wek: 1
+      • zdw: 1
+   Found 4 items from GitHub
+      • anthropics/anthropic-sdk-python: 1
       • browser-use/browser-use: 1
-      • langchain-ai/langchain: 2
-      • langchain-ai/langgraph: 3
-      • openai/openai-python: 1
+      • langchain-ai/langgraph: 2
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 24 items from RSS Feeds
+   Found 20 items from RSS Feeds
       • Google AI Blog: 1
       • Hugging Face Blog: 2
-      • OpenAI News: 3
       • Simon Willison: 7
-      • TLDR AI: 1
       • The Decoder: 10
 🤖 Analyzing content with AI...
 
+   dedup: keep [1] Deepseek makes its 75 percent discount permanent, pricing 
+output tokens at least 34x below GPT-5.5
+          drop [9] DeepSeek makes the V4 Pro price discount permanent
 📚 Enriching with background knowledge...
 
-   Enriched 30 items
+   Enriched 29 items
 
-选题卡生成失败，使用兜底模板：Expecting value: line 1 column 1 (char 0)
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：85
+数据来源原始条数：75
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：10
-写入飞书：10
+新增选题：9
+写入飞书：9
