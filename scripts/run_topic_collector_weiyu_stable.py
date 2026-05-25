@@ -6,13 +6,14 @@ adjustments for GitHub Actions:
 1. Ask DeepSeek for strict JSON when generating topic cards.
 2. Keep the enriched candidate pool smaller so the job does not hit timeout.
 3. Filter weakly related non-AI items before they reach Feishu.
-4. Put a Chinese title hint beside English source titles using the generated card.
+4. Write the first Feishu column as 标题, with source, link and reliability.
 """
 
 import asyncio
 import json
 import os
 import re
+import urllib.parse
 from typing import Any
 
 import run_topic_collector_weiyu as weiyu
@@ -43,6 +44,34 @@ KNOWN_AI_SOURCE_PATTERN = re.compile(
 )
 
 CARD_PROMPT_MARKERS = ("输出严格JSON", "字段只能是")
+TITLE_ALIASES = ("标题", "热点", "Title")
+
+STABLE_FIELD_NAMES = [
+    "标题",
+    "原文标题",
+    "原文发表日期",
+    "原文链接",
+    "论证源",
+    "内容来源",
+    "原文核心观点",
+    "原文逐字稿/操作说明",
+    "来源平台",
+    "一级分类",
+    "AI评分",
+    "可靠性",
+    "标签",
+    "切入点",
+    "选题标题",
+    "开头钩子",
+    "中间论证",
+    "结尾收束",
+    "选题受众",
+    "选题目的",
+    "适合内容形态",
+    "状态",
+    "去重Key",
+    "AI摘要",
+]
 
 
 def _looks_like_card_prompt(messages: list[dict[str, str]]) -> bool:
@@ -158,6 +187,14 @@ def _internal_limit(user_limit: int) -> int:
     return max(5, min(value, max(user_limit, 5)))
 
 
+def fetch_social_sources_stable(hours: int) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    if not (os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_BEARER_TOKEN")):
+        print("X/Twitter 未配置：请在 GitHub Secrets 添加 X_BEARER_TOKEN 或 TWITTER_BEARER_TOKEN。")
+    if not os.getenv("YOUTUBE_API_KEY", "").strip():
+        print("YouTube 未配置：请在 GitHub Secrets 添加 YOUTUBE_API_KEY。")
+    return weiyu.fetch_social_sources(hours)
+
+
 async def collect_with_social_stable(hours: int, limit: int) -> tuple[list[Any], dict[str, Any]]:
     # The original collector enriches roughly limit * 3 items. For a manual
     # limit of 20 that can become 60 deep-enriched records, which is why the
@@ -165,7 +202,7 @@ async def collect_with_social_stable(hours: int, limit: int) -> tuple[list[Any],
     # the user's requested limit, but only deep-enrich a tighter candidate pool.
     base_limit = _internal_limit(limit)
     items, metrics = await weiyu._ORIGINAL_COLLECT_WITH_HORIZON(hours, base_limit)
-    social_items, social_metrics = await asyncio.to_thread(weiyu.fetch_social_sources, hours)
+    social_items, social_metrics = await asyncio.to_thread(fetch_social_sources_stable, hours)
     metrics.update(social_metrics)
     if social_items:
         items = weiyu.base.sort_items(list(items) + social_items)
@@ -195,6 +232,48 @@ def _title_hint_from_record(record: dict[str, str]) -> str:
     return ""
 
 
+def _domain_from_url(url: str) -> str:
+    try:
+        return urllib.parse.urlparse(url).netloc.replace("www.", "")
+    except Exception:
+        return ""
+
+
+def _evidence_sources(item: Any, source: str, url: str) -> str:
+    metadata = weiyu.base.metadata_of(item)
+    merged = metadata.get("merged_sources") or []
+    pieces: list[str] = []
+    if isinstance(merged, list):
+        pieces.extend(str(value) for value in merged if str(value).strip())
+    for key in ("feed_name", "repo", "channel", "username", "platform"):
+        value = metadata.get(key)
+        if value:
+            pieces.append(str(value))
+    if source:
+        pieces.append(source)
+    domain = _domain_from_url(url)
+    if domain:
+        pieces.append(domain)
+    deduped: list[str] = []
+    for piece in pieces:
+        cleaned = weiyu.clean_text(piece, 80)
+        if cleaned and cleaned not in deduped:
+            deduped.append(cleaned)
+    return "、".join(deduped[:6]) or "单一来源"
+
+
+def _title_block(title: str, evidence: str, source: str, url: str, reliability: str) -> str:
+    return "\n".join(
+        [
+            f"标题：{title}",
+            f"论证源：{evidence or '单一来源'}",
+            f"内容来源：{source or '未标注'}",
+            f"原文链接：{url or '未抓到'}",
+            f"可靠性：{reliability or '待验证'}",
+        ]
+    )
+
+
 def item_to_record_stable(item: Any) -> dict[str, str]:
     record = weiyu.item_to_record(item)
     raw_title = weiyu.clean_text(weiyu.base.text_of(item, "title", default="未命名"), 180)
@@ -202,18 +281,91 @@ def item_to_record_stable(item: Any) -> dict[str, str]:
     if weiyu.is_mostly_english(raw_title) and "（" not in current_title:
         hint = _title_hint_from_record(record)
         if hint:
-            translated_title = f"{raw_title}（{hint}）"
-            record["Title"] = translated_title
-            record["原文标题"] = translated_title
+            current_title = f"{raw_title}（{hint}）"
+            record["原文标题"] = current_title
+    source = record.get("来源平台") or weiyu.base.source_label(item)
+    url = record.get("原文链接") or weiyu.base.text_of(item, "url", "link")
+    reliability = record.get("可靠性") or weiyu.base.reliability(item, source, url, record.get("AI摘要", ""))
+    evidence = _evidence_sources(item, source, url)
+    primary_title = _title_block(current_title, evidence, source, url, reliability)
+    record["标题"] = primary_title
+    record["Title"] = primary_title
+    record["热点"] = primary_title
+    record["原文标题"] = current_title
+    record["论证源"] = evidence
+    record["内容来源"] = source
     return record
 
 
+def _field_items(self: Any) -> list[dict[str, Any]]:
+    items: list[dict[str, Any]] = []
+    page_token = ""
+    while True:
+        query: dict[str, Any] = {"page_size": 100}
+        if page_token:
+            query["page_token"] = page_token
+        result = self._request("GET", f"{self._base_url()}/fields?{urllib.parse.urlencode(query)}")
+        data = result.get("data", {})
+        items.extend(data.get("items", []))
+        if not data.get("has_more"):
+            return items
+        page_token = data.get("page_token", "")
+
+
+def ensure_fields_stable(self: Any) -> None:
+    items = _field_items(self)
+    by_name = {item.get("field_name"): item for item in items if item.get("field_name")}
+    if "标题" not in by_name:
+        for legacy_name in ("热点", "Title"):
+            legacy = by_name.get(legacy_name)
+            field_id = legacy.get("field_id") if isinstance(legacy, dict) else None
+            if not field_id:
+                continue
+            try:
+                self._request("PUT", f"{self._base_url()}/fields/{field_id}", {"field_name": "标题"})
+                print(f"已将飞书字段 {legacy_name} 重命名为 标题。")
+                return ensure_fields_stable(self)
+            except Exception as exc:
+                print(f"字段 {legacy_name} 重命名为 标题失败，继续尝试创建/写入标题字段：{exc}")
+    existing = set(by_name)
+    missing = [name for name in STABLE_FIELD_NAMES if name not in existing]
+    if not missing:
+        return
+    if os.getenv("FEISHU_AUTO_CREATE_FIELDS", "true").lower() != "true":
+        raise RuntimeError("飞书表格缺少字段：" + "、".join(missing))
+    for name in missing:
+        self._request("POST", f"{self._base_url()}/fields", {"field_name": name, "type": 1})
+
+
+def batch_create_stable(self: Any, records: list[dict[str, str]]) -> int:
+    allowed_fields = {item.get("field_name") for item in _field_items(self) if item.get("field_name")}
+    written = 0
+    for start in range(0, len(records), 100):
+        chunk = records[start : start + 100]
+        if not chunk:
+            continue
+        filtered = []
+        for record in chunk:
+            fields = {key: value for key, value in record.items() if key in allowed_fields}
+            for alias in TITLE_ALIASES:
+                if alias in allowed_fields and alias not in fields:
+                    fields[alias] = record.get("标题") or record.get("Title") or record.get("原文标题") or ""
+            filtered.append({"fields": fields})
+        self._request("POST", f"{self._base_url()}/records/batch_create", {"records": filtered})
+        written += len(filtered)
+    return written
+
+
+weiyu.FIELD_NAMES = STABLE_FIELD_NAMES
+weiyu.base.FIELD_NAMES = STABLE_FIELD_NAMES
 weiyu.deepseek_chat = deepseek_chat_stable
 weiyu.extract_json_object = extract_json_object_stable
 weiyu.translate_title = translate_title_stable
 weiyu.title_with_translation = title_with_translation_stable
 weiyu.base.collect_with_horizon = collect_with_social_stable
 weiyu.base.item_to_record = item_to_record_stable
+weiyu.base.FeishuBitableClient.ensure_fields = ensure_fields_stable
+weiyu.base.FeishuBitableClient.batch_create = batch_create_stable
 
 
 if __name__ == "__main__":
