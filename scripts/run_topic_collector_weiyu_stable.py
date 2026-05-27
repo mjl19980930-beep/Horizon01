@@ -7,13 +7,19 @@ adjustments for GitHub Actions:
 2. Keep the enriched candidate pool smaller so the job does not hit timeout.
 3. Filter weakly related non-AI items before they reach Feishu.
 4. Write the first Feishu column as 标题, with source, link and reliability.
+5. Add no-key RSS fallbacks for YouTube channels and RSSHub/custom social feeds.
 """
 
 import asyncio
 import json
 import os
 import re
+import urllib.error
 import urllib.parse
+import urllib.request
+import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 from typing import Any
 
 import run_topic_collector_weiyu as weiyu
@@ -187,12 +193,195 @@ def _internal_limit(user_limit: int) -> int:
     return max(5, min(value, max(user_limit, 5)))
 
 
+def _env_list(name: str) -> list[str]:
+    raw = os.getenv(name, "").strip()
+    if not raw:
+        return []
+    return [part.strip() for part in re.split(r"[\n,|]+", raw) if part.strip()]
+
+
+def _parse_datetime(value: str) -> datetime | None:
+    if not value:
+        return None
+    text = value.strip()
+    try:
+        return datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        pass
+    try:
+        parsed = parsedate_to_datetime(text)
+        return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+    except (TypeError, ValueError):
+        return None
+
+
+def _fetch_text_url(url: str, timeout: int = 20) -> str:
+    request = urllib.request.Request(url, headers={"User-Agent": "Horizon01 AI topic collector/1.0"})
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        charset = response.headers.get_content_charset() or "utf-8"
+        return response.read().decode(charset, errors="replace")
+
+
+def _local_name(tag: str) -> str:
+    return tag.rsplit("}", 1)[-1] if "}" in tag else tag
+
+
+def _descendant_text(element: ET.Element, *names: str) -> str:
+    wanted = set(names)
+    for child in element.iter():
+        if _local_name(child.tag) in wanted and child.text and child.text.strip():
+            return weiyu.clean_text(child.text, 1200)
+    return ""
+
+
+def _atom_link(entry: ET.Element) -> str:
+    fallback = ""
+    for child in entry:
+        if _local_name(child.tag) != "link":
+            continue
+        href = child.attrib.get("href", "").strip()
+        if not href:
+            continue
+        if child.attrib.get("rel") in ("alternate", None, ""):
+            return href
+        fallback = fallback or href
+    return fallback
+
+
+def _source_type_from_url(url: str, feed_hint: str) -> tuple[str, str, list[str]]:
+    text = f"{url} {feed_hint}".lower()
+    if "youtube.com" in text or "youtu.be" in text or "youtube" in text:
+        return "youtube_rss", "YouTube", ["YouTube", "AI教程", "AI玩法"]
+    if "twitter.com" in text or "x.com" in text or "twitter" in text or "/x/" in text:
+        return "twitter_rss", "X", ["X", "Twitter", "AI热点"]
+    return "social_rss", "Social RSS", ["AI热点", "RSS"]
+
+
+def _feed_items_from_xml(xml_text: str, feed_url: str, hours: int, feed_hint: str = "") -> list[dict[str, Any]]:
+    try:
+        root = ET.fromstring(xml_text)
+    except ET.ParseError as exc:
+        print(f"RSS解析失败，已跳过：{feed_url}，{exc}")
+        return []
+
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+    rows: list[ET.Element] = []
+    if _local_name(root.tag) == "feed":
+        rows = [child for child in root if _local_name(child.tag) == "entry"]
+    else:
+        rows = [child for child in root.iter() if _local_name(child.tag) == "item"]
+
+    items: list[dict[str, Any]] = []
+    feed_title = _descendant_text(root, "title") or feed_hint or feed_url
+    for row in rows[:40]:
+        title = _descendant_text(row, "title")
+        link = _atom_link(row) or _descendant_text(row, "link")
+        summary = _descendant_text(row, "summary", "description", "content", "encoded") or title
+        published_at = _parse_datetime(_descendant_text(row, "published", "updated", "pubDate", "date"))
+        if published_at:
+            published_at = published_at.astimezone(timezone.utc)
+            if published_at < cutoff:
+                continue
+        else:
+            published_at = datetime.now(timezone.utc)
+        if not title or not link:
+            continue
+        source_type, platform, tags = _source_type_from_url(link, f"{feed_url} {feed_hint} {feed_title}")
+        item = {
+            "id": f"{source_type}:{weiyu.base.stable_key(title, link)}",
+            "source_type": source_type,
+            "title": weiyu.clean_text(title, 180),
+            "url": link,
+            "content": summary,
+            "ai_summary": summary,
+            "published_at": published_at,
+            "ai_score": 7.0,
+            "ai_tags": tags,
+            "metadata": {"platform": platform, "feed_name": feed_title, "feed_url": feed_url},
+        }
+        if is_ai_relevant_item(item):
+            items.append(item)
+    return items
+
+
+def _rsshub_feed_urls() -> list[str]:
+    urls: list[str] = []
+    base_url = os.getenv("RSSHUB_BASE_URL", "").strip().rstrip("/")
+    for route in _env_list("RSSHUB_ROUTES"):
+        if route.startswith("http://") or route.startswith("https://"):
+            urls.append(route)
+        elif base_url:
+            urls.append(f"{base_url}/{route.lstrip('/')}")
+    return urls
+
+
+def fetch_youtube_channel_rss(hours: int) -> list[dict[str, Any]]:
+    channel_ids = _env_list("YOUTUBE_CHANNEL_IDS")
+    items: list[dict[str, Any]] = []
+    for channel_id in channel_ids:
+        feed_url = f"https://www.youtube.com/feeds/videos.xml?channel_id={urllib.parse.quote(channel_id)}"
+        try:
+            items.extend(_feed_items_from_xml(_fetch_text_url(feed_url), feed_url, hours, "YouTube channel RSS"))
+        except urllib.error.HTTPError as exc:
+            print(f"YouTube频道RSS抓取失败 HTTP {exc.code}，已跳过：{channel_id}")
+        except Exception as exc:
+            print(f"YouTube频道RSS抓取失败，已跳过：{channel_id}，{exc}")
+    if channel_ids:
+        print(f"   Found {len(items)} items from YouTube channel RSS")
+    return items
+
+
+def fetch_custom_social_rss(hours: int) -> list[dict[str, Any]]:
+    feed_urls = _env_list("SOCIAL_RSS_URLS") + _rsshub_feed_urls()
+    items: list[dict[str, Any]] = []
+    for feed_url in feed_urls:
+        try:
+            items.extend(_feed_items_from_xml(_fetch_text_url(feed_url), feed_url, hours))
+        except urllib.error.HTTPError as exc:
+            print(f"社交RSS抓取失败 HTTP {exc.code}，已跳过：{feed_url}")
+        except Exception as exc:
+            print(f"社交RSS抓取失败，已跳过：{feed_url}，{exc}")
+    if feed_urls:
+        print(f"   Found {len(items)} items from custom/RSSHub social feeds")
+    return items
+
+
+def _dedupe_items(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    seen: set[str] = set()
+    deduped: list[dict[str, Any]] = []
+    for item in items:
+        key = weiyu.base.stable_key(weiyu.base.text_of(item, "title"), weiyu.base.text_of(item, "url", "link"))
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(item)
+    return deduped
+
+
 def fetch_social_sources_stable(hours: int) -> tuple[list[dict[str, Any]], dict[str, int]]:
-    if not (os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_BEARER_TOKEN")):
-        print("X/Twitter 未配置：请在 GitHub Secrets 添加 X_BEARER_TOKEN 或 TWITTER_BEARER_TOKEN。")
-    if not os.getenv("YOUTUBE_API_KEY", "").strip():
-        print("YouTube 未配置：请在 GitHub Secrets 添加 YOUTUBE_API_KEY。")
-    return weiyu.fetch_social_sources(hours)
+    has_x_token = bool(os.getenv("X_BEARER_TOKEN") or os.getenv("TWITTER_BEARER_TOKEN"))
+    has_youtube_key = bool(os.getenv("YOUTUBE_API_KEY", "").strip())
+    if not has_x_token:
+        print("X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。")
+    if not has_youtube_key:
+        print("YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。")
+
+    official_items, official_metrics = weiyu.fetch_social_sources(hours)
+    youtube_rss_items = fetch_youtube_channel_rss(hours)
+    custom_rss_items = fetch_custom_social_rss(hours)
+    fallback_items = youtube_rss_items + custom_rss_items
+    items = _dedupe_items(list(official_items) + fallback_items)
+
+    fallback_x_count = sum(1 for item in fallback_items if weiyu.base.get_attr(item, "source_type") == "twitter_rss")
+    fallback_youtube_count = sum(1 for item in fallback_items if weiyu.base.get_attr(item, "source_type") == "youtube_rss")
+    metrics = dict(official_metrics)
+    metrics["x_rss_items"] = fallback_x_count
+    metrics["youtube_rss_items"] = fallback_youtube_count
+    metrics["custom_rss_items"] = len(custom_rss_items)
+    metrics["x_items"] = int(metrics.get("x_items", 0)) + fallback_x_count
+    metrics["youtube_items"] = int(metrics.get("youtube_items", 0)) + fallback_youtube_count
+    metrics["social_items"] = len(items)
+    return items, metrics
 
 
 async def collect_with_social_stable(hours: int, limit: int) -> tuple[list[Any], dict[str, Any]]:
