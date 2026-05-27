@@ -66,6 +66,10 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_SEARCH_QUERIES: ${{ secrets.YOUTUBE_SEARCH_QUERIES }}
           YOUTUBE_RESULTS_PER_QUERY: ${{ secrets.YOUTUBE_RESULTS_PER_QUERY }}
+          YOUTUBE_CHANNEL_IDS: ${{ secrets.YOUTUBE_CHANNEL_IDS }}
+          SOCIAL_RSS_URLS: ${{ secrets.SOCIAL_RSS_URLS }}
+          RSSHUB_BASE_URL: ${{ secrets.RSSHUB_BASE_URL }}
+          RSSHUB_ROUTES: ${{ secrets.RSSHUB_ROUTES }}
         run: |
           mkdir -p outputs
           set -o pipefail
