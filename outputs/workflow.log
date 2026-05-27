@@ -3,61 +3,82 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
    Found 41 items from Reddit
       • r/ClaudeAI: 13
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
-   Found 19 items from Hacker News
-      • Cider9986: 1
-      • Kneenex: 1
-      • L_Rahman: 1
-      • Lihh27: 1
-      • bilsbie: 1
-      • brazukadev: 1
-      • dragonsenseiguy: 1
-      • jumploops: 1
-      • obscurette: 1
-      • rbanffy: 3
-      • rmason: 1
-      • signa11: 1
-      • subract: 1
-      • thatxliner: 1
-      • theletterf: 1
-      • xngbuilds: 1
-      • zdw: 1
-   Found 30 items from OSS Insight
-      • ossinsight:JavaScript: 2
-      • ossinsight:Python: 12
-      • ossinsight:Rust: 4
-      • ossinsight🐚 1
-      • ossinsight:Swift: 1
-      • ossinsight:TypeScript: 10
-   Found 2 items from GitHub
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 21 items from RSS Feeds
+   Found 22 items from Hacker News
+      • 0x5FC3: 1
+      • GodelNumbering: 1
+      • aghuang: 1
+      • boarsofcanada: 1
+      • cdrnsf: 1
+      • cratermoon: 1
+      • crescit_eundo: 1
+      • croes: 1
+      • fchishtie: 1
+      • ggcr: 1
+      • gingerlime: 1
+      • ibobev: 1
+      • jxmorris12: 1
+      • nooks: 1
+      • oliverio: 1
+      • signa11: 1
+      • thm: 1
+      • tjek: 1
+      • tosh: 1
+      • vrganj: 1
+      • xlii: 1
+      • zdw: 1
+   Found 30 items from OSS Insight
+      • ossinsight:All: 2
+      • ossinsight:Go: 1
+      • ossinsight:HTML: 1
+      • ossinsight:JavaScript: 1
+      • ossinsight:Python: 12
+      • ossinsight:Rust: 3
+      • ossinsight🐚 1
+      • ossinsight:Swift: 1
+      • ossinsight:TypeScript: 8
+   Found 25 items from RSS Feeds
       • Hugging Face Blog: 1
       • OpenAI News: 1
-      • Simon Willison: 8
-      • TLDR AI: 1
+      • Simon Willison: 11
+      • TLDR AI: 2
       • The Decoder: 10
+   Found 4 items from GitHub
+      • browser-use/browser-use: 1
+      • langchain-ai/langchain: 2
+      • langchain-ai/langgraph: 1
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for ossinsight:trending:1185590488, using defaults
+Warning: could not parse analysis response for hackernews:story:48279842, using defaults
+Warning: could not parse analysis response for rss:the-decoder.com_feed_:dfa7085c1dc17bbc, using defaults
 
+   dedup: keep [1] Google Deepmind's AlphaProof Nexus solves decades-old math 
+problems for a few hundred dollars
+          drop [3] AI has just solved not one, but nine novel math problems, and
+proved 44 new conjectures. Some of these problems had been unsolved for 50 
+years.
+   dedup: keep [13] China Clamps Down on Overseas Travel for AI Talent at 
+Alibaba, DeepSeek
+          drop [19] China reportedly now requires top AI researchers to get 
+permission before leaving the country
 📚 Enriching with background knowledge...
 
-   Enriched 30 items
+   Enriched 28 items
 
 X/Twitter 未配置：请在 GitHub Secrets 添加 X_BEARER_TOKEN 或 TWITTER_BEARER_TOKEN。
 YouTube 未配置：请在 GitHub Secrets 添加 YOUTUBE_API_KEY。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：113
+数据来源原始条数：122
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：14
-写入飞书：14
+新增选题：15
+写入飞书：15
