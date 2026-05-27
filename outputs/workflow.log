@@ -4,72 +4,64 @@
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
    Found 41 items from Reddit
       • r/ClaudeAI: 13
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 21 items from Hacker News
-      • 0x5FC3: 1
+   Found 17 items from Hacker News
       • GodelNumbering: 1
       • aghuang: 1
       • boarsofcanada: 1
       • cafkafk: 1
-      • cdrnsf: 1
-      • cratermoon: 1
       • crescit_eundo: 1
       • fchishtie: 1
       • ggcr: 1
-      • gingerlime: 1
       • ibobev: 1
-      • jxmorris12: 1
       • nooks: 1
       • oliverio: 1
-      • signa11: 1
+      • prismatic: 1
+      • signa11: 2
       • thm: 1
       • tjek: 1
       • tosh: 1
-      • xlii: 1
       • zdw: 1
    Found 30 items from OSS Insight
-      • ossinsight:All: 2
-      • ossinsight:Go: 1
-      • ossinsight:HTML: 1
+      • ossinsight:All: 3
+      • ossinsight:CSS: 1
       • ossinsight:JavaScript: 1
-      • ossinsight:Python: 12
-      • ossinsight:Rust: 3
+      • ossinsight:Python: 11
+      • ossinsight:Rust: 2
       • ossinsight🐚 1
       • ossinsight:Swift: 1
-      • ossinsight:TypeScript: 8
+      • ossinsight:TypeScript: 10
+   Found 4 items from GitHub
+      • browser-use/browser-use: 1
+      • langchain-ai/langchain: 2
+      • langchain-ai/langgraph: 1
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 26 items from RSS Feeds
       • Hugging Face Blog: 1
       • OpenAI News: 1
       • Simon Willison: 12
       • TLDR AI: 2
       • The Decoder: 10
-   Found 4 items from GitHub
-      • browser-use/browser-use: 1
-      • langchain-ai/langchain: 2
-      • langchain-ai/langgraph: 1
 🤖 Analyzing content with AI...
+Warning: could not parse analysis response for rss:tldr.tech_api_rss_ai:0899202a8ebd689e, using defaults
 
-   dedup: keep [6] Notes on Pope Leo XIV's encyclical on AI
-          drop [27] At the launch of Pope Leo XIV's encyclical, Anthropic 
-co-founder says AI models show signs of introspection
 📚 Enriching with background knowledge...
 
-   Enriched 29 items
+   Enriched 30 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：122
+数据来源原始条数：118
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：6
-写入飞书：6
+新增选题：2
+写入飞书：2
