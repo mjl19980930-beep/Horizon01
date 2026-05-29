@@ -3,44 +3,45 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
+   Found 0 items from OSS Insight
    Found 42 items from Reddit
       • r/ClaudeAI: 14
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
-   Found 22 items from Hacker News
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+   Found 23 items from Hacker News
       • 1vuio0pswjnm7: 1
       • KraftyOne: 1
+      • Kwastie: 1
       • Wirbelwind: 1
       • agmater: 1
+      • ankitg12: 1
       • b-man: 1
-      • benbreen: 1
       • burntsushi: 1
       • craigmart: 1
       • drewda: 1
       • enraged_camel: 1
-      • jjp: 1
+      • freediver: 1
       • mattrighetti: 1
       • meetpateltech: 1
       • nopg: 1
-      • o4c: 1
       • philips: 1
       • possibilistic: 1
-      • rbanffy: 1
       • speckx: 2
+      • stevekemp: 1
+      • theanonymousone: 1
       • whiteblossom: 1
       • zdw: 1
-   Found 0 items from OSS Insight
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 33 items from RSS Feeds
+   Found 36 items from RSS Feeds
       • Google AI Blog: 1
-      • Hugging Face Blog: 3
-      • OpenAI News: 7
-      • Simon Willison: 10
+      • Hugging Face Blog: 4
+      • OpenAI News: 8
+      • Simon Willison: 11
       • TLDR AI: 2
       • The Decoder: 10
    Found 11 items from GitHub
@@ -48,30 +49,29 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • langchain-ai/langchain: 5
       • langchain-ai/langgraph: 3
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for reddit:subreddit-rss:t3_1tqohv6, using defaults
+Warning: could not parse analysis response for github:release:330885591, using defaults
+Warning: could not parse analysis response for rss:simonwillison.net_atom_everything_:9602d7eff45f67f9, using defaults
+Warning: could not parse analysis response for reddit:subreddit-rss:t3_1tq8a40, using defaults
 
-   dedup: keep [1] Anthropic ships Claude Opus 4.8 as a "modest but tangible 
+   dedup: keep [0] Introducing Claude Opus 4.8
+          drop [1] Anthropic ships Claude Opus 4.8 as a "modest but tangible 
 improvement" that tops GPT-5.5 in most benchmarks
-          drop [2] Introducing Claude Opus 4.8
-   dedup: keep [1] Anthropic ships Claude Opus 4.8 as a "modest but tangible 
-improvement" that tops GPT-5.5 in most benchmarks
-          drop [6] Claude Opus 4.8
-   dedup: keep [4] Anthropic raises $65B in Series H funding at $965B post-money
+   dedup: keep [0] Introducing Claude Opus 4.8
+          drop [27] Claude Opus 4.8
+   dedup: keep [3] Claude company Anthropic nears a trillion-dollar valuation 
+after raising $65 billion in Series H
+          drop [4] Anthropic raises $65B in Series H funding at $965B post-money
 valuation
-          drop [14] Anthropic's run-rate revenue hits $47 billion
-   dedup: keep [23] The most spectacular rocket explosion since N1 just happened
-in Florida
-          drop [24] Blue Origin's New Glenn blows up during static fire test
 📚 Enriching with background knowledge...
 
-   Enriched 26 items
+   Enriched 27 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：108
+数据来源原始条数：112
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：14
-写入飞书：14
+新增选题：9
+写入飞书：9
