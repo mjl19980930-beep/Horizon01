@@ -3,65 +3,68 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-   Found 0 items from OSS Insight
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
    Found 42 items from Reddit
       • r/ClaudeAI: 14
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
+   Found 26 items from Hacker News
+      • AndrewKemendo: 1
+      • Cider9986: 1
+      • NicoConstant: 1
+      • TechTechTech: 1
+      • WillDaSilva: 1
+      • amadeus: 1
+      • andrejsshell: 1
+      • antirez: 1
+      • brandonb: 1
+      • brilee: 1
+      • dtagames: 1
+      • evilsimon: 1
+      • freediver: 1
+      • jordanpg: 1
+      • justinweiss: 1
+      • jxmorris12: 1
+      • nadis: 1
+      • simjnd: 1
+      • surprisetalk: 1
+      • tambourine_man: 1
+      • tomasol: 1
+      • tosh: 1
+      • vnglst: 1
+      • watermelon0: 1
+      • xyzal: 1
+      • yu3zhou4: 1
+   Found 0 items from OSS Insight
+   Found 9 items from GitHub
+      • anthropics/anthropic-sdk-python: 3
+      • langchain-ai/langchain: 3
+      • langchain-ai/langgraph: 2
+      • modelcontextprotocol/python-sdk: 1
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 23 items from Hacker News
-      • 1vuio0pswjnm7: 1
-      • KraftyOne: 1
-      • Kwastie: 1
-      • Wirbelwind: 1
-      • agmater: 1
-      • ankitg12: 1
-      • b-man: 1
-      • burntsushi: 1
-      • craigmart: 1
-      • drewda: 1
-      • enraged_camel: 1
-      • freediver: 1
-      • mattrighetti: 1
-      • meetpateltech: 1
-      • nopg: 1
-      • philips: 1
-      • possibilistic: 1
-      • speckx: 2
-      • stevekemp: 1
-      • theanonymousone: 1
-      • whiteblossom: 1
-      • zdw: 1
-   Found 36 items from RSS Feeds
-      • Google AI Blog: 1
-      • Hugging Face Blog: 4
-      • OpenAI News: 8
-      • Simon Willison: 11
+   Found 35 items from RSS Feeds
+      • Google AI Blog: 4
+      • Hugging Face Blog: 2
+      • OpenAI News: 9
+      • Simon Willison: 8
       • TLDR AI: 2
       • The Decoder: 10
-   Found 11 items from GitHub
-      • anthropics/anthropic-sdk-python: 3
-      • langchain-ai/langchain: 5
-      • langchain-ai/langgraph: 3
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for github:release:330885591, using defaults
-Warning: could not parse analysis response for rss:simonwillison.net_atom_everything_:9602d7eff45f67f9, using defaults
-Warning: could not parse analysis response for reddit:subreddit-rss:t3_1tq8a40, using defaults
+Warning: could not parse analysis response for hackernews:story:48324712, using defaults
+Warning: could not parse analysis response for reddit:subreddit-rss:t3_1tr9vzn, using defaults
 
    dedup: keep [0] Introducing Claude Opus 4.8
-          drop [1] Anthropic ships Claude Opus 4.8 as a "modest but tangible 
+          drop [2] Anthropic ships Claude Opus 4.8 as a "modest but tangible 
 improvement" that tops GPT-5.5 in most benchmarks
    dedup: keep [0] Introducing Claude Opus 4.8
-          drop [27] Claude Opus 4.8
-   dedup: keep [3] Claude company Anthropic nears a trillion-dollar valuation 
+          drop [29] PSA: Opus 4.8 Redefines the effort scale
+   dedup: keep [10] Claude company Anthropic nears a trillion-dollar valuation 
 after raising $65 billion in Series H
-          drop [4] Anthropic raises $65B in Series H funding at $965B post-money
-valuation
+          drop [14] Anthropic's run-rate revenue hits $47 billion
 📚 Enriching with background knowledge...
 
    Enriched 27 items
@@ -73,5 +76,5 @@ YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作�
 数据来源原始条数：112
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：9
-写入飞书：9
+新增选题：14
+写入飞书：14
