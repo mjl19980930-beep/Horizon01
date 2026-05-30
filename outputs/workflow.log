@@ -3,34 +3,31 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
    Found 42 items from Reddit
       • r/ClaudeAI: 14
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
-   Found 26 items from Hacker News
+   Found 23 items from Hacker News
+      • 0x1997: 1
       • AndrewKemendo: 1
-      • Cider9986: 1
       • NicoConstant: 1
-      • TechTechTech: 1
       • WillDaSilva: 1
       • amadeus: 1
-      • andrejsshell: 1
       • antirez: 1
       • brandonb: 1
-      • brilee: 1
       • dtagames: 1
       • evilsimon: 1
       • freediver: 1
-      • jordanpg: 1
+      • headalgorithm: 1
       • justinweiss: 1
-      • jxmorris12: 1
       • nadis: 1
       • simjnd: 1
       • surprisetalk: 1
+      • takakaze: 1
       • tambourine_man: 1
       • tomasol: 1
       • tosh: 1
@@ -46,35 +43,31 @@ Reddit blocked JSON listing for r/OpenAI; falling back to RSS
       • modelcontextprotocol/python-sdk: 1
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 35 items from RSS Feeds
+   Found 33 items from RSS Feeds
       • Google AI Blog: 4
       • Hugging Face Blog: 2
-      • OpenAI News: 9
-      • Simon Willison: 8
+      • OpenAI News: 8
+      • Simon Willison: 7
       • TLDR AI: 2
       • The Decoder: 10
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for hackernews:story:48324712, using defaults
-Warning: could not parse analysis response for reddit:subreddit-rss:t3_1tr9vzn, using defaults
 
-   dedup: keep [0] Introducing Claude Opus 4.8
-          drop [2] Anthropic ships Claude Opus 4.8 as a "modest but tangible 
+   dedup: keep [0] Anthropic ships Claude Opus 4.8 as a "modest but tangible 
 improvement" that tops GPT-5.5 in most benchmarks
-   dedup: keep [0] Introducing Claude Opus 4.8
-          drop [29] PSA: Opus 4.8 Redefines the effort scale
-   dedup: keep [10] Claude company Anthropic nears a trillion-dollar valuation 
-after raising $65 billion in Series H
-          drop [14] Anthropic's run-rate revenue hits $47 billion
+          drop [1] Introducing Claude Opus 4.8
+   dedup: keep [6] OpenAI is giving away its life sciences AI model to help 
+governments prepare for the next pandemic
+          drop [28] Strengthening societal resilience with Rosalind Biodefense
 📚 Enriching with background knowledge...
 
-   Enriched 27 items
+   Enriched 28 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：112
+数据来源原始条数：107
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：14
-写入飞书：14
+新增选题：7
+写入飞书：7
