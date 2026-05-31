@@ -3,71 +3,66 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
    Found 42 items from Reddit
       • r/ClaudeAI: 14
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
-   Found 23 items from Hacker News
-      • 0x1997: 1
-      • AndrewKemendo: 1
-      • NicoConstant: 1
-      • WillDaSilva: 1
-      • amadeus: 1
-      • antirez: 1
-      • brandonb: 1
-      • dtagames: 1
-      • evilsimon: 1
-      • freediver: 1
-      • headalgorithm: 1
-      • justinweiss: 1
-      • nadis: 1
-      • simjnd: 1
-      • surprisetalk: 1
-      • takakaze: 1
-      • tambourine_man: 1
-      • tomasol: 1
+   Found 22 items from Hacker News
+      • 1vuio0pswjnm7: 1
+      • Garbage: 1
+      • Hawzen: 1
+      • LilBytes: 1
+      • Michelangelo11: 1
+      • aaronbrethorst: 1
+      • aleda145: 1
+      • ankitg12: 1
+      • antipurist: 1
+      • davikr: 1
+      • freeCandy: 1
+      • jordanpg: 1
+      • kristoff_it: 1
+      • ksec: 1
+      • poppypetalmask: 1
+      • pwg: 1
+      • ruaraidh: 1
+      • shepherdjerred: 1
+      • sohkamyung: 1
+      • sph: 1
       • tosh: 1
-      • vnglst: 1
-      • watermelon0: 1
-      • xyzal: 1
-      • yu3zhou4: 1
+      • tylerdane: 1
    Found 0 items from OSS Insight
-   Found 9 items from GitHub
+   Found 7 items from GitHub
       • anthropics/anthropic-sdk-python: 3
-      • langchain-ai/langchain: 3
+      • langchain-ai/langchain: 1
       • langchain-ai/langgraph: 2
       • modelcontextprotocol/python-sdk: 1
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 33 items from RSS Feeds
+   Found 31 items from RSS Feeds
       • Google AI Blog: 4
-      • Hugging Face Blog: 2
-      • OpenAI News: 8
-      • Simon Willison: 7
-      • TLDR AI: 2
+      • Hugging Face Blog: 1
+      • OpenAI News: 5
+      • Simon Willison: 10
+      • TLDR AI: 1
       • The Decoder: 10
 🤖 Analyzing content with AI...
 
-   dedup: keep [0] Anthropic ships Claude Opus 4.8 as a "modest but tangible 
-improvement" that tops GPT-5.5 in most benchmarks
-          drop [1] Introducing Claude Opus 4.8
-   dedup: keep [6] OpenAI is giving away its life sciences AI model to help 
-governments prepare for the next pandemic
-          drop [28] Strengthening societal resilience with Rosalind Biodefense
+   dedup: keep [1] Introducing Claude Opus 4.8
+          drop [27] Claude Opus 4.8: "a modest but tangible improvement"
 📚 Enriching with background knowledge...
 
-   Enriched 28 items
+   Enriched 29 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：107
+数据来源原始条数：102
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：7
-写入飞书：7
+新增选题：13
+写入飞书：13
