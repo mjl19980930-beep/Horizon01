@@ -3,65 +3,71 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-   Found 0 items from OSS Insight
-   Found 23 items from Hacker News
-      • 1vuio0pswjnm7: 1
-      • Garbage: 1
-      • Hawzen: 1
-      • aaronbrethorst: 1
-      • aidangarske: 1
-      • aleda145: 1
-      • ankitg12: 1
-      • antipurist: 1
-      • davikr: 1
-      • freeCandy: 1
-      • jayhoon: 1
-      • jerrythegerbil: 1
-      • justdotJS: 1
-      • k1m: 1
-      • kristoff_it: 1
-      • ksec: 1
-      • poppypetalmask: 1
-      • pwg: 1
-      • shepherdjerred: 1
-      • sohkamyung: 1
-      • sph: 1
-      • tosh: 1
-      • tylerdane: 1
-   Found 42 items from Reddit
-      • r/ClaudeAI: 14
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+   Found 41 items from Reddit
+      • r/ClaudeAI: 13
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
-   Found 7 items from GitHub
-      • anthropics/anthropic-sdk-python: 3
-      • langchain-ai/langchain: 1
-      • langchain-ai/langgraph: 2
-      • modelcontextprotocol/python-sdk: 1
+   Found 23 items from Hacker News
+      • ColinWright: 1
+      • Dzheky: 1
+      • Eridanus2: 1
+      • HypnoticOcelot: 1
+      • aaronbrethorst: 1
+      • captain_bender: 1
+      • doener: 1
+      • grappler: 1
+      • hackerBanana: 1
+      • k1m: 1
+      • lucasfcosta: 1
+      • mindcrime: 1
+      • modinfo: 1
+      • mooreds: 1
+      • pilingual: 1
+      • rawgabbit: 1
+      • recursivedoubts: 1
+      • tambourine_man: 1
+      • thcipriani: 1
+      • thunderbong: 1
+      • uxhacker: 1
+      • vira28: 1
+      • zeristor: 1
+   Found 30 items from OSS Insight
+      • ossinsight:All: 3
+      • ossinsight:CSS: 1
+      • ossinsight:JavaScript: 1
+      • ossinsight:Python: 11
+      • ossinsight:Rust: 2
+      • ossinsight🐚 1
+      • ossinsight:Swift: 1
+      • ossinsight:TypeScript: 10
+   Found 1 items from GitHub
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 31 items from RSS Feeds
-      • Google AI Blog: 4
+   Found 24 items from RSS Feeds
+      • Google AI Blog: 3
       • Hugging Face Blog: 1
-      • OpenAI News: 5
-      • Simon Willison: 10
-      • TLDR AI: 1
+      • OpenAI News: 2
+      • Simon Willison: 8
       • The Decoder: 10
 🤖 Analyzing content with AI...
 
+   dedup: keep [15] this chart felt shady, so I fixed it (what I found will 
+shock you!)
+          drop [25] Interesting find in the Opus 4.8 system card
 📚 Enriching with background knowledge...
 
-   Enriched 30 items
+   Enriched 29 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：103
+数据来源原始条数：119
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：7
-写入飞书：7
+新增选题：13
+写入飞书：13
