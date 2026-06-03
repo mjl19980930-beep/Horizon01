@@ -3,87 +3,78 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
    Found 41 items from Reddit
       • r/ClaudeAI: 13
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
-   Found 29 items from Hacker News
-      • 1vuio0pswjnm7: 1
-      • Eridanus2: 1
-      • Nars088: 1
-      • StrLght: 1
-      • cyunker: 1
-      • f055: 1
-      • gregschlom: 1
-      • hasheddan: 1
-      • ibobev: 1
-      • ismaeel_bashir: 1
-      • jbk: 1
-      • kristianpaul: 1
-      • kurmiashish: 1
+   Found 24 items from Hacker News
+      • BruceEel: 1
+      • EvanZhouDev: 1
+      • _alternator_: 1
+      • ammar2: 1
+      • berlianta: 1
+      • birdculture: 1
+      • cassepipe: 1
+      • dm319: 1
+      • elmerland: 1
+      • eustoria: 1
+      • figbert: 1
+      • herbertl: 1
+      • jandeboevrie: 1
+      • kkm: 1
       • mooreds: 1
-      • nigelgutzmann: 1
-      • pplanu: 1
-      • prakashqwerty: 1
-      • ranebo: 1
-      • sargstuff: 1
+      • mrroryflint: 1
+      • rwmj: 1
       • semanser: 1
-      • shenli3514: 1
-      • speckx: 2
-      • ssiddharth: 1
-      • surprisetalk: 1
-      • typpo: 1
-      • whoishiring: 2
-      • yacin: 1
-   Found 0 items from OSS Insight
-   Found 5 items from GitHub
-      • langchain-ai/langgraph: 3
+      • speckx: 3
+      • tanelpoder: 1
+      • theanonymousone: 1
+      • viasfo: 1
+   Found 20 items from OSS Insight
+      • ossinsight:All: 2
+      • ossinsight:HTML: 1
+      • ossinsight:JavaScript: 2
+      • ossinsight:Python: 8
+      • ossinsight:Rust: 1
+      • ossinsight:TypeScript: 6
+   Found 8 items from GitHub
+      • langchain-ai/langchain: 2
+      • langchain-ai/langgraph: 4
       • openai/openai-python: 2
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 29 items from RSS Feeds
+   Found 34 items from RSS Feeds
       • Google AI Blog: 1
-      • Hugging Face Blog: 3
-      • OpenAI News: 4
+      • Hugging Face Blog: 4
+      • OpenAI News: 7
       • Simon Willison: 10
-      • TLDR AI: 1
+      • TLDR AI: 2
       • The Decoder: 10
 🤖 Analyzing content with AI...
 
-   dedup: keep [0] OpenAI frontier models and Codex are now available on AWS
-          drop [14] OpenAI models now available on Amazon Web Services
-   dedup: keep [1] Claude maker Anthropic files for IPO with the SEC
-          drop [3] Anthropic finally going public with IPO
-   dedup: keep [1] Claude maker Anthropic files for IPO with the SEC
-          drop [4] Anthropic confidentially submits draft S-1 to the SEC
-   dedup: keep [5] Welcome NVIDIA Cosmos 3: The First Open Omni-model for 
-Physical AI Reasoning and Action
-          drop [6] NVIDIA releases Cosmos 3 Omnimodal world modelson HF
-   dedup: keep [5] Welcome NVIDIA Cosmos 3: The First Open Omni-model for 
-Physical AI Reasoning and Action
-          drop [24] Nvidia bets big on physical AI at GTC Taipei with a new 
-world model, driving brain, and open humanoid robot
-   dedup: keep [8] The newest Instagram “exploit” is the goofiest I've seen
-          drop [9] Hackers Simply Asked Meta AI to Give Them Access to 
+   dedup: keep [2] Hackers Simply Asked Meta AI to Give Them Access to 
 High-Profile Instagram Accounts. It Worked
-   dedup: keep [20] Nvidia pitches RTX Spark as the chip that finally makes 
-local AI agents practical on Windows devices
-          drop [28] Nvidia RTX Spark
+          drop [16] Hackers hijacked high-profile Instagram accounts by simply 
+asking Meta's AI chatbot to change the email
+   dedup: keep [5] OpenAI models now available on Amazon Web Services
+          drop [22] OpenAI frontier models and Codex are now available on AWS
+   dedup: keep [12] OpenAI expands Codex with role-specific plugins to build a 
+general-purpose app for non-developers
+          drop [28] Codex is becoming a productivity tool for everyone
 📚 Enriching with background knowledge...
 
-   Enriched 23 items
+   Enriched 27 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
-选题卡生成失败，使用兜底模板：Expecting value: line 1 column 1 (char 0)
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：104
+数据来源原始条数：127
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：7
-写入飞书：7
+新增选题：12
+写入飞书：12
