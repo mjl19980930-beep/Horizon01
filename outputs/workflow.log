@@ -4,20 +4,24 @@
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 41 items from Reddit
       • r/ClaudeAI: 13
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
-   Found 25 items from Hacker News
+   Found 30 items from Hacker News
       • 1970-01-01: 1
-      • Klaster_1: 1
       • MaxLeiter: 1
       • SGran: 1
       • Tomte: 1
+      • XzetaU8: 1
+      • amcclure: 1
       • bennett_dev: 1
+      • bookofjoe: 1
       • cloud8421: 1
       • gmays: 1
       • gregsadetsky: 1
@@ -25,6 +29,7 @@ Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
       • jbredeche: 1
       • jc4p: 1
       • ksec: 1
+      • ledoge: 1
       • littlexsparkee: 1
       • lordleft: 1
       • nathell: 1
@@ -34,22 +39,18 @@ Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
       • reconnecting: 1
       • rguiscard: 1
       • rvz: 1
+      • tastyeffectco: 1
       • tosh: 1
       • volemo: 1
+      • xeonmc: 1
       • xx_ns: 1
-   Found 20 items from OSS Insight
+   Found 25 items from OSS Insight
       • ossinsight:All: 1
+      • ossinsight:C#: 1
       • ossinsight:JavaScript: 2
-      • ossinsight:Python: 8
+      • ossinsight:Python: 10
       • ossinsight:Rust: 2
-      • ossinsight:TypeScript: 7
-   Found 11 items from GitHub
-      • huggingface/transformers: 1
-      • langchain-ai/langchain: 3
-      • langchain-ai/langgraph: 4
-      • openai/openai-python: 3
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+      • ossinsight:TypeScript: 9
    Found 38 items from RSS Feeds
       • Google AI Blog: 2
       • Hugging Face Blog: 5
@@ -57,28 +58,28 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • Simon Willison: 8
       • TLDR AI: 2
       • The Decoder: 10
+   Found 11 items from GitHub
+      • huggingface/transformers: 1
+      • langchain-ai/langchain: 3
+      • langchain-ai/langgraph: 4
+      • openai/openai-python: 3
 🤖 Analyzing content with AI...
 
-   dedup: keep [0] Gemma 4 12B: A unified, encoder-free multimodal model
-          drop [1] google/gemma-4-12B · Hugging Face
-   dedup: keep [0] Gemma 4 12B: A unified, encoder-free multimodal model
-          drop [15] Google Deepmind's Gemma 4 12B squeezes multimodal AI onto a 
-laptop with just 16 GB of RAM
-   dedup: keep [0] Gemma 4 12B: A unified, encoder-free multimodal model
-          drop [25] Introducing Gemma 4 12B: a unified, encoder-free multimodal 
+   dedup: keep [1] Gemma 4 Unified is coming
+          drop [11] Introducing Gemma 4 12B: a unified, encoder-free multimodal 
 model
-   dedup: keep [0] Gemma 4 12B: A unified, encoder-free multimodal model
-          drop [26] Gemma 4 Unified is coming
+   dedup: keep [1] Gemma 4 Unified is coming
+          drop [19] google/gemma-4-12B · Hugging Face
 📚 Enriching with background knowledge...
 
-   Enriched 26 items
+   Enriched 28 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：135
+数据来源原始条数：145
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：13
-写入飞书：13
+新增选题：7
+写入飞书：7
