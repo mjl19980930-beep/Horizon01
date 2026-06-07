@@ -3,18 +3,31 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-   Found 18 items from Hacker News
-      • MilnerRoute: 1
+   Found 44 items from Reddit
+      • r/ChatGPTCoding: 1
+      • r/ClaudeAI: 14
+      • r/LocalLLaMA: 15
+      • r/OpenAI: 14
+   Found 26 items from Hacker News
+      • Anon84: 1
+      • MrBuddyCasino: 1
       • andrehacker: 1
       • babuskov: 1
       • bryanrasmussen: 1
+      • crescit_eundo: 1
+      • davidbarker: 1
+      • emschwartz: 1
       • gregsadetsky: 1
+      • gscott: 1
       • jwilk: 1
+      • keyle: 1
       • losfair: 1
+      • matt_d: 1
+      • mmastrac: 1
       • pkaeding: 1
       • pramodbiligiri: 1
       • rohanucla: 1
@@ -25,39 +38,31 @@ Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
       • toephu2: 1
       • tosh: 1
       • tripplyons: 1
-   Found 44 items from Reddit
-      • r/ChatGPTCoding: 1
-      • r/ClaudeAI: 14
-      • r/LocalLLaMA: 15
-      • r/OpenAI: 14
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 30 items from OSS Insight
       • ossinsight:All: 3
       • ossinsight:Go: 1
       • ossinsight:Java: 1
       • ossinsight:JavaScript: 3
-      • ossinsight:Python: 8
+      • ossinsight:Python: 11
       • ossinsight:Rust: 2
       • ossinsight🐚 1
-      • ossinsight:TypeScript: 11
+      • ossinsight:TypeScript: 8
    Found 5 items from GitHub
       • anthropics/anthropic-sdk-python: 2
       • huggingface/transformers: 1
       • langchain-ai/langchain: 2
-   Found 23 items from RSS Feeds
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+   Found 22 items from RSS Feeds
       • Google AI Blog: 1
       • Hugging Face Blog: 3
-      • OpenAI News: 2
+      • OpenAI News: 1
       • Simon Willison: 6
       • TLDR AI: 1
       • The Decoder: 10
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for reddit:subreddit-rss:t3_1tywii0, using defaults
-Warning: could not parse analysis response for ossinsight:trending:1170266927, using defaults
 
 📚 Enriching with background knowledge...
-Warning: could not parse enrichment response for rss:the-decoder.com_feed_:7ed7e2ebdef1e714, falling back to translation
 
    Enriched 30 items
 
@@ -65,8 +70,8 @@ X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为�
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：120
+数据来源原始条数：127
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：14
-写入飞书：14
+新增选题：8
+写入飞书：8
