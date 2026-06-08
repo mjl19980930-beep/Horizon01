@@ -3,24 +3,17 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-   Found 44 items from Reddit
-      • r/ChatGPTCoding: 1
-      • r/ClaudeAI: 14
-      • r/LocalLLaMA: 15
-      • r/OpenAI: 14
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 22 items from Hacker News
-      • Bender: 1
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+   Found 24 items from Hacker News
+      • 1vuio0pswjnm7: 1
+      • 882542F3884314B: 1
       • DevarshRanpara: 1
       • MrBuddyCasino: 1
-      • bkazez: 1
-      • daesorin: 1
       • devenjarvis: 1
+      • drchiu: 1
       • elpocko: 1
       • gavinray: 1
       • gmays: 1
@@ -29,35 +22,47 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • igmn: 1
       • matt_d: 1
       • melastmohican: 1
-      • mikhael: 1
+      • nicwilson: 1
       • pkaeding: 1
       • poisonfountain: 1
-      • predkambrij: 1
-      • tosh: 1
+      • prestoj: 1
+      • taubek: 1
+      • vrganj: 1
       • vthommeret: 1
       • yogthos: 1
+      • yu3zhou4: 1
       • zdw: 1
+   Found 43 items from Reddit
+      • r/ChatGPTCoding: 1
+      • r/ClaudeAI: 14
+      • r/LocalLLaMA: 15
+      • r/OpenAI: 13
    Found 30 items from OSS Insight
-      • ossinsight:All: 3
-      • ossinsight:Go: 1
-      • ossinsight:Java: 1
-      • ossinsight:JavaScript: 2
-      • ossinsight:Python: 11
-      • ossinsight:Rust: 2
-      • ossinsight:TypeScript: 10
-   Found 17 items from RSS Feeds
-      • Google AI Blog: 1
-      • Hugging Face Blog: 1
-      • Simon Willison: 5
-      • The Decoder: 10
+      • ossinsight:All: 2
+      • ossinsight:Go: 2
+      • ossinsight:HTML: 1
+      • ossinsight:JavaScript: 3
+      • ossinsight:Python: 7
+      • ossinsight:Rust: 3
+      • ossinsight:TypeScript: 12
    Found 5 items from GitHub
       • anthropics/anthropic-sdk-python: 3
       • langchain-ai/langchain: 2
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+   Found 16 items from RSS Feeds
+      • Google AI Blog: 1
+      • Hugging Face Blog: 1
+      • Simon Willison: 4
+      • The Decoder: 10
 🤖 Analyzing content with AI...
 
+   dedup: keep [3] OpenAI Help: Lockdown Mode
+          drop [22] ChatGPT's new Lockdown Mode lets you disable web access and 
+more to protect sensitive data from prompt injection
 📚 Enriching with background knowledge...
 
-   Enriched 30 items
+   Enriched 29 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
@@ -66,5 +71,5 @@ YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作�
 数据来源原始条数：118
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：12
-写入飞书：12
+新增选题：6
+写入飞书：6
