@@ -3,40 +3,38 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
-   Found 24 items from Hacker News
-      • 1vuio0pswjnm7: 1
-      • 882542F3884314B: 1
-      • DevarshRanpara: 1
-      • MrBuddyCasino: 1
-      • devenjarvis: 1
-      • drchiu: 1
-      • elpocko: 1
-      • gavinray: 1
-      • gmays: 1
-      • herbertl: 1
-      • howToTestFE: 1
-      • igmn: 1
-      • matt_d: 1
-      • melastmohican: 1
-      • nicwilson: 1
-      • pkaeding: 1
-      • poisonfountain: 1
-      • prestoj: 1
-      • taubek: 1
-      • vrganj: 1
-      • vthommeret: 1
-      • yogthos: 1
-      • yu3zhou4: 1
-      • zdw: 1
-   Found 43 items from Reddit
-      • r/ChatGPTCoding: 1
-      • r/ClaudeAI: 14
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+   Found 41 items from Reddit
+      • r/ClaudeAI: 13
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
+   Found 24 items from Hacker News
+      • 01-_-: 1
+      • 0xedb: 2
+      • 1vuio0pswjnm7: 1
+      • aryamaan: 1
+      • baepaul: 1
+      • bobbiechen: 1
+      • crescit_eundo: 1
+      • fkilaiwi: 1
+      • g0xA52A2A: 1
+      • gainsurier: 1
+      • hackerBanana: 1
+      • hmokiguess: 1
+      • john-titor: 1
+      • lizhang: 1
+      • mailyk: 1
+      • martinald: 1
+      • mdni007: 1
+      • mooreds: 1
+      • napolux: 1
+      • naturalmovement: 1
+      • ocamoss: 1
+      • streamer45: 1
+      • unclefuzzy: 1
    Found 30 items from OSS Insight
       • ossinsight:All: 2
       • ossinsight:Go: 2
@@ -45,31 +43,39 @@ Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
       • ossinsight:Python: 7
       • ossinsight:Rust: 3
       • ossinsight:TypeScript: 12
-   Found 5 items from GitHub
-      • anthropics/anthropic-sdk-python: 3
-      • langchain-ai/langchain: 2
+   Found 4 items from GitHub
+      • anthropics/anthropic-sdk-python: 2
+      • browser-use/browser-use: 1
+      • langchain-ai/langchain: 1
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 16 items from RSS Feeds
-      • Google AI Blog: 1
+   Found 17 items from RSS Feeds
       • Hugging Face Blog: 1
-      • Simon Willison: 4
+      • OpenAI News: 3
+      • Simon Willison: 2
+      • TLDR AI: 1
       • The Decoder: 10
 🤖 Analyzing content with AI...
+Warning: could not parse analysis response for hackernews:story:48444228, using defaults
+Warning: could not parse analysis response for ossinsight:trending:1165277268, using defaults
 
-   dedup: keep [3] OpenAI Help: Lockdown Mode
-          drop [22] ChatGPT's new Lockdown Mode lets you disable web access and 
-more to protect sensitive data from prompt injection
+   dedup: keep [3] Confidential submission of draft S-1 to the SEC
+          drop [12] OpenAI Confidentially Files for IPO on the Heels of SpaceX 
+and Anthropic
+   dedup: keep [10] Xiaomi just claimed 1,000+ tps on a 1T model using a 
+standard 8-GPU server
+          drop [15] MiMo-v2.5-Pro-UltraSpeed: 1T model with 1000 tokens per 
+second
 📚 Enriching with background knowledge...
 
-   Enriched 29 items
+   Enriched 28 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：118
+数据来源原始条数：116
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：6
-写入飞书：6
+新增选题：16
+写入飞书：16
