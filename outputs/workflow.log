@@ -3,76 +3,86 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-   Found 24 items from Hacker News
-      • Anon84: 1
-      • Philpax: 1
-      • ag2718: 1
-      • ahlCVA: 1
-      • berlianta: 1
-      • brandonb: 1
-      • cbrewster: 1
-      • flanged: 1
-      • inatreecrown2: 1
-      • ltratt: 1
-      • luke8086: 1
-      • mips_avatar: 1
-      • ozcap: 1
-      • piskov: 1
-      • plasma: 1
-      • qunabu: 1
-      • raffael_de: 1
-      • sklopec: 1
-      • speckx: 1
-      • swolpers: 2
-      • theanonymousone: 1
-      • timsneath: 1
-      • wglb: 1
-   Found 24 items from OSS Insight
-      • ossinsight:All: 2
-      • ossinsight:Go: 3
-      • ossinsight:HTML: 1
-      • ossinsight:JavaScript: 2
-      • ossinsight:Python: 8
-      • ossinsight:Rust: 2
-      • ossinsight🐚 1
-      • ossinsight:TypeScript: 5
    Found 42 items from Reddit
       • r/ClaudeAI: 14
       • r/LocalLLaMA: 15
       • r/OpenAI: 13
+   Found 14 items from OSS Insight
+      • ossinsight:All: 1
+      • ossinsight:Go: 1
+      • ossinsight:JavaScript: 2
+      • ossinsight:Python: 4
+      • ossinsight:Rust: 2
+      • ossinsight:Swift: 1
+      • ossinsight:TypeScript: 3
+   Found 26 items from Hacker News
+      • Anon84: 1
+      • Philpax: 1
+      • TomAnthony: 1
+      • ag2718: 1
+      • ahlCVA: 1
+      • apike: 1
+      • berlianta: 1
+      • brandonb: 1
+      • cbrewster: 1
+      • d3Xt3r: 1
+      • dmckinno: 1
+      • ltratt: 1
+      • luke8086: 1
+      • mips_avatar: 1
+      • ozcap: 1
+      • plasma: 1
+      • qunabu: 1
+      • raffael_de: 1
+      • rolph: 1
+      • sklopec: 1
+      • speckx: 1
+      • swolpers: 1
+      • theanonymousone: 1
+      • timsneath: 1
+      • wglb: 1
+      • yimby: 1
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 13 items from GitHub
       • anthropics/anthropic-sdk-python: 4
       • browser-use/browser-use: 2
       • langchain-ai/langchain: 7
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-Error fetching RSS feed The Decoder: Server error '500 Internal Server Error' for url 'https://the-decoder.com/feed/'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
-   Found 20 items from RSS Feeds
+   Found 31 items from RSS Feeds
       • Hugging Face Blog: 5
-      • OpenAI News: 6
+      • OpenAI News: 7
       • Simon Willison: 7
       • TLDR AI: 2
+      • The Decoder: 10
 🤖 Analyzing content with AI...
 
-   dedup: keep [0] Claude Fable 5
+   dedup: keep [1] Claude Fable 5
           drop [2] Introducing Claude Fable 5
-   dedup: keep [1] If Claude Fable stops helping you, you'll never know
-          drop [4] If Claude Fable stops helping you, you'll never know
+   dedup: keep [1] Claude Fable 5
+          drop [14] Anthropic releases Claude Fable 5 and Mythos 5 with major 
+gains in coding and science
+   dedup: keep [3] If Claude Fable stops helping you, you'll never know
+          drop [8] If Claude Fable stops helping you, you'll never know
+   dedup: keep [3] If Claude Fable stops helping you, you'll never know
+          drop [10] Anthropic is intentionally nerfing Fable when asked to 
+develop other LLMs
+   dedup: keep [22] Confidential submission of draft S-1 to the SEC
+          drop [25] OpenAI Confidentially Files for IPO as Traders Bet on $1.5T 
+Valuation
 📚 Enriching with background knowledge...
 
-   Enriched 28 items
+   Enriched 25 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：123
+数据来源原始条数：126
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：15
-写入飞书：15
+新增选题：11
+写入飞书：11
