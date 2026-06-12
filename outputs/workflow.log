@@ -3,28 +3,30 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
+Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
    Found 14 items from Reddit
-   Found 23 items from Hacker News
+   Found 25 items from Hacker News
       • MBCook: 1
       • MrBruh: 1
       • RyeCombinator: 1
       • apeters: 1
       • boulos: 1
       • bugvader: 1
+      • coneonthefloor: 1
+      • dotcoma: 1
+      • dougcalobrisi: 1
       • freejoe76: 1
       • geerlingguy: 1
       • ggcr: 1
-      • hemmert: 1
       • hmokiguess: 1
       • ilreb: 1
       • jeremy_k: 1
@@ -33,12 +35,19 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • lumpa: 1
       • matthewbarras: 1
       • mikemcquaid: 1
-      • neilfrndes: 1
+      • msephton: 1
       • rarisma: 1
       • sam_bristow: 1
+      • xiaoyu2006: 1
       • yogthos: 1
-      • zazuke: 1
-   Found 0 items from OSS Insight
+   Found 16 items from OSS Insight
+      • ossinsight:All: 2
+      • ossinsight:Go: 2
+      • ossinsight:JavaScript: 1
+      • ossinsight:Python: 6
+      • ossinsight:Rust: 1
+      • ossinsight:Swift: 1
+      • ossinsight:TypeScript: 3
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 24 items from GitHub
@@ -49,37 +58,31 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • langchain-ai/langgraph: 2
       • modelcontextprotocol/python-sdk: 1
       • openai/openai-python: 1
-   Found 37 items from RSS Feeds
+   Found 36 items from RSS Feeds
       • Google AI Blog: 1
-      • Hugging Face Blog: 3
+      • Hugging Face Blog: 2
       • OpenAI News: 9
       • Simon Willison: 12
       • TLDR AI: 2
       • The Decoder: 10
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for hackernews:story:48492304, using defaults
 
-   dedup: keep [9] Anthropic Walks Back Policy That Could Have ‘Sabotaged’ AI 
-Researchers Using Claude
-          drop [10] If Claude Fable stops helping you, you'll never know
-   dedup: keep [9] Anthropic Walks Back Policy That Could Have ‘Sabotaged’ AI 
-Researchers Using Claude
-          drop [29] Claude Fable 5: Anthropic admits "wrong tradeoff" after 
-invisibly throttling rival AI researchers
-   dedup: keep [16] DiffusionGemma
-          drop [17] Google's new open model DiffusionGemma generates text from 
+   dedup: keep [1] OpenAI buys Ona to push Codex toward long-running, autonomous
+coding tasks
+          drop [7] OpenAI to acquire Ona
+   dedup: keep [3] DiffusionGemma
+          drop [21] Google's new open model DiffusionGemma generates text from 
 noise instead of word by word
 📚 Enriching with background knowledge...
 
-   Enriched 27 items
+   Enriched 28 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
-选题卡生成失败，使用兜底模板：Expecting value: line 1 column 1 (char 0)
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：98
+数据来源原始条数：115
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：14
-写入飞书：14
+新增选题：2
+写入飞书：2
