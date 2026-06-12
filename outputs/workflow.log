@@ -3,93 +3,83 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
-   Found 42 items from Reddit
-      • r/ClaudeAI: 14
-      • r/LocalLLaMA: 15
-      • r/OpenAI: 13
-   Found 28 items from Hacker News
-      • GeorgeCurtis: 1
-      • Multicomp: 1
-      • NaOH: 1
-      • Philpax: 1
-      • akman: 1
-      • anhldbk: 1
-      • edent: 1
-      • epaga: 1
-      • eries: 1
-      • grahambargeron: 1
-      • helterskelter: 1
-      • idlewords: 1
-      • jonbaer: 1
-      • kbyatnal: 1
-      • lebovic: 1
-      • levkk: 1
-      • momentmaker: 1
-      • nanochess: 1
-      • pseudolus: 1
-      • shadow28: 1
-      • speckx: 1
-      • surprisetalk: 1
-      • tanelpoder: 1
-      • timsneath: 1
-      • tonyrice: 1
-      • tvissers: 1
-      • vincnetas: 1
-      • vrganj: 1
-   Found 20 items from OSS Insight
-      • ossinsight:All: 1
-      • ossinsight:HTML: 1
-      • ossinsight:JavaScript: 1
-      • ossinsight:Python: 9
-      • ossinsight:Rust: 1
-      • ossinsight🐚 1
-      • ossinsight:Swift: 1
-      • ossinsight:TypeScript: 5
-   Found 24 items from GitHub
-      • anthropics/anthropic-sdk-python: 3
-      • browser-use/browser-use: 2
-      • huggingface/transformers: 1
-      • langchain-ai/langchain: 15
-      • langchain-ai/langgraph: 1
-      • modelcontextprotocol/python-sdk: 1
-      • openai/openai-python: 1
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+   Found 14 items from Reddit
+   Found 23 items from Hacker News
+      • MBCook: 1
+      • MrBruh: 1
+      • RyeCombinator: 1
+      • apeters: 1
+      • boulos: 1
+      • bugvader: 1
+      • freejoe76: 1
+      • geerlingguy: 1
+      • ggcr: 1
+      • hemmert: 1
+      • hmokiguess: 1
+      • ilreb: 1
+      • jeremy_k: 1
+      • jjfoooo4: 1
+      • josephcsible: 1
+      • lumpa: 1
+      • matthewbarras: 1
+      • mikemcquaid: 1
+      • neilfrndes: 1
+      • rarisma: 1
+      • sam_bristow: 1
+      • yogthos: 1
+      • zazuke: 1
+   Found 0 items from OSS Insight
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 36 items from RSS Feeds
-      • Hugging Face Blog: 5
+   Found 24 items from GitHub
+      • anthropics/anthropic-sdk-python: 3
+      • browser-use/browser-use: 1
+      • huggingface/transformers: 1
+      • langchain-ai/langchain: 15
+      • langchain-ai/langgraph: 2
+      • modelcontextprotocol/python-sdk: 1
+      • openai/openai-python: 1
+   Found 37 items from RSS Feeds
+      • Google AI Blog: 1
+      • Hugging Face Blog: 3
       • OpenAI News: 9
-      • Simon Willison: 10
+      • Simon Willison: 12
       • TLDR AI: 2
       • The Decoder: 10
 🤖 Analyzing content with AI...
-Warning: could not parse analysis response for github:release:336166217, using defaults
+Warning: could not parse analysis response for hackernews:story:48492304, using defaults
 
-   dedup: keep [0] Claude Fable 5
-          drop [1] Claude Fable 5: The first Mythos model is powerful, 
-expensive, and heavily filtered
-   dedup: keep [0] Claude Fable 5
-          drop [10] Initial impressions of Claude Fable 5
-   dedup: keep [5] DiffusionGemma
-          drop [25] Google's new open model DiffusionGemma generates text from 
-noise instead of word by word
-   dedup: keep [13] Cybersecurity researchers aren't happy about the guardrails 
-on Anthropic's Fable
-          drop [15] Anthropic Walks Back Policy That Could Have ‘Sabotaged’ AI 
+   dedup: keep [9] Anthropic Walks Back Policy That Could Have ‘Sabotaged’ AI 
 Researchers Using Claude
+          drop [10] If Claude Fable stops helping you, you'll never know
+   dedup: keep [9] Anthropic Walks Back Policy That Could Have ‘Sabotaged’ AI 
+Researchers Using Claude
+          drop [29] Claude Fable 5: Anthropic admits "wrong tradeoff" after 
+invisibly throttling rival AI researchers
+   dedup: keep [16] DiffusionGemma
+          drop [17] Google's new open model DiffusionGemma generates text from 
+noise instead of word by word
 📚 Enriching with background knowledge...
 
-   Enriched 26 items
+   Enriched 27 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
+选题卡生成失败，使用兜底模板：Expecting value: line 1 column 1 (char 0)
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：150
+数据来源原始条数：98
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：8
-写入飞书：8
+新增选题：14
+写入飞书：14
