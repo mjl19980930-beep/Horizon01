@@ -4,74 +4,67 @@
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-Reddit RSS fallback failed for r/ClaudeAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ClaudeAI/hot/.rss'
+Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
+Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-   Found 15 items from Reddit
-   Found 24 items from Hacker News
-      • EvgeniyZh: 1
-      • aloknnikhil: 1
-      • andsoitis: 1
-      • austinallegro: 1
+   Found 14 items from Reddit
+   Found 20 items from Hacker News
+      • AG342: 1
+      • berlianta: 1
       • bookofjoe: 1
-      • computersuck: 1
-      • hek2sch: 1
-      • iMil: 1
-      • jeditobe: 1
-      • ksec: 1
-      • librick: 1
-      • ls612: 1
-      • mindracer: 1
-      • nl: 1
-      • pera: 1
-      • peter_d_sherman: 1
-      • pwg: 1
-      • rasz: 1
-      • ravenical: 1
-      • robhati: 1
-      • sbochins: 1
+      • david927: 1
+      • eatonphil: 1
+      • evakhoury: 1
+      • iliashad: 1
+      • josephcsible: 1
+      • kingstoned: 1
+      • losfair: 1
+      • msephton: 1
+      • octopus143: 1
+      • secret-noun: 1
       • signa11: 1
+      • sohkamyung: 1
+      • subset: 1
+      • tamnd: 1
       • tosh: 1
-      • vikas-sharma: 1
+      • unrvl22: 1
+      • yegg: 1
    Found 30 items from OSS Insight
       • ossinsight:All: 3
       • ossinsight:Go: 2
       • ossinsight:HTML: 1
       • ossinsight:JavaScript: 2
-      • ossinsight:Python: 12
+      • ossinsight:Python: 13
       • ossinsight:Rust: 1
       • ossinsight:Swift: 1
-      • ossinsight:TypeScript: 8
-   Found 10 items from GitHub
-      • browser-use/browser-use: 1
-      • huggingface/transformers: 1
-      • langchain-ai/langchain: 6
-      • langchain-ai/langgraph: 2
+      • ossinsight:TypeScript: 7
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 23 items from RSS Feeds
-      • Google AI Blog: 1
+   Found 8 items from GitHub
+      • browser-use/browser-use: 1
+      • huggingface/transformers: 1
+      • langchain-ai/langchain: 5
+      • langchain-ai/langgraph: 1
+   Found 21 items from RSS Feeds
       • Hugging Face Blog: 1
       • OpenAI News: 2
       • Simon Willison: 8
-      • TLDR AI: 1
       • The Decoder: 10
 🤖 Analyzing content with AI...
 
    dedup: keep [1] Statement on the US government directive to suspend access to
 Fable 5 and Mythos 5
-          drop [6] Amazon CEO's talks with U.S. officials triggered crackdown on
-Anthropic models
+          drop [2] Amazon and five other companies reportedly triggered the 
+government crackdown on Anthropic's Fable model
    dedup: keep [1] Statement on the US government directive to suspend access to
 Fable 5 and Mythos 5
-          drop [7] Amazon and five other companies reportedly triggered the 
-government crackdown on Anthropic's Fable model
+          drop [6] Megathread for US government suspension of Fable and Mythos
 📚 Enriching with background knowledge...
 
    Enriched 28 items
@@ -80,8 +73,8 @@ X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为�
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：102
+数据来源原始条数：93
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：8
-写入飞书：8
+新增选题：11
+写入飞书：11
