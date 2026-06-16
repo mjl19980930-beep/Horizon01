@@ -3,82 +3,77 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
+Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 Reddit RSS fallback failed for r/ClaudeAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ClaudeAI/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-   Found 0 items from Reddit
-   Found 21 items from Hacker News
-      • AG342: 1
-      • MehrdadKhnzd: 1
-      • RGBCube: 1
+Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+   Found 15 items from Reddit
+   Found 25 items from Hacker News
+      • BobDaHacker: 1
+      • Mustan: 1
+      • abnercoimbre: 1
+      • bookofjoe: 1
+      • chadfowler: 1
+      • chmaynard: 1
+      • cloudking: 1
       • colesantiago: 1
-      • david927: 1
-      • eatonphil: 1
-      • iliashad: 1
-      • josephcsible: 1
-      • kingstoned: 1
-      • losfair: 1
-      • octopus143: 1
-      • secret-noun: 1
-      • signa11: 1
+      • epistasis: 1
+      • karakoram: 1
+      • l0new0lf-G: 1
+      • lkanwoqwp: 1
+      • lwhsiao: 1
+      • mfiguiere: 1
+      • nicoburns: 1
+      • paulmooreparks: 1
+      • rsgm: 1
       • sohkamyung: 1
-      • swolpers: 1
-      • tamnd: 1
-      • tdchaitanya: 1
-      • teleforce: 1
-      • tosh: 1
-      • unrvl22: 1
-      • vrnvu: 1
-   Found 25 items from OSS Insight
+      • speckx: 1
+      • sph: 1
+      • thelonelyborg: 1
+      • thm: 1
+      • tinywind: 1
+      • tuhtah: 1
+      • zdw: 1
+   Found 18 items from OSS Insight
       • ossinsight:All: 2
       • ossinsight:Go: 1
       • ossinsight:HTML: 1
       • ossinsight:JavaScript: 2
       • ossinsight:Python: 9
       • ossinsight:Rust: 1
-      • ossinsight:TypeScript: 9
+      • ossinsight:TypeScript: 2
+   Found 3 items from GitHub
+      • anthropics/anthropic-sdk-python: 1
+      • huggingface/transformers: 2
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 21 items from RSS Feeds
-      • Hugging Face Blog: 1
+   Found 23 items from RSS Feeds
+      • Google AI Blog: 1
       • OpenAI News: 1
-      • Simon Willison: 8
+      • Simon Willison: 10
       • TLDR AI: 1
       • The Decoder: 10
-   Found 8 items from GitHub
-      • browser-use/browser-use: 1
-      • huggingface/transformers: 1
-      • langchain-ai/langchain: 5
-      • langchain-ai/langgraph: 1
 🤖 Analyzing content with AI...
 
-   dedup: keep [0] Statement on the US government directive to suspend access to
-Fable 5 and Mythos 5
-          drop [2] Anthropic shutdown sparks sovereignty debate across Europe
-   dedup: keep [0] Statement on the US government directive to suspend access to
-Fable 5 and Mythos 5
-          drop [4] Anthropic's Safety Superpower
-   dedup: keep [0] Statement on the US government directive to suspend access to
-Fable 5 and Mythos 5
-          drop [16] Amazon and five other companies reportedly triggered the 
+   dedup: keep [8] Amazon and five other companies reportedly triggered the 
 government crackdown on Anthropic's Fable model
+          drop [12] Anthropic shutdown sparks sovereignty debate across Europe
 📚 Enriching with background knowledge...
 
-   Enriched 27 items
+   Enriched 29 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：75
+数据来源原始条数：84
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：7
-写入飞书：7
+新增选题：13
+写入飞书：13
