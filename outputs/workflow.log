@@ -3,32 +3,39 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-Reddit RSS fallback failed for r/ClaudeAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ClaudeAI/hot/.rss'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
 Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
    Found 13 items from Reddit
-   Found 24 items from Hacker News
+   Found 11 items from OSS Insight
+      • ossinsight:All: 1
+      • ossinsight:C: 1
+      • ossinsight:JavaScript: 1
+      • ossinsight:Python: 5
+      • ossinsight:TypeScript: 3
+   Found 26 items from Hacker News
       • Bender: 1
-      • BerislavLopac: 1
-      • Redoubts: 1
+      • CorRupT9: 1
+      • RIshabh235: 1
       • alphabettsy: 1
+      • anitil: 1
       • beatthatflight: 1
       • brownrout: 1
-      • dijksterhuis: 1
       • dnlo: 1
-      • e2e4: 1
       • giuliomagnifico: 1
       • gregpr07: 1
       • himata4113: 1
+      • ilreb: 1
+      • jrepinc: 1
       • kodesko: 1
-      • lutr: 1
+      • lompad: 1
       • microtonal: 1
       • peter_d_sherman: 1
       • presspot: 1
@@ -38,20 +45,16 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • smartmic: 1
       • susiecambria: 1
       • trymas: 1
+      • xena: 1
       • zachdive: 1
-   Found 10 items from OSS Insight
-      • ossinsight:All: 1
-      • ossinsight:JavaScript: 1
-      • ossinsight:Python: 5
-      • ossinsight:TypeScript: 3
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 8 items from GitHub
       • anthropics/anthropic-sdk-python: 1
       • huggingface/transformers: 2
       • langchain-ai/langgraph: 1
       • modelcontextprotocol/python-sdk: 2
       • openai/openai-python: 2
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
    Found 33 items from RSS Feeds
       • Google AI Blog: 2
       • Hugging Face Blog: 4
@@ -61,19 +64,31 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • The Decoder: 10
 🤖 Analyzing content with AI...
 
-   dedup: keep [3] GLM-5.2 is probably the most powerful text-only open weights 
+   dedup: keep [1] GLM-5.2 is probably the most powerful text-only open weights 
 LLM
-          drop [10] GLM-5.2: Built for Long-Horizon Tasks
+          drop [2] Zhipu AI's GLM-5.2 closes in on closed-source leaders in 
+coding marathons
+   dedup: keep [1] GLM-5.2 is probably the most powerful text-only open weights 
+LLM
+          drop [3] GLM-5.2 is the new leading open weights model on Artificial 
+Analysis
+   dedup: keep [1] GLM-5.2 is probably the most powerful text-only open weights 
+LLM
+          drop [18] GLM-5.2: Built for Long-Horizon Tasks
+   dedup: keep [10] Predicting model behavior before release by simulating 
+deployment
+          drop [14] OpenAI researchers want to predict how often AI models will 
+fail before launch
 📚 Enriching with background knowledge...
 
-   Enriched 29 items
+   Enriched 26 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：88
+数据来源原始条数：91
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：17
-写入飞书：17
+新增选题：7
+写入飞书：7
