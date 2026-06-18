@@ -3,67 +3,67 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
+Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
-Reddit RSS fallback failed for r/ClaudeAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ClaudeAI/hot/.rss'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
+Reddit RSS fallback failed for r/ClaudeAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ClaudeAI/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-   Found 15 items from Reddit
-   Found 8 items from OSS Insight
+Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+   Found 13 items from Reddit
+   Found 24 items from Hacker News
+      • Bender: 1
+      • BerislavLopac: 1
+      • Redoubts: 1
+      • alphabettsy: 1
+      • beatthatflight: 1
+      • brownrout: 1
+      • dijksterhuis: 1
+      • dnlo: 1
+      • e2e4: 1
+      • giuliomagnifico: 1
+      • gregpr07: 1
+      • himata4113: 1
+      • kodesko: 1
+      • lutr: 1
+      • microtonal: 1
+      • peter_d_sherman: 1
+      • presspot: 1
+      • regnerba: 1
+      • ricochet11: 1
+      • schappim: 1
+      • smartmic: 1
+      • susiecambria: 1
+      • trymas: 1
+      • zachdive: 1
+   Found 10 items from OSS Insight
       • ossinsight:All: 1
       • ossinsight:JavaScript: 1
       • ossinsight:Python: 5
-      • ossinsight:TypeScript: 1
-   Found 24 items from Hacker News
-      • Cider9986: 1
-      • alok-g: 1
-      • denysvitali: 1
-      • dzonga: 1
-      • e2e4: 1
-      • gpjt: 1
-      • headalgorithm: 1
-      • himata4113: 1
-      • ilreb: 1
-      • imakwana: 1
-      • itsmarcelg: 1
-      • jensgk: 1
-      • jfb: 1
-      • lwhsiao: 1
-      • melihelibol: 1
-      • mrshu: 1
-      • neilfrndes: 1
-      • parksb: 1
-      • presspot: 1
-      • pseudolus: 1
-      • razin: 1
-      • root-parent: 1
-      • slymax: 1
-      • throwarayes: 1
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 7 items from GitHub
+      • ossinsight:TypeScript: 3
+   Found 8 items from GitHub
       • anthropics/anthropic-sdk-python: 1
       • huggingface/transformers: 2
       • langchain-ai/langgraph: 1
       • modelcontextprotocol/python-sdk: 2
-      • openai/openai-python: 1
-   Found 29 items from RSS Feeds
-      • Google AI Blog: 1
-      • Hugging Face Blog: 2
-      • OpenAI News: 2
+      • openai/openai-python: 2
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+   Found 33 items from RSS Feeds
+      • Google AI Blog: 2
+      • Hugging Face Blog: 4
+      • OpenAI News: 3
       • Simon Willison: 12
       • TLDR AI: 2
       • The Decoder: 10
 🤖 Analyzing content with AI...
 
-   dedup: keep [0] SpaceX bets $60 billion on Cursor to catch OpenAI and 
-Anthropic
-          drop [1] SpaceX to buy Cursor for $60B
+   dedup: keep [3] GLM-5.2 is probably the most powerful text-only open weights 
+LLM
+          drop [10] GLM-5.2: Built for Long-Horizon Tasks
 📚 Enriching with background knowledge...
 
    Enriched 29 items
@@ -72,8 +72,8 @@ X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为�
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：83
+数据来源原始条数：88
 筛选策略：ai_score_threshold
 候选选题：20
-新增选题：10
-写入飞书：10
+新增选题：17
+写入飞书：17
