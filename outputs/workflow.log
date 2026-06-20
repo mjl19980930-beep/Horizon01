@@ -3,40 +3,47 @@
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
-Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
-Reddit blocked JSON listing for r/OpenAI; falling back to RSS
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
+Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-Reddit RSS fallback failed for r/ClaudeAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ClaudeAI/hot/.rss'
+Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
    Found 13 items from Reddit
-   Found 20 items from Hacker News
+   Found 25 items from Hacker News
       • Bender: 2
+      • KraftyOne: 1
       • Michelangelo11: 1
+      • Pamar: 1
       • abnry: 1
+      • amichail: 1
       • artninja1988: 1
-      • birdculture: 1
       • ck2: 1
       • danabramov: 1
       • ddrmaxgt37: 1
-      • gyosifov: 1
       • herbertl: 1
-      • hn_acker: 2
+      • hn_acker: 1
       • ilreb: 1
+      • jwilk: 1
       • ksec: 1
+      • moultano: 1
       • mplappert: 1
       • niyikiza: 1
+      • oshrimpton: 1
       • pgrote: 1
       • philonoist: 1
       • rrvsh: 1
-   Found 6 items from OSS Insight
+      • theanonymousone: 1
+      • y1n0: 1
+   Found 9 items from OSS Insight
+      • ossinsight:All: 1
       • ossinsight:C: 1
       • ossinsight:JavaScript: 1
-      • ossinsight:Python: 2
+      • ossinsight:Python: 4
       • ossinsight:TypeScript: 2
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -45,20 +52,21 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
       • langchain-ai/langchain: 2
       • langchain-ai/langgraph: 1
       • openai/openai-python: 1
-   Found 28 items from RSS Feeds
+   Found 25 items from RSS Feeds
       • Google AI Blog: 1
-      • Hugging Face Blog: 6
-      • OpenAI News: 4
+      • Hugging Face Blog: 4
+      • OpenAI News: 3
       • Simon Willison: 5
       • TLDR AI: 2
       • The Decoder: 10
 🤖 Analyzing content with AI...
 
-   dedup: keep [0] GLM-5.2 is probably the most powerful text-only open weights 
-LLM
-          drop [28] GLM-5.2: Built for Long-Horizon Tasks
-   dedup: keep [1] John Jumper to join Anthropic
-          drop [10] Google Deepmind loses another top AI researcher as Nobel 
+   dedup: keep [1] Nobel Winner John Jumper to Leave Google DeepMind for 
+Anthropic
+          drop [11] John Jumper to join Anthropic
+   dedup: keep [1] Nobel Winner John Jumper to Leave Google DeepMind for 
+Anthropic
+          drop [13] Google Deepmind loses another top AI researcher as Nobel 
 laureate John Jumper leaves for Anthropic
 📚 Enriching with background knowledge...
 
@@ -68,8 +76,8 @@ X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为�
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：73
+数据来源原始条数：78
 筛选策略：ai_score_threshold
-候选选题：20
-新增选题：8
-写入飞书：8
+候选选题：17
+新增选题：5
+写入飞书：5
