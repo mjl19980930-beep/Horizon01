@@ -4,73 +4,75 @@
 🔍 Fetching from Reddit...
 🔍 Fetching from OSS Insight...
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
-Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-Reddit RSS fallback failed for r/LocalLLaMA: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 Reddit RSS fallback failed for r/ClaudeAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ClaudeAI/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-   Found 13 items from Reddit
-   Found 24 items from Hacker News
+Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+   Found 15 items from Reddit
+   Found 25 items from Hacker News
       • Cider9986: 1
       • JumpCrisscross: 1
       • LowLevelMahn: 1
       • Sibexico: 1
+      • barqawiz: 1
+      • birdculture: 1
       • bookofjoe: 1
       • cauenapier: 1
       • colinprince: 1
       • croes: 1
       • farhadhf: 1
       • gr4vityWall: 1
-      • msalsas: 1
       • oshrimpton: 1
       • overflowy: 1
       • ridesisapis: 1
       • saisrirampur: 1
+      • sarangk90: 1
       • shpran: 1
       • simonpure: 1
       • sohkamyung: 1
       • toilet: 1
       • vnbrs: 1
-      • wglb: 1
       • zdw: 3
-   Found 13 items from OSS Insight
-      • ossinsight:All: 1
+   Found 30 items from OSS Insight
+      • ossinsight:All: 3
       • ossinsight:C: 1
-      • ossinsight:JavaScript: 1
-      • ossinsight:Python: 4
-      • ossinsight:TypeScript: 6
+      • ossinsight:Go: 1
+      • ossinsight:JavaScript: 3
+      • ossinsight:Python: 12
+      • ossinsight:Rust: 1
+      • ossinsight:TypeScript: 9
    Found 5 items from GitHub
       • anthropics/anthropic-sdk-python: 2
       • langchain-ai/langchain: 2
       • langchain-ai/langgraph: 1
 Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 18 items from RSS Feeds
+   Found 17 items from RSS Feeds
       • Hugging Face Blog: 1
-      • OpenAI News: 3
+      • OpenAI News: 2
       • Simon Willison: 3
       • TLDR AI: 1
       • The Decoder: 10
 🤖 Analyzing content with AI...
+Warning: could not parse analysis response for github:release:341607808, using defaults
+Warning: could not parse analysis response for hackernews:story:48612740, using defaults
+Warning: could not parse analysis response for reddit:subreddit-rss:t3_1ub69xu, using defaults
 
-   dedup: keep [7] OpenAI tripled revenue to $5.7 billion in Q1 but burned 
-through $3.7 billion to get there
-          drop [21] Leaked financial docs show OpenAI is losing billions of 
-dollars a year
 📚 Enriching with background knowledge...
 
-   Enriched 29 items
+   Enriched 30 items
 
 X/Twitter 未配置官方API：可用 RSSHub_ROUTES 或 SOCIAL_RSS_URLS 作为无Key兜底。
 YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作为无Key兜底。
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：73
+数据来源原始条数：92
 筛选策略：ai_score_threshold
-候选选题：18
-新增选题：10
-写入飞书：10
+候选选题：20
+新增选题：11
+写入飞书：11
