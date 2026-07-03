@@ -7,42 +7,48 @@ Reddit old HTML request failed for r/LocalLLaMA: Client error '403 Blocked' for 
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit old HTML returned no posts for r/LocalLLaMA; falling back to JSON
 Reddit blocked JSON listing for r/LocalLLaMA; falling back to RSS
+   Found 30 items from OSS Insight
+      • ossinsight:C: 1
+      • ossinsight:JavaScript: 2
+      • ossinsight:Python: 14
+      • ossinsight:Rust: 3
+      • ossinsight🐚 1
+      • ossinsight:Swift: 1
+      • ossinsight:TypeScript: 8
 Reddit old HTML request failed for r/OpenAI: Client error '403 Blocked' for url 'https://old.reddit.com/r/OpenAI/hot/?limit=15'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit old HTML returned no posts for r/OpenAI; falling back to JSON
 Reddit blocked JSON listing for r/OpenAI; falling back to RSS
+   Found 23 items from Hacker News
+      • FigurativeVoid: 1
+      • FireBeyond: 1
+      • IngoBlechschmid: 1
+      • KraftyOne: 1
+      • Philpax: 1
+      • Riseed: 1
+      • Terretta: 1
+      • cfowles: 1
+      • cortexosmain: 1
+      • doener: 1
+      • drewfax: 1
+      • flowercalled: 1
+      • hashier: 1
+      • pzullo: 1
+      • seahorseemoji: 1
+      • segaboy81: 1
+      • soheilpro: 1
+      • sprawl_: 1
+      • talonx: 1
+      • thoughtpeddler: 1
+      • throwaway2027: 1
+      • toomuchtodo: 1
+      • yu3zhou4: 1
 Reddit RSS fallback failed for r/OpenAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/OpenAI/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 Reddit old HTML request failed for r/ClaudeAI: Client error '403 Blocked' for url 'https://old.reddit.com/r/ClaudeAI/hot/?limit=15'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 Reddit old HTML returned no posts for r/ClaudeAI; falling back to JSON
 Reddit blocked JSON listing for r/ClaudeAI; falling back to RSS
-   Found 27 items from Hacker News
-      • IESAI_ski: 1
-      • Pragmata: 1
-      • Tiberium: 1
-      • atan2: 1
-      • bushwart: 1
-      • ccabraldev: 1
-      • chvid: 1
-      • consumer451: 1
-      • defrost: 1
-      • dennis-tra: 1
-      • devicelimit: 1
-      • drewfax: 1
-      • gilgamesh3: 1
-      • kirushik: 1
-      • ledoge: 1
-      • littlexsparkee: 1
-      • matt_d: 1
-      • mfiguiere: 1
-      • paulpauper: 2
-      • pentagrama: 1
-      • ryanmerket: 1
-      • soheilpro: 1
-      • stmw: 1
-      • unliftedq: 1
-      • whoishiring: 2
 Reddit RSS fallback failed for r/ClaudeAI: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ClaudeAI/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 Reddit old HTML request failed for r/ChatGPTCoding: Client error '403 Blocked' for url 'https://old.reddit.com/r/ChatGPTCoding/hot/?limit=10'
@@ -51,176 +57,158 @@ Reddit old HTML returned no posts for r/ChatGPTCoding; falling back to JSON
 Reddit blocked JSON listing for r/ChatGPTCoding; falling back to RSS
 Reddit RSS fallback failed for r/ChatGPTCoding: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/ChatGPTCoding/hot/.rss'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-   Found 14 items from Reddit
-   Found 29 items from OSS Insight
-      • ossinsight:C: 1
-      • ossinsight:JavaScript: 2
-      • ossinsight:Python: 14
-      • ossinsight:Rust: 3
-      • ossinsight🐚 1
-      • ossinsight:TypeScript: 8
-Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-   Found 8 items from GitHub
+   Found 15 items from Reddit
+   Found 6 items from GitHub
       • anthropics/anthropic-sdk-python: 4
       • browser-use/browser-use: 1
-      • langchain-ai/langchain: 1
-      • langchain-ai/langgraph: 1
       • modelcontextprotocol/python-sdk: 1
-   Found 34 items from RSS Feeds
-      • Google AI Blog: 4
-      • Hugging Face Blog: 5
-      • OpenAI News: 4
+Error fetching RSS feed Anthropic News: Client error '404 Not Found' for url 'https://www.anthropic.com/news/rss.xml'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+   Found 28 items from RSS Feeds
+      • Google AI Blog: 3
+      • Hugging Face Blog: 3
+      • OpenAI News: 1
       • Simon Willison: 9
       • TLDR AI: 2
       • The Decoder: 10
 🤖 Analyzing content with AI...
-Error analyzing item github:release:347734639: RetryError[<Future at 0x7f5fbcd73090 state=finished raised AuthenticationError>]
-Error analyzing item github:release:347065344: RetryError[<Future at 0x7f5fbcd82d50 state=finished raised AuthenticationError>]
-Error analyzing item github:release:347003604: RetryError[<Future at 0x7f5fbcd80110 state=finished raised AuthenticationError>]
-Error analyzing item github:release:346333238: RetryError[<Future at 0x7f5fbcd9c9d0 state=finished raised AuthenticationError>]
-Error analyzing item github:release:347148890: RetryError[<Future at 0x7f5fbcd8c310 state=finished raised AuthenticationError>]
-Error analyzing item github:release:346472156: RetryError[<Future at 0x7f5fbcda7610 state=finished raised AuthenticationError>]
-Error analyzing item github:release:346573379: RetryError[<Future at 0x7f5fbcda53d0 state=finished raised AuthenticationError>]
-Error analyzing item github:release:347539534: RetryError[<Future at 0x7f5fbcda4690 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48755965: RetryError[<Future at 0x7f5fbcdafdd0 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48756602: RetryError[<Future at 0x7f5fbcdad290 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48755005: RetryError[<Future at 0x7f5fbcdbfbd0 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48753715: RetryError[<Future at 0x7f5fbcdbcb10 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48755731: RetryError[<Future at 0x7f5fbcdd4f90 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48755928: RetryError[<Future at 0x7f5fbcdcc050 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48750710: RetryError[<Future at 0x7f5fbcdce990 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48747116: RetryError[<Future at 0x7f5fbcdad290 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48753979: RetryError[<Future at 0x7f5fbcda6c10 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48747976: RetryError[<Future at 0x7f5fbcdcced0 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48732860: RetryError[<Future at 0x7f5fbcd9ff50 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48750989: RetryError[<Future at 0x7f5fbcdaef90 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48740971: RetryError[<Future at 0x7f5fbcd7df50 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48753069: RetryError[<Future at 0x7f5fbcdadc90 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48747304: RetryError[<Future at 0x7f5fbcd7ffd0 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48754080: RetryError[<Future at 0x7f5fbcd8db10 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48746914: RetryError[<Future at 0x7f5fbcdccf90 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48752905: RetryError[<Future at 0x7f5fbcd80f10 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48753524: RetryError[<Future at 0x7f5fbcda4490 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48723102: RetryError[<Future at 0x7f5fbcd7fc90 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48748518: RetryError[<Future at 0x7f5fbcc04d50 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48745456: RetryError[<Future at 0x7f5fbcd7eed0 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48740771: RetryError[<Future at 0x7f5fbcdd4b50 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48754155: RetryError[<Future at 0x7f5fbcdf8e50 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48752030: RetryError[<Future at 0x7f5fbcc07550 state=finished raised AuthenticationError>]
-Error analyzing item hackernews:story:48734373: RetryError[<Future at 0x7f5fbcc11a90 state=finished raised AuthenticationError>]
-Error analyzing item rss:openai.com_news_rss.xml:068c9bc43551fee5: RetryError[<Future at 0x7f5fbcd8e2d0 state=finished raised AuthenticationError>]
-Error analyzing item rss:openai.com_news_rss.xml:617f45738c65d6ba: RetryError[<Future at 0x7f5fbcc062d0 state=finished raised AuthenticationError>]
-Error analyzing item rss:openai.com_news_rss.xml:0b8dc2473cab870c: RetryError[<Future at 0x7f5fbcc1a650 state=finished raised AuthenticationError>]
-Error analyzing item rss:openai.com_news_rss.xml:f1f7d4f8001b4288: RetryError[<Future at 0x7f5fbcdfa8d0 state=finished raised AuthenticationError>]
-Error analyzing item rss:blog.google_technology_ai_rss_:0be6913362ae4cbf: RetryError[<Future at 0x7f5fbcc18c50 state=finished raised AuthenticationError>]
-Error analyzing item rss:blog.google_technology_ai_rss_:94c768ce3675b2b1: RetryError[<Future at 0x7f5fbcc26fd0 state=finished raised AuthenticationError>]
-Error analyzing item rss:blog.google_technology_ai_rss_:2987e3b3c79a3a0a: RetryError[<Future at 0x7f5fbcda5350 state=finished raised AuthenticationError>]
-Error analyzing item rss:blog.google_technology_ai_rss_:13020592cd3212bb: RetryError[<Future at 0x7f5fbcc24250 state=finished raised AuthenticationError>]
-Error analyzing item rss:huggingface.co_blog_feed.xml:e4a022908747a557: RetryError[<Future at 0x7f5fbcc2d750 state=finished raised AuthenticationError>]
-Error analyzing item rss:huggingface.co_blog_feed.xml:d2b47e5ca2b10e4d: RetryError[<Future at 0x7f5fbcc19e10 state=finished raised AuthenticationError>]
-Error analyzing item rss:huggingface.co_blog_feed.xml:9f340727232d898a: RetryError[<Future at 0x7f5fbcc2d550 state=finished raised AuthenticationError>]
-Error analyzing item rss:huggingface.co_blog_feed.xml:326b5d51b877e9cf: RetryError[<Future at 0x7f5fbcc305d0 state=finished raised AuthenticationError>]
-Error analyzing item rss:huggingface.co_blog_feed.xml:9cc3b14e3b9c7b80: RetryError[<Future at 0x7f5fbcc26c50 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:2acafbd6a6457016: RetryError[<Future at 0x7f5fbcc04f10 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:9e61dd70a4729661: RetryError[<Future at 0x7f5fbcdd7d50 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:36f5f67c86fa79a9: RetryError[<Future at 0x7f5fbcdf8490 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:8629cca2232d9368: RetryError[<Future at 0x7f5fbcc04690 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:e6d9181f4de8be94: RetryError[<Future at 0x7f5fbcc2d210 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:a54c3d83b7524573: RetryError[<Future at 0x7f5fbcd7de50 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:cf20d7464c411926: RetryError[<Future at 0x7f5fbcdd6150 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:4aa6b813bdb86b8d: RetryError[<Future at 0x7f5fbcc1bf10 state=finished raised AuthenticationError>]
-Error analyzing item rss:simonwillison.net_atom_everything_:8edc68a0b3d08afa: RetryError[<Future at 0x7f5fbcd8cbd0 state=finished raised AuthenticationError>]
-Error analyzing item rss:tldr.tech_api_rss_ai:65a03f0246a417c7: RetryError[<Future at 0x7f5fbcc126d0 state=finished raised AuthenticationError>]
-Error analyzing item rss:tldr.tech_api_rss_ai:95f10cad7bee27f0: RetryError[<Future at 0x7f5fbcc24e50 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:431d79d8d77ff420: RetryError[<Future at 0x7f5fbcd7c910 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:3de7e1a298d9c7f2: RetryError[<Future at 0x7f5fbcc2c7d0 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:c151bcc245e21d07: RetryError[<Future at 0x7f5fbcd70f10 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:1a9713fdc07a404b: RetryError[<Future at 0x7f5fbcd8ee90 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:36d1a588bece1c4a: RetryError[<Future at 0x7f5fbcdf8810 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:594ac404409e2482: RetryError[<Future at 0x7f5fbcc110d0 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:3e586fec8b4ab749: RetryError[<Future at 0x7f5fbcd9e1d0 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:8f76a846565e9474: RetryError[<Future at 0x7f5fbcdbe890 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:c0a3eb64cb22b6e0: RetryError[<Future at 0x7f5fbcd8d550 state=finished raised AuthenticationError>]
-Error analyzing item rss:the-decoder.com_feed_:28c15c482434b011: RetryError[<Future at 0x7f5fbcc07a90 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ulb4nx: RetryError[<Future at 0x7f5fbcdbd410 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ul0cx9: RetryError[<Future at 0x7f5fbcd71f90 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ukqp20: RetryError[<Future at 0x7f5fbcd8e410 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ukp2bu: RetryError[<Future at 0x7f5fbcdbf550 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ul6enz: RetryError[<Future at 0x7f5fbcdbdcd0 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ukx9p1: RetryError[<Future at 0x7f5fbcc2cc90 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ukzavr: RetryError[<Future at 0x7f5fbcdce390 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ul7za1: RetryError[<Future at 0x7f5fbcda5310 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ul7ki2: RetryError[<Future at 0x7f5fbcdadcd0 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ukww17: RetryError[<Future at 0x7f5fbcc07310 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ul7qb6: RetryError[<Future at 0x7f5fbcdbe950 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ukkz9a: RetryError[<Future at 0x7f5fbcc10350 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1ulatl7: RetryError[<Future at 0x7f5fbcc04e90 state=finished raised AuthenticationError>]
-Error analyzing item reddit:subreddit-rss:t3_1uknx14: RetryError[<Future at 0x7f5fbcc270d0 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1032808806: RetryError[<Future at 0x7f5fbcdce7d0 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1198306812: RetryError[<Future at 0x7f5fbcda6c50 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1131202426: RetryError[<Future at 0x7f5fbcd5fd90 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1195360525: RetryError[<Future at 0x7f5fbcdccad0 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1157102282: RetryError[<Future at 0x7f5fbcdada90 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1183888342: RetryError[<Future at 0x7f5fbcd8e3d0 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1165277268: RetryError[<Future at 0x7f5fbcc06510 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1166102148: RetryError[<Future at 0x7f5fbcdbd510 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1193909050: RetryError[<Future at 0x7f5fbcdcc2d0 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1141782198: RetryError[<Future at 0x7f5fbcd9e650 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1113573066: RetryError[<Future at 0x7f5fbcdad550 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1211139949: RetryError[<Future at 0x7f5fbcd8f590 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1131513930: RetryError[<Future at 0x7f5fbcc06dd0 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1206553433: RetryError[<Future at 0x7f5fbcc07f90 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1203777920: RetryError[<Future at 0x7f5fbcd8c290 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1208221543: RetryError[<Future at 0x7f5fbcc19810 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1140843380: RetryError[<Future at 0x7f5fbcd9d910 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1170548091: RetryError[<Future at 0x7f5fbcd9d410 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1196321162: RetryError[<Future at 0x7f5fbcc040d0 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1139971460: RetryError[<Future at 0x7f5fbcc2cf10 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1180745961: RetryError[<Future at 0x7f5fbcdbdc90 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1217040185: RetryError[<Future at 0x7f5fbcd9ca10 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1125856365: RetryError[<Future at 0x7f5fbcd8e250 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1079456184: RetryError[<Future at 0x7f5fbcdaf5d0 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1134543109: RetryError[<Future at 0x7f5fbcd7f510 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1166506614: RetryError[<Future at 0x7f5fbcd5da90 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1229284184: RetryError[<Future at 0x7f5fbcd83c50 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1028069336: RetryError[<Future at 0x7f5fbcd7d150 state=finished raised AuthenticationError>]
-Error analyzing item ossinsight:trending:1167300963: RetryError[<Future at 0x7f5fbcd7f910 state=finished raised AuthenticationError>]
+Error analyzing item github:release:348240276: RetryError[<Future at 0x7f497062e210 state=finished raised AuthenticationError>]
+Error analyzing item github:release:347734639: RetryError[<Future at 0x7f497064cf90 state=finished raised AuthenticationError>]
+Error analyzing item github:release:347065344: RetryError[<Future at 0x7f4970631b10 state=finished raised AuthenticationError>]
+Error analyzing item github:release:347003604: RetryError[<Future at 0x7f49706567d0 state=finished raised AuthenticationError>]
+Error analyzing item github:release:347148890: RetryError[<Future at 0x7f497064f450 state=finished raised AuthenticationError>]
+Error analyzing item github:release:347539534: RetryError[<Future at 0x7f49706653d0 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48770647: RetryError[<Future at 0x7f497065b750 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48767347: RetryError[<Future at 0x7f4970667dd0 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48769397: RetryError[<Future at 0x7f4970675d50 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48768951: RetryError[<Future at 0x7f4970677ad0 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48768464: RetryError[<Future at 0x7f497067ed90 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48763035: RetryError[<Future at 0x7f497067d610 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48765663: RetryError[<Future at 0x7f497068efd0 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48768992: RetryError[<Future at 0x7f497068edd0 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48759634: RetryError[<Future at 0x7f497068f850 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48762098: RetryError[<Future at 0x7f49704a6f10 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48768336: RetryError[<Future at 0x7f4970666950 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48761118: RetryError[<Future at 0x7f49704b55d0 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48761944: RetryError[<Future at 0x7f49704b7d50 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48765639: RetryError[<Future at 0x7f49704c32d0 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48766026: RetryError[<Future at 0x7f49704b5f90 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48739459: RetryError[<Future at 0x7f49704d2550 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48766005: RetryError[<Future at 0x7f49704d1950 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48766286: RetryError[<Future at 0x7f49704dda10 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48765607: RetryError[<Future at 0x7f49704d1850 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48766209: RetryError[<Future at 0x7f49704b5450 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48768997: RetryError[<Future at 0x7f497068fc90 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48762862: RetryError[<Future at 0x7f49704b67d0 state=finished raised AuthenticationError>]
+Error analyzing item hackernews:story:48755965: RetryError[<Future at 0x7f49704deed0 state=finished raised AuthenticationError>]
+Error analyzing item rss:openai.com_news_rss.xml:068c9bc43551fee5: RetryError[<Future at 0x7f4970676150 state=finished raised AuthenticationError>]
+Error analyzing item rss:blog.google_technology_ai_rss_:0be6913362ae4cbf: RetryError[<Future at 0x7f49704c30d0 state=finished raised AuthenticationError>]
+Error analyzing item rss:blog.google_technology_ai_rss_:94c768ce3675b2b1: RetryError[<Future at 0x7f4970677ed0 state=finished raised AuthenticationError>]
+Error analyzing item rss:blog.google_technology_ai_rss_:2987e3b3c79a3a0a: RetryError[<Future at 0x7f497067dc90 state=finished raised AuthenticationError>]
+Error analyzing item rss:huggingface.co_blog_feed.xml:e4a022908747a557: RetryError[<Future at 0x7f49704a62d0 state=finished raised AuthenticationError>]
+Error analyzing item rss:huggingface.co_blog_feed.xml:d2b47e5ca2b10e4d: RetryError[<Future at 0x7f4970659710 state=finished raised AuthenticationError>]
+Error analyzing item rss:huggingface.co_blog_feed.xml:9f340727232d898a: RetryError[<Future at 0x7f4970616f10 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:aa700a0b090cbd98: RetryError[<Future at 0x7f4970658d90 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:a5c875c2d1226c79: RetryError[<Future at 0x7f4970675d10 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:6c43649d42286d6c: RetryError[<Future at 0x7f497067c890 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:2acafbd6a6457016: RetryError[<Future at 0x7f497067e890 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:9e61dd70a4729661: RetryError[<Future at 0x7f4970677790 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:36f5f67c86fa79a9: RetryError[<Future at 0x7f4970667cd0 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:8629cca2232d9368: RetryError[<Future at 0x7f49706305d0 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:e6d9181f4de8be94: RetryError[<Future at 0x7f4970675250 state=finished raised AuthenticationError>]
+Error analyzing item rss:simonwillison.net_atom_everything_:a54c3d83b7524573: RetryError[<Future at 0x7f49706556d0 state=finished raised AuthenticationError>]
+Error analyzing item rss:tldr.tech_api_rss_ai:0df12c1085058737: RetryError[<Future at 0x7f497064c3d0 state=finished raised AuthenticationError>]
+Error analyzing item rss:tldr.tech_api_rss_ai:65a03f0246a417c7: RetryError[<Future at 0x7f49706556d0 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:208c17f7074a2d74: RetryError[<Future at 0x7f49706753d0 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:6e335e56f68c8e9c: RetryError[<Future at 0x7f497064d610 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:fdb3b0ba989f8637: RetryError[<Future at 0x7f4970677e90 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:7f4a4f96a87883cc: RetryError[<Future at 0x7f4970656310 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:94a6606c1b5f9f3b: RetryError[<Future at 0x7f497064cb10 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:f627346a89331192: RetryError[<Future at 0x7f497064f990 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:4ac274a523a3443b: RetryError[<Future at 0x7f49704a4890 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:431d79d8d77ff420: RetryError[<Future at 0x7f49704e8450 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:3de7e1a298d9c7f2: RetryError[<Future at 0x7f49704f5e10 state=finished raised AuthenticationError>]
+Error analyzing item rss:the-decoder.com_feed_:c151bcc245e21d07: RetryError[<Future at 0x7f49704ea490 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ult0f4: RetryError[<Future at 0x7f49704a6d90 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulymml: RetryError[<Future at 0x7f49704f6650 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulgwld: RetryError[<Future at 0x7f497065a690 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1um2tbf: RetryError[<Future at 0x7f4970677390 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulb4nx: RetryError[<Future at 0x7f4970655750 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulm1gt: RetryError[<Future at 0x7f497064f210 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulmez2: RetryError[<Future at 0x7f497062c310 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulqg4i: RetryError[<Future at 0x7f497065a090 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ullxg7: RetryError[<Future at 0x7f4970627650 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulfpfo: RetryError[<Future at 0x7f4970657b50 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1um4pig: RetryError[<Future at 0x7f49704f6110 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulthkp: RetryError[<Future at 0x7f49706752d0 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulwo4a: RetryError[<Future at 0x7f49704f6910 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulw1wp: RetryError[<Future at 0x7f497065b210 state=finished raised AuthenticationError>]
+Error analyzing item reddit:subreddit-rss:t3_1ulv6g5: RetryError[<Future at 0x7f4970675a90 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1032808806: RetryError[<Future at 0x7f497062e010 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1198306812: RetryError[<Future at 0x7f49706653d0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1131202426: RetryError[<Future at 0x7f49704a6cd0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1195360525: RetryError[<Future at 0x7f49704a5090 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1157102282: RetryError[<Future at 0x7f49704c1110 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1183888342: RetryError[<Future at 0x7f4970677e10 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1165277268: RetryError[<Future at 0x7f497067e610 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1166102148: RetryError[<Future at 0x7f4970625990 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1193909050: RetryError[<Future at 0x7f4970666f10 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1141782198: RetryError[<Future at 0x7f49704a7cd0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1113573066: RetryError[<Future at 0x7f49704c3ad0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1211139949: RetryError[<Future at 0x7f497067f690 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1131513930: RetryError[<Future at 0x7f497068fad0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1206553433: RetryError[<Future at 0x7f4970659350 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1061327311: RetryError[<Future at 0x7f497067d590 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1203777920: RetryError[<Future at 0x7f497068ee50 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1180745961: RetryError[<Future at 0x7f49704e9a50 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1208221543: RetryError[<Future at 0x7f49704b7ed0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1140843380: RetryError[<Future at 0x7f4970625890 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1170548091: RetryError[<Future at 0x7f49704a7ed0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1196321162: RetryError[<Future at 0x7f49704a46d0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1139971460: RetryError[<Future at 0x7f49704b7790 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1217040185: RetryError[<Future at 0x7f49704e8450 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1125856365: RetryError[<Future at 0x7f4970676490 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1079456184: RetryError[<Future at 0x7f49704b4810 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1134543109: RetryError[<Future at 0x7f49704e8bd0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1166506614: RetryError[<Future at 0x7f49704e09d0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1229284184: RetryError[<Future at 0x7f49704eaa50 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1028069336: RetryError[<Future at 0x7f4970624fd0 state=finished raised AuthenticationError>]
+Error analyzing item ossinsight:trending:1167300963: RetryError[<Future at 0x7f49704e1790 state=finished raised AuthenticationError>]
 
   dedup: AI call failed (Error code: 401 - {'error': {'message': 'Authentication
 Fails, Your api key: ****2b12 is invalid', 'type': 'authentication_error', 
 'param': None, 'code': 'invalid_request_error'}}), skipping
 📚 Enriching with background knowledge...
-Error enriching item rss:openai.com_news_rss.xml:068c9bc43551fee5: RetryError[<Future at 0x7f5fbcda54d0 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:the-decoder.com_feed_:594ac404409e2482: RetryError[<Future at 0x7f5fbcc363d0 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:the-decoder.com_feed_:8f76a846565e9474: RetryError[<Future at 0x7f5fbcdbec10 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:the-decoder.com_feed_:28c15c482434b011: RetryError[<Future at 0x7f5fbcc3a710 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item hackernews:story:48756602: RetryError[<Future at 0x7f5fbcdbff90 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item hackernews:story:48755928: RetryError[<Future at 0x7f5fbcc42450 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item hackernews:story:48740771: RetryError[<Future at 0x7f5fbcc13110 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:huggingface.co_blog_feed.xml:d2b47e5ca2b10e4d: RetryError[<Future at 0x7f5fbcc42b10 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:simonwillison.net_atom_everything_:8edc68a0b3d08afa: RetryError[<Future at 0x7f5fbcdfb310 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:the-decoder.com_feed_:36d1a588bece1c4a: RetryError[<Future at 0x7f5fbcd7d2d0 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:the-decoder.com_feed_:c0a3eb64cb22b6e0: RetryError[<Future at 0x7f5fbcdd7550 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item reddit:subreddit-rss:t3_1ulb4nx: RetryError[<Future at 0x7f5fbcc18990 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item hackernews:story:48752030: RetryError[<Future at 0x7f5fbcd5cd90 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item hackernews:story:48734373: RetryError[<Future at 0x7f5fbcc11c10 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:openai.com_news_rss.xml:617f45738c65d6ba: RetryError[<Future at 0x7f5fbcdfb050 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:openai.com_news_rss.xml:0b8dc2473cab870c: RetryError[<Future at 0x7f5fbcdbf1d0 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:openai.com_news_rss.xml:f1f7d4f8001b4288: RetryError[<Future at 0x7f5fbcc2dad0 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:huggingface.co_blog_feed.xml:326b5d51b877e9cf: RetryError[<Future at 0x7f5fbcd8c650 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:simonwillison.net_atom_everything_:2acafbd6a6457016: RetryError[<Future at 0x7f5fbcc41d50 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:simonwillison.net_atom_everything_:36f5f67c86fa79a9: RetryError[<Future at 0x7f5fbcdac850 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:simonwillison.net_atom_everything_:e6d9181f4de8be94: RetryError[<Future at 0x7f5fbcdfae10 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:tldr.tech_api_rss_ai:65a03f0246a417c7: RetryError[<Future at 0x7f5fbcd72710 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:tldr.tech_api_rss_ai:95f10cad7bee27f0: RetryError[<Future at 0x7f5fbcc31650 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:the-decoder.com_feed_:1a9713fdc07a404b: RetryError[<Future at 0x7f5fbcc04a10 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item rss:the-decoder.com_feed_:3e586fec8b4ab749: RetryError[<Future at 0x7f5fbcc36390 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item ossinsight:trending:1196321162: RetryError[<Future at 0x7f5fbcc51b50 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item ossinsight:trending:1079456184: RetryError[<Future at 0x7f5fbcd73d90 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item ossinsight:trending:1229284184: RetryError[<Future at 0x7f5fbcc58250 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item github:release:347734639: RetryError[<Future at 0x7f5fbcc12bd0 state=finished raised AuthenticationError>], falling back to translation
-Error enriching item github:release:347065344: RetryError[<Future at 0x7f5fbcc5ab90 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:the-decoder.com_feed_:fdb3b0ba989f8637: RetryError[<Future at 0x7f49704c2d90 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:openai.com_news_rss.xml:068c9bc43551fee5: RetryError[<Future at 0x7f497064dd90 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item reddit:subreddit-rss:t3_1ult0f4: RetryError[<Future at 0x7f49706754d0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item reddit:subreddit-rss:t3_1ulfpfo: RetryError[<Future at 0x7f4970632590 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:huggingface.co_blog_feed.xml:d2b47e5ca2b10e4d: RetryError[<Future at 0x7f4970674910 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:simonwillison.net_atom_everything_:aa700a0b090cbd98: RetryError[<Future at 0x7f4970657450 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:simonwillison.net_atom_everything_:a5c875c2d1226c79: RetryError[<Future at 0x7f497067e9d0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:the-decoder.com_feed_:94a6606c1b5f9f3b: RetryError[<Future at 0x7f4970667850 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item reddit:subreddit-rss:t3_1ulb4nx: RetryError[<Future at 0x7f4970693a90 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item reddit:subreddit-rss:t3_1ulm1gt: RetryError[<Future at 0x7f49704b4650 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item hackernews:story:48766005: RetryError[<Future at 0x7f49704e9c10 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:simonwillison.net_atom_everything_:2acafbd6a6457016: RetryError[<Future at 0x7f497068c5d0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:simonwillison.net_atom_everything_:36f5f67c86fa79a9: RetryError[<Future at 0x7f49706334d0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:simonwillison.net_atom_everything_:e6d9181f4de8be94: RetryError[<Future at 0x7f49704a4410 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:tldr.tech_api_rss_ai:0df12c1085058737: RetryError[<Future at 0x7f49706555d0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:tldr.tech_api_rss_ai:65a03f0246a417c7: RetryError[<Future at 0x7f4970627ed0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:the-decoder.com_feed_:6e335e56f68c8e9c: RetryError[<Future at 0x7f4970667fd0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item rss:the-decoder.com_feed_:4ac274a523a3443b: RetryError[<Future at 0x7f4970676050 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item reddit:subreddit-rss:t3_1ulw1wp: RetryError[<Future at 0x7f49704f7b90 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item ossinsight:trending:1196321162: RetryError[<Future at 0x7f497068c9d0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item ossinsight:trending:1079456184: RetryError[<Future at 0x7f49704de6d0 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item ossinsight:trending:1229284184: RetryError[<Future at 0x7f49704fe490 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item github:release:348240276: RetryError[<Future at 0x7f49704fe590 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item github:release:347734639: RetryError[<Future at 0x7f497050c810 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item github:release:347065344: RetryError[<Future at 0x7f49704a4710 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item github:release:347003604: RetryError[<Future at 0x7f49704dea90 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item github:release:347148890: RetryError[<Future at 0x7f497068d350 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item hackernews:story:48768336: RetryError[<Future at 0x7f4970624410 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item hackernews:story:48765639: RetryError[<Future at 0x7f49704b5e10 state=finished raised AuthenticationError>], falling back to translation
+Error enriching item hackernews:story:48766026: RetryError[<Future at 0x7f497050be50 state=finished raised AuthenticationError>], falling back to translation
 
    Enriched 30 items
 
@@ -252,13 +240,10 @@ YouTube 未配置官方API：可用 YOUTUBE_CHANNEL_IDS 或 SOCIAL_RSS_URLS 作�
 选题卡生成失败，使用兜底模板：HTTP Error 401: Unauthorized
 选题卡生成失败，使用兜底模板：HTTP Error 401: Unauthorized
 选题卡生成失败，使用兜底模板：HTTP Error 401: Unauthorized
-选题卡生成失败，使用兜底模板：HTTP Error 401: Unauthorized
-选题卡生成失败，使用兜底模板：HTTP Error 401: Unauthorized
-选题卡生成失败，使用兜底模板：HTTP Error 401: Unauthorized
 已通过 FEISHU_WIKI_TOKEN 解析到多维表格 app_token。
 未提供 FEISHU_TABLE_ID，已默认使用第一张数据表：tblOGfnFxtAxC2jH
-数据来源原始条数：112
+数据来源原始条数：102
 筛选策略：keyword_fallback
 候选选题：20
-新增选题：2
-写入飞书：2
+新增选题：14
+写入飞书：14
