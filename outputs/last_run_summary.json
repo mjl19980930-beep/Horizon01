@@ -2,8 +2,8 @@
   "status": "failed",
   "hours": 72,
   "limit": 20,
-  "started_at": "2026-09-14T14:50:13.167594+08:00",
+  "started_at": "2026-09-14T22:21:29.521245+08:00",
   "error": "Configuration validation failed for data/config.json\nDetails: 2 validation errors for Config\nversion\n  Extra inputs are not permitted [type=extra_forbidden, input_value='1.0', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\nfiltering\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'ai_score_threshold': 4....'time_window_hours': 72}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden",
-  "finished_at": "2026-09-14T14:50:14.710215+08:00",
+  "finished_at": "2026-09-14T22:21:31.545750+08:00",
   "candidate_items": 0
 }
