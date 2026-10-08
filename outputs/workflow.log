@@ -2,24 +2,24 @@
 Details: 2 validation errors for Config
 version
   Extra inputs are not permitted [type=extra_forbidden, input_value='1.0', input_type=str]
-    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
 filtering
   Extra inputs are not permitted [type=extra_forbidden, input_value={'ai_score_threshold': 4....'time_window_hours': 72}, input_type=dict]
-    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/src/storage/manager.py", line 95, in load_config
     return Config.model_validate(data)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pydantic/main.py", line 732, in model_validate
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pydantic/main.py", line 790, in model_validate
     return cls.__pydantic_validator__.validate_python(
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 pydantic_core._pydantic_core.ValidationError: 2 validation errors for Config
 version
   Extra inputs are not permitted [type=extra_forbidden, input_value='1.0', input_type=str]
-    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
 filtering
   Extra inputs are not permitted [type=extra_forbidden, input_value={'ai_score_threshold': 4....'time_window_hours': 72}, input_type=dict]
-    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
 
 The above exception was the direct cause of the following exception:
 
@@ -51,7 +51,7 @@ src.storage.manager.ConfigError: Configuration validation failed for data/config
 Details: 2 validation errors for Config
 version
   Extra inputs are not permitted [type=extra_forbidden, input_value='1.0', input_type=str]
-    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
 filtering
   Extra inputs are not permitted [type=extra_forbidden, input_value={'ai_score_threshold': 4....'time_window_hours': 72}, input_type=dict]
-    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
