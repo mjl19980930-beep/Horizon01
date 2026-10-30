@@ -10,7 +10,7 @@ Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/src/storage/manager.py", line 95, in load_config
     return Config.model_validate(data)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pydantic/main.py", line 790, in model_validate
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/pydantic/main.py", line 792, in model_validate
     return cls.__pydantic_validator__.validate_python(
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 pydantic_core._pydantic_core.ValidationError: 2 validation errors for Config
